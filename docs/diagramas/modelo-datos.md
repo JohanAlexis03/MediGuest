@@ -9,7 +9,7 @@ Versión 1.0 — Fase 1
 - **SIG_VITALES** (id, caso_id → CASO_CLINICO) — temperatura, PA, FC, FR, SatO2
 - **PREGUNTA** (id, caso_id → CASO_CLINICO) — enunciado
 - **OPCION** (id, pregunta_id → PREGUNTA) — texto, es_correcta (bool), explicacion
-- **USUARIO** (id) — nombre, correo, contraseña (hash), rol (estudiante/admin)
+- **USUARIO** (id) — nombre, apellido, correo, contraseña (hash), rol (estudiante/admin)
 - **RESULTADO** (id, usuario_id → USUARIO, caso_id → CASO_CLINICO) — puntaje, fecha
 
 ## Dato derivado
