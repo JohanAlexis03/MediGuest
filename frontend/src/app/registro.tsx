@@ -57,7 +57,7 @@ export default function RegistroScreen() {
         </View>
     );
 }
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ffffff',
@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
         gap: 16,
     },
     logo: {
-        width: 120,
-        height: 120,
+        width: 140,
+        height: 130,
     },
     titulo: {
         fontSize: 24,
