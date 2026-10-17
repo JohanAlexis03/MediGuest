@@ -9,7 +9,7 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, Link } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
 import { Specialty, ClinicalCase } from '@/types/clinical-case';
 import { CaseCard } from '@/components/clinical/case-card';
@@ -49,7 +49,14 @@ export default function CasesScreen() {
       <View style={styles.container}>
         {/* Banner Superior */}
         <View style={styles.header}>
-          <Text style={styles.headerSubtitle}>Atención Prehospitalaria</Text>
+          <View style={styles.headerTopRow}>
+            <Text style={styles.headerSubtitle}>Atención Prehospitalaria</Text>
+            <Link href="/cases/progress" asChild>
+              <Pressable style={styles.progressButton}>
+                <Text style={styles.progressButtonText}>Mi Progreso 📊</Text>
+              </Pressable>
+            </Link>
+          </View>
           <Text style={styles.headerTitle}>Casos Clínicos Disponibles</Text>
           <Text style={styles.headerDescription}>
             Entrená tu razonamiento clínico resolviendo escenarios simulados basados en protocolos PHTLS / ATLS.
@@ -123,6 +130,25 @@ const styles = StyleSheet.create({
     paddingBottom: 14,
     borderBottomWidth: 1,
     borderBottomColor: '#e2e8f0',
+  },
+  headerTopRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  progressButton: {
+    backgroundColor: '#eff6ff',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#bfdbfe',
+  },
+  progressButtonText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#0b3d91',
   },
   headerSubtitle: {
     fontSize: 12,

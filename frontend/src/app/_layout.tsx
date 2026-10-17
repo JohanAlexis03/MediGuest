@@ -21,6 +21,7 @@ export default function RootLayout() {
         <Stack.Screen name="cases/index" options={{ title: 'Casos Clínicos APH' }} />
         <Stack.Screen name="cases/[id]" options={{ title: 'Ficha Clínica' }} />
         <Stack.Screen name="cases/solve" options={{ title: 'Resolución de Caso' }} />
+        <Stack.Screen name="cases/progress" options={{ title: 'Mi Progreso APH' }} />
       </Stack>
     </ThemeProvider>
   );
