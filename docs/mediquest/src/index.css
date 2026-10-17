@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-mediblue: #0B3D91;
+    --color-mediblue-hover: #082d6c;
+    --color-medigray: #666666;
+  }
+
+  body {
+    background-color: #F8FAFC;
+    color: #1E293B;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Custom clinical button heights & radius */
+.btn-primary {
+  height: 48px;
+  border-radius: 12px;
+  background-color: #0B3D91;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #082d6c;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  height: 48px;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  border: 1.5px solid #0B3D91;
+  color: #0B3D91;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: #F0F4FA;
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Tabular figures for clinical monitors */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ECG and monitor grid backgrounds */
+.clinical-grid {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(11, 61, 145, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 61, 145, 0.06) 1px, transparent 1px);
+}
+
+.ecg-grid {
+  background-color: #0F172A;
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(30, 41, 59, 0.6) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.6) 1px, transparent 1px);
+}
