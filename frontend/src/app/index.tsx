@@ -1,10 +1,11 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { Text, Pressable, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 import { Image } from 'expo-image';
 
 export default function IndexScreen() {
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.safeArea}>
             <Image
                 source={require('@/assets/images/Logo_MediQuest_v1.svg')}
                 style={styles.logo}
@@ -24,12 +25,12 @@ export default function IndexScreen() {
                     <Text style={styles.botonSecundarioTexto}>Crear cuenta</Text>
                 </Pressable>
             </Link>
-        </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    safeArea: {
         flex: 1,
         backgroundColor: '#ffffff',
         alignItems: 'center',

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import { Text, TextInput, Pressable, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
 
@@ -8,7 +9,7 @@ export default function LoginScreen() {
     const [contrasena, setContrasena] = useState('');
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container} edges={['bottom', 'left', 'right']}>
             <Image
                 source={require('@/assets/images/Logo_MediQuest_v1.svg')}
                 style={styles.logo}
@@ -42,7 +43,7 @@ export default function LoginScreen() {
                     <Text style={styles.enlace}>¿No tenés cuenta? Registrate</Text>
                 </Pressable>
             </Link>
-        </View>
+        </SafeAreaView>
 
     );
 }

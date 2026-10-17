@@ -5,8 +5,8 @@ import {
   ScrollView,
   Pressable,
   StyleSheet,
-  SafeAreaView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
 
@@ -19,7 +19,7 @@ export default function CaseDetailScreen() {
 
   if (!clinicalCase) {
     return (
-      <SafeAreaView style={styles.notFoundContainer}>
+      <SafeAreaView style={styles.notFoundContainer} edges={['bottom', 'left', 'right']}>
         <Text style={styles.notFoundTitle}>Caso clínico no encontrado</Text>
         <Pressable style={styles.backButton} onPress={() => router.back()}>
           <Text style={styles.backButtonText}>← Volver al catálogo</Text>
@@ -31,7 +31,7 @@ export default function CaseDetailScreen() {
   const { vitals, patient, clinicalPresentation } = clinicalCase;
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['bottom', 'left', 'right']}>
       <Stack.Screen
         options={{
           title: `Caso ${clinicalCase.id.toUpperCase()}`,

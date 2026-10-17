@@ -17,10 +17,30 @@ Aplicación móvil para que estudiantes de **Atención Prehospitalaria (APH)** r
 
 ## Estado del proyecto
 
-- 🟢 **Frontend:** Expo SDK 57 (React Native 0.86, React 19.2, expo-router) — estructura inicial lista.
-- 🟡 **Backend:** por definir (pendiente decisión de stack).
-- 🟡 **Documentación:** visión definida; casos y diagramas en elaboración.
-- 🟢 **Git:** rama `main`; fase inicial de organización.
+- 🟢 **Frontend (Móvil APH):** Expo SDK 57 (React Native 0.86, React 19.2, Expo Router).
+  - ✅ Flujo completo del estudiante implementado (Login, Registro, Catálogo con filtros, Ficha clínica ABCDE/SAMPLE, Resolución evaluada y Progreso).
+  - ✅ Safe Area multiplataforma garantizada con `react-native-safe-area-context` (Android gestos, punch-hole, iOS Dynamic Island/notch).
+  - 🟡 Pendiente: Visor de imágenes diagnósticas interactivas (RF06).
+- 🟡 **Backend:** Java con Spring Boot + MySQL (según Documento Maestro en `docs/`). Carpeta `backend/` lista para iniciar.
+- 🟢 **Documentación:** Agente de documentación activo (`AGENTS.md`), documento maestro y matriz de requerimientos sincronizados.
+- 🟢 **Git:** Rama de trabajo `feature/navegacion`.
+
+## Matriz de Requerimientos Funcionales (MVP)
+
+| ID | Requerimiento | Estado | Detalle / Ruta |
+|---|---|:---:|---|
+| **RF01** | Registro de usuario | ✅ | `frontend/src/app/registro.tsx` |
+| **RF02** | Inicio de sesión | ✅ | `frontend/src/app/login.tsx` |
+| **RF03** | Visualización de casos clínicos | ✅ | `frontend/src/app/cases/index.tsx` (Filtros APH) |
+| **RF04** | Selección de caso clínico | ✅ | `frontend/src/components/clinical/case-card.tsx` |
+| **RF05** | Presentación de info clínica | ✅ | `frontend/src/app/cases/[id].tsx` (Signos vitales, ABCDE, SAMPLE) |
+| **RF06** | Visualización de imágenes diagnósticas | 🟡 | En preparación para ficha clínica |
+| **RF07** | Resolución de preguntas | ✅ | `frontend/src/app/cases/solve.tsx` |
+| **RF08** | Evaluación automática y puntaje | ✅ | Algoritmo de ponderación y acierto inmediato |
+| **RF09** | Retroalimentación clínica | ✅ | Justificaciones basadas en protocolos PHTLS/ATLS |
+| **RF10** | Registro y persistencia de resultados | 🟡 | En frontend con mocks; pendiente persistencia en Backend |
+| **RF11** | Consulta de progreso e historial | ✅ | `frontend/src/app/cases/progress.tsx` |
+| **RF12** | Gestión de casos (Admin/Docente) | ⏳ | Módulo administrativo |
 
 ## Cómo ejecutar la aplicación
 
@@ -30,15 +50,4 @@ npm install
 npx expo start
 ```
 
-Escanea el QR con **Expo Go** en tu dispositivo, o usa `npx expo start --web` para el navegador.
-
-## Alcance (MVP)
-
-- Registro e inicio de sesión de estudiantes.
-- Catálogo de casos clínicos con información del paciente, signos vitales e imágenes.
-- Resolución de casos mediante preguntas de selección múltiple.
-- Evaluación automática, puntuación y retroalimentación detallada.
-- Historial de resultados y seguimiento básico del progreso.
-- Gestión administrativa de casos clínicos.
-
-> **Fuera de alcance en el MVP:** generación de casos con IA, diagnóstico automático, interpretación automática de radiografías, gamificación avanzada, red social, biblioteca médica, integración con hospitales. Estas funcionalidades quedan registradas como **funcionalidades futuras**.
+Escanea el QR con **Expo Go** en tu dispositivo físico, o presiona `w` para probar en navegador web.

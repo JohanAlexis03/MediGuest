@@ -5,8 +5,8 @@ import {
   ScrollView,
   Pressable,
   StyleSheet,
-  SafeAreaView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, Stack } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
 
@@ -53,7 +53,7 @@ export default function ProgressScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['bottom', 'left', 'right']}>
       <Stack.Screen
         options={{
           title: 'Mi Progreso APH',

@@ -6,9 +6,9 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  SafeAreaView,
   StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, Link } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
 import { Specialty, ClinicalCase } from '@/types/clinical-case';
@@ -44,7 +44,7 @@ export default function CasesScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['bottom', 'left', 'right']}>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       <View style={styles.container}>
         {/* Banner Superior */}
