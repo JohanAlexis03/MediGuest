@@ -1,0 +1,36 @@
+%%{init: {"flowchart": {"nodeSpacing": 60, "rankSpacing": 90}}}%%
+%% C3 - Componentes de la aplicacion movil
+%% Sintaxis: flowchart TB que IMITA el nivel C3. NO es sintaxis C4 nativa.
+%% Motivo: el motor C4 de Mermaid cruza lineas; el flowchart por capas no.
+%% Leyenda: azul = confirmado, naranja = parcial, gris = propuesto.
+%% Verificado en frontend/src: la app es la plantilla de Expo + 2 pantallas de UI.
+flowchart TB
+    subgraph APP["Aplicacion movil - Expo / React Native"]
+        direction TB
+        nav["Navegacion<br/>Expo Router (_layout.tsx)<br/>Stack raiz; registra solo index y registro.<br/>Parcial. HU-02, RNF-01"]
+        authui["Pantallas de autenticacion<br/>login.tsx y registro.tsx<br/>Solo UI: botones sin logica, sin validacion<br/>ni servicio. Parcial. HU-01, HU-02"]
+        uibase["UI base y tema<br/>components, hooks/use-theme, theme.ts<br/>Componentes de presentacion y tema de la<br/>plantilla de Expo. Confirmado. RNF-07"]
+        catalogo["Catalogo de casos<br/>PROPUESTO<br/>Casos activos, estado vacio, seleccion<br/>e inicio de intento. HU-06, HU-07"]
+        resolucion["Resolucion del caso<br/>PROPUESTO<br/>Datos clinicos, imagenes opcionales<br/>y respuestas. HU-08, HU-09, HU-10"]
+        evaluacion["Evaluacion y retroalimentacion<br/>PROPUESTO<br/>Puntuacion y aciertos o errores. Donde<br/>se calcula: pendiente D-04. HU-11, HU-12"]
+        historial["Historial del estudiante<br/>PROPUESTO<br/>Guarda y consulta los intentos propios.<br/>HU-13, HU-14"]
+        admincasos["Administracion de casos<br/>PROPUESTO<br/>Crear, editar y archivar casos con<br/>validaciones. HU-03, HU-04, HU-05"]
+        datos["Acceso a datos<br/>PROPUESTO<br/>Unico punto de comunicacion con el backend<br/>y de manejo de errores. RNF-04, RNF-06"]
+    end
+    api["Servicio backend<br/>PROPUESTO"]
+
+    nav -->|muestra| authui
+    nav -->|usa| uibase
+    nav -->|estudiante| catalogo
+    nav -->|admin| admincasos
+    catalogo -->|intento| resolucion
+    resolucion -->|respuestas| evaluacion
+    evaluacion -->|resultado| historial
+    datos -->|peticion| api
+
+    classDef confirmado fill:#d0e8ff,stroke:#0b3d91,color:#000
+    classDef parcial fill:#ffe0b2,stroke:#c26a00,color:#000
+    classDef propuesto fill:#e6e6e6,stroke:#666,color:#000,stroke-dasharray:5 3
+    class nav,authui parcial
+    class uibase confirmado
+    class catalogo,resolucion,evaluacion,historial,admincasos,datos,api propuesto

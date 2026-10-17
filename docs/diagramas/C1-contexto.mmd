@@ -1,0 +1,17 @@
+%%{init: {"flowchart": {"nodeSpacing": 60, "rankSpacing": 90}}}%%
+%% C1 - Contexto del sistema MediQuest
+%% Sintaxis: flowchart TB que IMITA el nivel C1. NO es sintaxis C4 nativa de Mermaid.
+%% Estado: confirmado (deriva de los requisitos y roles; no depende del codigo).
+%% No hay servicios externos confirmados en el repositorio.
+flowchart TB
+    estudiante["Estudiante de APH<br/>(Persona)<br/>Se registra, inicia sesion, resuelve casos,<br/>ve retroalimentacion y consulta su historial"]
+    admin["Administrador<br/>(Persona)<br/>Inicia sesion y crea, edita o archiva<br/>casos, preguntas, opciones e imagenes"]
+    mq["MediQuest<br/>(Sistema)<br/>Aplicacion movil educativa de casos clinicos interactivos.<br/>Permite resolver casos, evaluar respuestas, dar<br/>retroalimentacion y guardar el historial de progreso.<br/>NO es un sistema de diagnostico medico"]
+
+    estudiante -->|usa| mq
+    admin -->|gestiona contenido| mq
+
+    classDef persona fill:#ffe0b2,stroke:#c26a00,color:#000
+    classDef sistema fill:#d0e8ff,stroke:#0b3d91,color:#000
+    class estudiante,admin persona
+    class mq sistema

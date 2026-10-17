@@ -1,0 +1,29 @@
+%%{init: {"flowchart": {"nodeSpacing": 60, "rankSpacing": 90}}}%%
+%% C3 - Componentes del servicio backend
+%% Sintaxis: flowchart TB que IMITA el nivel C3. NO es sintaxis C4 nativa.
+%% Motivo: el motor C4 de Mermaid cruza lineas; el flowchart por capas no.
+%% Todo PROPUESTO (no existe backend ni base de datos en el repositorio).
+flowchart TB
+    app["Aplicacion movil (cliente)<br/>Expo / React Native"]
+
+    subgraph API["Servicio backend - PROPUESTO"]
+        direction TB
+        authz["Autenticacion y autorizacion<br/>Valida credenciales, guarda contrasenas<br/>con hash, limita por rol y el historial<br/>al propio estudiante. HU-01, HU-02, HU-14, RNF-03"]
+        casos["Gestion y consulta de casos<br/>Valida reglas de publicacion, archiva<br/>casos y lista los activos. Exige rol admin<br/>para editar. HU-03 a HU-06, HU-08, HU-09"]
+        intentos["Intentos y puntuacion<br/>Crea intentos, registra respuestas y<br/>calcula y guarda la puntuacion de forma<br/>determinista. HU-07, HU-10, HU-11, HU-13, RNF-06"]
+        historial["Historial<br/>Devuelve solo los intentos del<br/>estudiante autenticado. HU-14"]
+    end
+
+    db[("Base de datos<br/>PROPUESTO")]
+
+    app -->|credenciales| authz
+    app -->|casos| casos
+    app -->|intentos| intentos
+    app -->|consulta| historial
+    authz -->|usuarios| db
+    casos -->|casos| db
+    intentos -->|intentos| db
+    historial -->|lee| db
+
+    classDef propuesto fill:#e6e6e6,stroke:#666,color:#000,stroke-dasharray:5 3
+    class app,authz,casos,intentos,historial,db propuesto
