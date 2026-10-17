@@ -1,8 +1,7 @@
-import {useState} from "react";
-import {View, Text, TextInput, Pressable, StyleSheet} from "react-native";
-import {Image} from "expo-image";
-import {Link} from "expo-router";
-
+import { useState } from "react";
+import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import { Image } from "expo-image";
+import { Link } from "expo-router";
 
 export default function LoginScreen() {
     const [correo, setCorreo] = useState('');
@@ -32,9 +31,11 @@ export default function LoginScreen() {
                 onChangeText={setContrasena}
                 secureTextEntry
             />
-        <Pressable style={styles.boton} onPress={() => {}}>
-                <Text style={styles.botonTexto}>Iniciar Sesion</Text>
-            </Pressable>
+            <Link href="/cases" asChild>
+                <Pressable style={styles.boton}>
+                    <Text style={styles.botonTexto}>Iniciar Sesion</Text>
+                </Pressable>
+            </Link>
 
             <Link href="/registro" asChild>
                 <Pressable>

@@ -15,9 +15,12 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <AnimatedSplashOverlay />
       <Stack>
-        <Stack.Screen name="index" options={{ title: 'MediQuest' }} />
+        <Stack.Screen name="index" options={{ title: 'MediQuest', headerShown: false }} />
         <Stack.Screen name="registro" options={{ title: 'Registro' }} />
         <Stack.Screen name="login" options={{ title: 'Iniciar sesión' }} />
+        <Stack.Screen name="cases/index" options={{ title: 'Casos Clínicos APH' }} />
+        <Stack.Screen name="cases/[id]" options={{ title: 'Ficha Clínica' }} />
+        <Stack.Screen name="cases/solve" options={{ title: 'Resolución de Caso' }} />
       </Stack>
     </ThemeProvider>
   );

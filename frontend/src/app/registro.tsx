@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TextInput,Pressable, StyleSheet} from 'react-native';
+import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 
@@ -52,9 +52,11 @@ export default function RegistroScreen() {
                 secureTextEntry
             />
 
-            <Pressable style={styles.boton} onPress={() => {}}>
-                <Text style={styles.botonTexto}>Registrarse</Text>
-            </Pressable>
+            <Link href="/cases" asChild>
+                <Pressable style={styles.boton}>
+                    <Text style={styles.botonTexto}>Registrarse</Text>
+                </Pressable>
+            </Link>
 
             <Link href="/login" asChild>
                 <Pressable>
