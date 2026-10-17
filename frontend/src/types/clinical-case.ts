@@ -39,6 +39,8 @@ export interface ClinicalMedia {
   findings: string;
   badgeLabel: string;
   leadDetails?: string[];
+  imageUrl?: string;
+  imageCaption?: string;
 }
 
 export interface PrimarySurvey {

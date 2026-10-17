@@ -5,8 +5,10 @@ import {
   ScrollView,
   Pressable,
   StyleSheet,
+  Modal,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
 
@@ -14,6 +16,7 @@ export default function CaseDetailScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<'abcde' | 'sample'>('abcde');
+  const [isImageModalVisible, setIsImageModalVisible] = useState(false);
 
   const clinicalCase = CLINICAL_CASES.find((c) => c.id === id);
 
@@ -195,15 +198,109 @@ export default function CaseDetailScreen() {
           )}
         </View>
 
-        {/* Recurso Visual / Monitor (si aplica) */}
+        {/* Recurso Visual / Imagen Diagnóstica (RF06) */}
         {clinicalCase.media && (
           <View style={styles.sectionCard}>
-            <Text style={styles.sectionTitle}>Hallazgo Diagnóstico ({clinicalCase.media.type.toUpperCase()})</Text>
+            <View style={styles.mediaHeaderRow}>
+              <Text style={styles.sectionTitle}>Hallazgo Diagnóstico ({clinicalCase.media.type.toUpperCase()})</Text>
+              <View style={styles.mediaBadge}>
+                <Text style={styles.mediaBadgeText}>{clinicalCase.media.badgeLabel || clinicalCase.media.type.toUpperCase()}</Text>
+              </View>
+            </View>
+
             <View style={styles.mediaCard}>
               <Text style={styles.mediaTitle}>{clinicalCase.media.title}</Text>
               <Text style={styles.mediaSubtitle}>{clinicalCase.media.subtitle}</Text>
+
+              {clinicalCase.media.imageUrl && (
+                <Pressable
+                  style={styles.imagePreviewContainer}
+                  onPress={() => setIsImageModalVisible(true)}
+                  accessibilityLabel="Tocar para ampliar imagen diagnóstica a pantalla completa"
+                >
+                  <Image
+                    source={{ uri: clinicalCase.media.imageUrl }}
+                    style={styles.imagePreview}
+                    contentFit="cover"
+                    transition={250}
+                  />
+                  <View style={styles.imageZoomOverlay}>
+                    <Text style={styles.imageZoomText}>🔍 Toca para ampliar y examinar</Text>
+                  </View>
+                </Pressable>
+              )}
+
+              {clinicalCase.media.imageCaption && (
+                <Text style={styles.imageCaptionText}>
+                  📷 {clinicalCase.media.imageCaption}
+                </Text>
+              )}
+
+              {clinicalCase.media.leadDetails && clinicalCase.media.leadDetails.length > 0 && (
+                <View style={styles.leadDetailsContainer}>
+                  {clinicalCase.media.leadDetails.map((detail, index) => (
+                    <View key={index} style={styles.leadDetailChip}>
+                      <Text style={styles.leadDetailText}>{detail}</Text>
+                    </View>
+                  ))}
+                </View>
+              )}
+
               <Text style={styles.mediaFindings}>{clinicalCase.media.findings}</Text>
             </View>
+
+            {/* Modal Inmersivo de Pantalla Completa con Zoom (RF06) */}
+            {clinicalCase.media.imageUrl && (
+              <Modal
+                visible={isImageModalVisible}
+                transparent={true}
+                animationType="fade"
+                onRequestClose={() => setIsImageModalVisible(false)}
+              >
+                <SafeAreaView style={styles.modalBackdrop} edges={['top', 'bottom', 'left', 'right']}>
+                  <View style={styles.modalHeader}>
+                    <View style={styles.modalHeaderInfo}>
+                      <Text style={styles.modalTitle} numberOfLines={1}>
+                        {clinicalCase.media.title}
+                      </Text>
+                      <Text style={styles.modalSubtitle}>
+                        Pellizca para zoom • Desliza para explorar
+                      </Text>
+                    </View>
+                    <Pressable
+                      style={styles.modalCloseButton}
+                      onPress={() => setIsImageModalVisible(false)}
+                      hitSlop={12}
+                    >
+                      <Text style={styles.modalCloseText}>✕ Cerrar</Text>
+                    </Pressable>
+                  </View>
+
+                  <ScrollView
+                    style={styles.modalScrollView}
+                    contentContainerStyle={styles.modalScrollContent}
+                    maximumZoomScale={4}
+                    minimumZoomScale={1}
+                    showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
+                    centerContent
+                  >
+                    <Image
+                      source={{ uri: clinicalCase.media.imageUrl }}
+                      style={styles.modalImage}
+                      contentFit="contain"
+                      transition={300}
+                    />
+                  </ScrollView>
+
+                  <View style={styles.modalFooter}>
+                    <Text style={styles.modalFooterCaption}>
+                      {clinicalCase.media.imageCaption || clinicalCase.media.findings}
+                    </Text>
+                  </View>
+                </SafeAreaView>
+              </Modal>
+            )}
           </View>
         )}
 
@@ -461,5 +558,137 @@ const styles = StyleSheet.create({
     color: '#0b3d91',
     fontSize: 14,
     fontWeight: '700',
+  },
+  mediaHeaderRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  mediaBadge: {
+    backgroundColor: '#eff6ff',
+    borderWidth: 1,
+    borderColor: '#bfdbfe',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
+  },
+  mediaBadgeText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#0b3d91',
+  },
+  imagePreviewContainer: {
+    position: 'relative',
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginVertical: 8,
+    borderWidth: 1,
+    borderColor: '#cbd5e1',
+  },
+  imagePreview: {
+    width: '100%',
+    height: 190,
+    backgroundColor: '#0f172a',
+  },
+  imageZoomOverlay: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    backgroundColor: 'rgba(15, 23, 42, 0.78)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+  },
+  imageZoomText: {
+    color: '#ffffff',
+    fontSize: 11,
+    fontWeight: '600',
+  },
+  imageCaptionText: {
+    fontSize: 12,
+    color: '#475569',
+    fontStyle: 'italic',
+    marginBottom: 8,
+    lineHeight: 16,
+  },
+  leadDetailsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+    marginBottom: 8,
+  },
+  leadDetailChip: {
+    backgroundColor: '#e2e8f0',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+  },
+  leadDetailText: {
+    fontSize: 11,
+    color: '#1e293b',
+    fontWeight: '600',
+  },
+  modalBackdrop: {
+    flex: 1,
+    backgroundColor: '#090d16',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#1e293b',
+  },
+  modalHeaderInfo: {
+    flex: 1,
+    marginRight: 12,
+  },
+  modalTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#ffffff',
+  },
+  modalSubtitle: {
+    fontSize: 12,
+    color: '#94a3b8',
+    marginTop: 2,
+  },
+  modalCloseButton: {
+    backgroundColor: '#1e293b',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
+  },
+  modalCloseText: {
+    color: '#ffffff',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  modalScrollView: {
+    flex: 1,
+  },
+  modalScrollContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalImage: {
+    width: '100%',
+    height: 420,
+  },
+  modalFooter: {
+    padding: 16,
+    backgroundColor: '#0f172a',
+    borderTopWidth: 1,
+    borderTopColor: '#1e293b',
+  },
+  modalFooterCaption: {
+    color: '#e2e8f0',
+    fontSize: 13,
+    lineHeight: 18,
+    textAlign: 'center',
   },
 });

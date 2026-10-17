@@ -21,8 +21,9 @@
 | **Cimientos de Dominio** | Tipado y Casos Mock | ✅ | `frontend/src/types/clinical-case.ts`, `data/mock-cases.ts` (6 casos APH) |
 | **Flujo del Estudiante** | RF01, RF02, RF03, RF04, RF05, RF07, RF08, RF09 | ✅ | Commit `9b18c81` (Catálogo, Ficha clínica ABCDE/SAMPLE, Resolución PHTLS) |
 | **Progreso e Historial** | RF11 | ✅ | Commit `17d2874` (`cases/progress.tsx`, métricas por especialidad e historial) |
-| **Blindaje Safe Area Multiplataforma** | Usabilidad (RNF01, RNF05) | ✅ | Migración a `react-native-safe-area-context` en todas las pantallas y raíz |
-| **Gobierno de Agentes Técnicos** | Reglas permanentes | ✅ | `AGENTS.md` (Orquestador, QA/Testing Guard, Custodio Documental) |
+| **Blindaje Safe Area Multiplataforma** | Usabilidad (RNF01, RNF05) | ✅ | Commit `deb4b1c` (Migración a `react-native-safe-area-context` global) |
+| **Gobierno de Agentes Técnicos** | Reglas permanentes | ✅ | Commit `deb4b1c` (`AGENTS.md`: 4 agentes especializados) |
+| **Visor de Imágenes Diagnósticas** | RF06 | ✅ | `cases/[id].tsx` (Visor inmersivo con zoom/pan y modal nativo) |
 
 ---
 
@@ -36,19 +37,19 @@
   * *Solución:* Cuadrícula de signos vitales (incluyendo escala de coma de Glasgow), alternancia de tabs para evaluación primaria (ABCDE) y anamnesis médica (SAMPLE).
 * **ADR-03 (Calidad Continua sin Regresiones):**
   * *Decisión:* Establecer como política de proyecto que ningún cambio se apruebe con errores de TypeScript (`npx tsc --noEmit`) o advertencias de ESLint (`expo lint`).
+* **ADR-04 (Visor de Imágenes Diagnósticas RF06):**
+  * *Decisión:* Evitar librerías nativas binarias pesadas para zoom en imágenes médicas.
+  * *Solución:* Combinar `expo-image` con `Modal` y `ScrollView` (`maximumZoomScale={4}`, `minimumZoomScale={1}`, `centerContent={true}`) para soporte fluido y nativo de *pinch-to-zoom*, *pan* y pantalla completa en iOS, Android y Web.
 
 ---
 
 ## 4. Estado Actual (En Curso)
-* **Trabajo en curso en el Working Tree:**
-  * Ajustes de Safe Area en todas las pantallas (`_layout.tsx`, `index.tsx`, `login.tsx`, `registro.tsx`, `cases/index.tsx`, `cases/[id].tsx`, `cases/solve.tsx`, `cases/progress.tsx`).
-  * Reglas de agentes en `AGENTS.md` y actualización de `README.md`.
-  * Validación QA: **0 errores de TypeScript, 0 warnings de linter**.
+* **Frontend:** 100% de los requerimientos de la experiencia del estudiante completados (RF01 a RF09 y RF11).
+* **Validación QA:** **0 errores de TypeScript, 0 warnings de linter**.
 
 ---
 
 ## 5. Próximos Pasos en Secuencia (Backlog Priorizado)
-1. **Paso 1:** Guardar commit de safe areas y gobierno de agentes en `feature/navegacion`.
-2. **Paso 2 (RF06):** Diseñar e implementar el visor de imágenes diagnósticas (radiografías/ECG) en la ficha clínica (`cases/[id].tsx`).
-3. **Paso 3 (Backend / RF10):** Inicializar la estructura de backend en Java Spring Boot con entidades JPA para casos y persistencia de resultados de estudiantes en MySQL.
-4. **Paso 4 (RF12):** Módulo de administración para docentes (creación y edición de casos).
+1. **Paso 1:** Guardar commit de RF06 en `feature/navegacion`.
+2. **Paso 2 (Backend / RF10):** Inicializar la estructura de backend en Java Spring Boot con entidades JPA para casos y persistencia de resultados de estudiantes en MySQL (reemplazar mocks).
+3. **Paso 3 (RF12):** Módulo de administración para docentes (creación y edición de casos).

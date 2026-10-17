@@ -20,7 +20,7 @@ Aplicación móvil para que estudiantes de **Atención Prehospitalaria (APH)** r
 - 🟢 **Frontend (Móvil APH):** Expo SDK 57 (React Native 0.86, React 19.2, Expo Router).
   - ✅ Flujo completo del estudiante implementado (Login, Registro, Catálogo con filtros, Ficha clínica ABCDE/SAMPLE, Resolución evaluada y Progreso).
   - ✅ Safe Area multiplataforma garantizada con `react-native-safe-area-context` (Android gestos, punch-hole, iOS Dynamic Island/notch).
-  - 🟡 Pendiente: Visor de imágenes diagnósticas interactivas (RF06).
+  - ✅ Visor de imágenes diagnósticas interactivo con zoom y pantalla completa (RF06).
 - 🟡 **Backend:** Java con Spring Boot + MySQL (según Documento Maestro en `docs/`). Carpeta `backend/` lista para iniciar.
 - 🟢 **Documentación:** Agente de documentación activo (`AGENTS.md`), documento maestro y matriz de requerimientos sincronizados.
 - 🟢 **Git:** Rama de trabajo `feature/navegacion`.
@@ -34,7 +34,7 @@ Aplicación móvil para que estudiantes de **Atención Prehospitalaria (APH)** r
 | **RF03** | Visualización de casos clínicos | ✅ | `frontend/src/app/cases/index.tsx` (Filtros APH) |
 | **RF04** | Selección de caso clínico | ✅ | `frontend/src/components/clinical/case-card.tsx` |
 | **RF05** | Presentación de info clínica | ✅ | `frontend/src/app/cases/[id].tsx` (Signos vitales, ABCDE, SAMPLE) |
-| **RF06** | Visualización de imágenes diagnósticas | 🟡 | En preparación para ficha clínica |
+| **RF06** | Visualización de imágenes diagnósticas | ✅ | `frontend/src/app/cases/[id].tsx` (Visor inmersivo con zoom/pan) |
 | **RF07** | Resolución de preguntas | ✅ | `frontend/src/app/cases/solve.tsx` |
 | **RF08** | Evaluación automática y puntaje | ✅ | Algoritmo de ponderación y acierto inmediato |
 | **RF09** | Retroalimentación clínica | ✅ | Justificaciones basadas en protocolos PHTLS/ATLS |
