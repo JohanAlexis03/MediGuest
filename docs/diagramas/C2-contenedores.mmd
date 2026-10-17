@@ -1,0 +1,30 @@
+%%{init: {"flowchart": {"nodeSpacing": 60, "rankSpacing": 90}}}%%
+%% C2 - Contenedores de MediQuest
+%% Sintaxis: flowchart TB que IMITA el nivel C2. NO es sintaxis C4 nativa de Mermaid.
+%% Leyenda: azul = CONFIRMADO por el repositorio; gris = PROPUESTO (no implementado).
+%% Contenedor = unidad ejecutable/desplegable (no Docker).
+%% OJO: el README menciona una carpeta backend/ que NO existe en el repositorio.
+flowchart TB
+    estudiante["Estudiante de APH<br/>(Persona)<br/>Resuelve casos y consulta su historial"]
+    admin["Administrador<br/>(Persona)<br/>Gestiona casos clinicos"]
+
+    subgraph MQ["Sistema MediQuest"]
+        direction TB
+        app["Aplicacion movil<br/>(Contenedor - CONFIRMADO)<br/>Expo SDK 57 / React Native 0.86 / React 19.2 /<br/>TypeScript, con Expo Router. Interfaz de estudiante y,<br/>segun el rol, de administrador. Hoy solo maquetas de UI"]
+        api["Servicio backend<br/>(Contenedor - PROPUESTO)<br/>Autentica usuarios, aplica permisos por rol y<br/>expone casos, intentos e historial. Tecnologia pendiente"]
+        db[("Base de datos<br/>(Contenedor - PROPUESTO)<br/>Usuarios, casos, paciente, signos vitales,<br/>preguntas, opciones, intentos y respuestas")]
+        img["Almacenamiento de imagenes<br/>(Contenedor - PROPUESTO)<br/>Imagenes clinicas opcionales de los casos"]
+    end
+
+    estudiante -->|usa| app
+    admin -->|usa| app
+    app -->|solicita datos| api
+    api -->|lee y escribe| db
+    api -->|guarda imagenes| img
+
+    classDef persona fill:#ffe0b2,stroke:#c26a00,color:#000
+    classDef confirmado fill:#d0e8ff,stroke:#0b3d91,color:#000
+    classDef propuesto fill:#e6e6e6,stroke:#666,color:#000,stroke-dasharray:5 3
+    class estudiante,admin persona
+    class app confirmado
+    class api,db,img propuesto

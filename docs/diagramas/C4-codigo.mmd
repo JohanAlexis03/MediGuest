@@ -1,0 +1,93 @@
+%% C4 - Vista de codigo (nivel 4): modelo de dominio de MediQuest
+%% ESTADO: DISEÑO CONCEPTUAL basado en el diagrama de clases del equipo (imagen adjunta).
+%% NO esta contrastado con el codigo: src no muestra carpeta de modelos o tipos, asi que no se confirma que existan.
+%% En TypeScript podrian ser interfaces/tipos y no clases.
+classDiagram
+    class Usuario {
+        <<abstract>>
+        -id : int
+        -nombre : string
+        -correo : string
+        -contrasenaHash : string
+        -fechaRegistro : date
+        +iniciarSesion(correo, contrasena) 
+        +cerrarSesion() 
+    }
+    class Estudiante {
+        +seleccionarCaso(casoId) 
+        +responderPregunta(intentoId, preguntaId, opcionId) 
+        +finalizarCaso(intentoId) 
+        +consultarProgreso() List~IntentoCaso~
+    }
+    class Administrador {
+        +crearCaso(caso) 
+        +modificarCaso(casoId, datos) 
+        +eliminarCaso(casoId) 
+    }
+    class CasoClinico {
+        -id : int
+        -titulo : string
+        -antecedentes : string
+        -signosVitales : string
+        -sintomas : string
+        -hallazgosExamenFisico : string
+        -activo : boolean
+        +agregarPregunta(pregunta) 
+        +agregarImagen(imagen) 
+        +obtenerPreguntas() List~Pregunta~
+        +obtenerImagenes() List~ImagenDiagnostica~
+    }
+    class ImagenDiagnostica {
+        -id : int
+        -casoClinicoId : int
+        -url : string
+        -tipo : string
+        -descripcion : string
+    }
+    class Pregunta {
+        -id : int
+        -casoClinicoId : int
+        -enunciado : string
+        +agregarOpcion(opcion) 
+        +obtenerOpciones() List~OpcionRespuesta~
+        +obtenerOpcionCorrecta() OpcionRespuesta
+    }
+    class OpcionRespuesta {
+        -id : int
+        -preguntaId : int
+        -texto : string
+        -esCorrecta : boolean
+    }
+    class IntentoCaso {
+        -id : int
+        -estudianteId : int
+        -casoClinicoId : int
+        -fechaInicio : datetime
+        -fechaFin : datetime
+        -puntuacion : float
+        -estado : string
+        +iniciar() 
+        +registrarRespuesta(respuesta) 
+        +calcularPuntuacion() float
+        +finalizar() 
+    }
+    class RespuestaEstudiante {
+        -id : int
+        -intentoCasoId : int
+        -preguntaId : int
+        -opcionSeleccionadaId : int
+        -esCorrecta : boolean
+        +evaluar() boolean
+    }
+
+    Usuario <|-- Estudiante
+    Usuario <|-- Administrador
+    Administrador "1" --> "0..*" CasoClinico : gestiona
+    CasoClinico "1" *-- "0..*" ImagenDiagnostica : contiene
+    CasoClinico "1" *-- "1..*" Pregunta : contiene
+    Pregunta "1" *-- "2..*" OpcionRespuesta : contiene
+    Estudiante "1" --> "0..*" IntentoCaso : realiza
+    CasoClinico "1" --> "0..*" IntentoCaso : es_resuelto_en
+    IntentoCaso "1" *-- "1..*" RespuestaEstudiante : contiene
+    RespuestaEstudiante "0..*" --> "1" Pregunta : responde
+    RespuestaEstudiante "0..*" --> "1" OpcionRespuesta : selecciona
