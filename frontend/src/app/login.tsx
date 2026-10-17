@@ -1,6 +1,7 @@
 import {useState} from "react";
-import {View, Text, TextInput, Pressable, StyleSheet,Button} from "react-native";
+import {View, Text, TextInput, Pressable, StyleSheet} from "react-native";
 import {Image} from "expo-image";
+import {Link} from "expo-router";
 
 
 export default function LoginScreen() {
@@ -34,6 +35,12 @@ export default function LoginScreen() {
         <Pressable style={styles.boton} onPress={() => {}}>
                 <Text style={styles.botonTexto}>Iniciar Sesion</Text>
             </Pressable>
+
+            <Link href="/registro" asChild>
+                <Pressable>
+                    <Text style={styles.enlace}>¿No tenés cuenta? Registrate</Text>
+                </Pressable>
+            </Link>
         </View>
 
     );
@@ -78,5 +85,10 @@ export const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    enlace: {
+        marginTop: 8,
+        color: '#0b3d91',
+        fontSize: 14,
     },
 });

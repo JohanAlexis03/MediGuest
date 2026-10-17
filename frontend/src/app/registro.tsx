@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { View, Text, TextInput,Pressable, StyleSheet} from 'react-native';
 import { Image } from 'expo-image';
+import { Link } from 'expo-router';
 
 export default function RegistroScreen() {
     const [nombre, setNombre] = useState('');
@@ -54,6 +55,12 @@ export default function RegistroScreen() {
             <Pressable style={styles.boton} onPress={() => {}}>
                 <Text style={styles.botonTexto}>Registrarse</Text>
             </Pressable>
+
+            <Link href="/login" asChild>
+                <Pressable>
+                    <Text style={styles.enlace}>¿Ya tenés cuenta? Iniciá sesión</Text>
+                </Pressable>
+            </Link>
         </View>
     );
 }
@@ -96,6 +103,11 @@ export const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    enlace: {
+        marginTop: 8,
+        color: '#0b3d91',
+        fontSize: 14,
     },
 });
 

@@ -1,98 +1,82 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { Link } from 'expo-router';
+import { Image } from 'expo-image';
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
+export default function IndexScreen() {
     return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
+        <View style={styles.container}>
+            <Image
+                source={require('@/assets/images/Logo_MediQuest_v1.svg')}
+                style={styles.logo}
+                contentFit="contain"
+            />
+            <Text style={styles.titulo}>MediQuest</Text>
+            <Text style={styles.subtitulo}>Casos clínicos para estudiantes de APH</Text>
+
+            <Link href="/login" asChild>
+                <Pressable style={styles.boton}>
+                    <Text style={styles.botonTexto}>Iniciar sesión</Text>
+                </Pressable>
+            </Link>
+
+            <Link href="/registro" asChild>
+                <Pressable style={styles.botonSecundario}>
+                    <Text style={styles.botonSecundarioTexto}>Crear cuenta</Text>
+                </Pressable>
+            </Link>
+        </View>
     );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
-
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
-
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
-
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
-  );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#ffffff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+        gap: 16,
+    },
+    logo: {
+        width: 140,
+        height: 130,
+    },
+    titulo: {
+        fontSize: 32,
+        fontWeight: 'bold',
+        color: '#0b3d91',
+    },
+    subtitulo: {
+        fontSize: 14,
+        color: '#666666',
+        textAlign: 'center',
+        marginBottom: 16,
+    },
+    boton: {
+        width: '100%',
+        height: 48,
+        backgroundColor: '#0b3d91',
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    botonTexto: {
+        color: '#ffffff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    botonSecundario: {
+        width: '100%',
+        height: 48,
+        borderWidth: 1,
+        borderColor: '#0b3d91',
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    botonSecundarioTexto: {
+        color: '#0b3d91',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
 });
