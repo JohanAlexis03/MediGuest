@@ -40,6 +40,9 @@
 * **ADR-04 (Visor de Imágenes Diagnósticas RF06):**
   * *Decisión:* Evitar librerías nativas binarias pesadas para zoom en imágenes médicas.
   * *Solución:* Combinar `expo-image` con `Modal` y `ScrollView` (`maximumZoomScale={4}`, `minimumZoomScale={1}`, `centerContent={true}`) para soporte fluido y nativo de *pinch-to-zoom*, *pan* y pantalla completa en iOS, Android y Web.
+* **ADR-05 (Identidad Visual y Logotipo APH):**
+  * *Decisión:* Reemplazar el archivo horizontal deformado por un isotipo cuadrado 1:1 representativo de la disciplina.
+  * *Solución:* Incorporar la **Estrella de la Vida** en azul prehospitalario (`#0B3D91`) con la vara de Asclepio en relieve y bordes redondeados, garantizando nitidez en cualquier escala móvil.
 
 ---
 

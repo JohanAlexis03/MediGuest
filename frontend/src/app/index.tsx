@@ -27,9 +27,10 @@ export default function IndexScreen() {
         <View style={styles.heroSection}>
           <View style={styles.logoCard}>
             <Image
-              source={require('@/assets/images/Logo_MediQuest_v1.svg')}
+              source={require('@/assets/images/mediquest-star-of-life.png')}
               style={styles.logoImage}
-              contentFit="contain"
+              contentFit="cover"
+              transition={200}
             />
           </View>
           <Text style={styles.appTitle}>MediQuest</Text>
@@ -142,22 +143,23 @@ const styles = StyleSheet.create({
   },
   logoCard: {
     backgroundColor: '#ffffff',
-    padding: 16,
-    borderRadius: 20,
+    padding: 6,
+    borderRadius: 26,
     borderWidth: 1,
-    borderColor: '#f1f5f9',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
+    borderColor: '#e2e8f0',
+    shadowColor: '#0b3d91',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.16,
+    shadowRadius: 12,
+    elevation: 4,
     marginBottom: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
   logoImage: {
-    width: 130,
-    height: 120,
+    width: 110,
+    height: 110,
+    borderRadius: 22,
   },
   appTitle: {
     fontSize: 30,

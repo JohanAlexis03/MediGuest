@@ -55,9 +55,10 @@ export default function RegistroScreen() {
           <View style={styles.headerSection}>
             <View style={styles.miniLogoCard}>
               <Image
-                source={require('@/assets/images/Logo_MediQuest_v1.svg')}
+                source={require('@/assets/images/mediquest-star-of-life.png')}
                 style={styles.miniLogo}
-                contentFit="contain"
+                contentFit="cover"
+                transition={200}
               />
             </View>
             <Text style={styles.title}>Crear cuenta</Text>
@@ -202,19 +203,25 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   miniLogoCard: {
-    width: 60,
-    height: 60,
+    width: 56,
+    height: 56,
     borderRadius: 14,
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#ffffff',
     borderWidth: 1,
     borderColor: '#e2e8f0',
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: '#0b3d91',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.12,
+    shadowRadius: 6,
+    elevation: 2,
     marginBottom: 16,
   },
   miniLogo: {
-    width: 44,
-    height: 44,
+    width: 48,
+    height: 48,
+    borderRadius: 12,
   },
   title: {
     fontSize: 26,
