@@ -16,3 +16,11 @@ web-build/
 
 # Sistema operativo
 .DS_Store
+
+# Python & Backend
+backend/venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/

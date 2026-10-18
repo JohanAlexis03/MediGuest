@@ -11,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
+import { getClinicalImageSource } from '@/data/clinical-assets';
 
 export default function CaseDetailScreen() {
   const router = useRouter();
@@ -19,6 +20,9 @@ export default function CaseDetailScreen() {
   const [isImageModalVisible, setIsImageModalVisible] = useState(false);
 
   const clinicalCase = CLINICAL_CASES.find((c) => c.id === id);
+  const imageSource = clinicalCase?.media
+    ? getClinicalImageSource(clinicalCase.id, clinicalCase.media.imageUrl)
+    : undefined;
 
   if (!clinicalCase) {
     return (
@@ -212,14 +216,14 @@ export default function CaseDetailScreen() {
               <Text style={styles.mediaTitle}>{clinicalCase.media.title}</Text>
               <Text style={styles.mediaSubtitle}>{clinicalCase.media.subtitle}</Text>
 
-              {clinicalCase.media.imageUrl && (
+              {imageSource && (
                 <Pressable
                   style={styles.imagePreviewContainer}
                   onPress={() => setIsImageModalVisible(true)}
                   accessibilityLabel="Tocar para ampliar imagen diagnóstica a pantalla completa"
                 >
                   <Image
-                    source={{ uri: clinicalCase.media.imageUrl }}
+                    source={imageSource}
                     style={styles.imagePreview}
                     contentFit="cover"
                     transition={250}
@@ -250,7 +254,7 @@ export default function CaseDetailScreen() {
             </View>
 
             {/* Modal Inmersivo de Pantalla Completa con Zoom (RF06) */}
-            {clinicalCase.media.imageUrl && (
+            {imageSource && (
               <Modal
                 visible={isImageModalVisible}
                 transparent={true}
@@ -286,7 +290,7 @@ export default function CaseDetailScreen() {
                     centerContent
                   >
                     <Image
-                      source={{ uri: clinicalCase.media.imageUrl }}
+                      source={imageSource}
                       style={styles.modalImage}
                       contentFit="contain"
                       transition={300}
