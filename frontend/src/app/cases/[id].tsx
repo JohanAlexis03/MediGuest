@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Modal,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
@@ -15,6 +15,7 @@ import { getClinicalImageSource } from '@/data/clinical-assets';
 
 export default function CaseDetailScreen() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<'abcde' | 'sample'>('abcde');
   const [isImageModalVisible, setIsImageModalVisible] = useState(false);
@@ -257,11 +258,20 @@ export default function CaseDetailScreen() {
             {imageSource && (
               <Modal
                 visible={isImageModalVisible}
-                transparent={true}
+                transparent={false}
                 animationType="fade"
+                statusBarTranslucent={true}
                 onRequestClose={() => setIsImageModalVisible(false)}
               >
-                <SafeAreaView style={styles.modalBackdrop} edges={['top', 'bottom', 'left', 'right']}>
+                <View
+                  style={[
+                    styles.modalBackdrop,
+                    {
+                      paddingTop: Math.max(insets.top, 24) + 8,
+                      paddingBottom: Math.max(insets.bottom, 16) + 4,
+                    },
+                  ]}
+                >
                   <View style={styles.modalHeader}>
                     <View style={styles.modalHeaderInfo}>
                       <Text style={styles.modalTitle} numberOfLines={1}>
@@ -272,9 +282,14 @@ export default function CaseDetailScreen() {
                       </Text>
                     </View>
                     <Pressable
-                      style={styles.modalCloseButton}
+                      style={({ pressed }) => [
+                        styles.modalCloseButton,
+                        pressed && styles.modalCloseButtonPressed,
+                      ]}
                       onPress={() => setIsImageModalVisible(false)}
-                      hitSlop={12}
+                      hitSlop={{ top: 16, bottom: 16, left: 16, right: 16 }}
+                      accessibilityRole="button"
+                      accessibilityLabel="Cerrar visor de imagen"
                     >
                       <Text style={styles.modalCloseText}>✕ Cerrar</Text>
                     </Pressable>
@@ -301,8 +316,20 @@ export default function CaseDetailScreen() {
                     <Text style={styles.modalFooterCaption}>
                       {clinicalCase.media.imageCaption || clinicalCase.media.findings}
                     </Text>
+                    <Pressable
+                      style={({ pressed }) => [
+                        styles.modalFooterCloseBtn,
+                        pressed && styles.modalCloseButtonPressed,
+                      ]}
+                      onPress={() => setIsImageModalVisible(false)}
+                      hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                      accessibilityRole="button"
+                      accessibilityLabel="Cerrar visor"
+                    >
+                      <Text style={styles.modalFooterCloseBtnText}>✕ Cerrar visor</Text>
+                    </Pressable>
                   </View>
-                </SafeAreaView>
+                </View>
               </Modal>
             )}
           </View>
@@ -661,15 +688,27 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   modalCloseButton: {
-    backgroundColor: '#1e293b',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    backgroundColor: '#dc2626',
+    paddingHorizontal: 14,
+    paddingVertical: 8,
     borderRadius: 8,
+    minHeight: 38,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    elevation: 3,
+  },
+  modalCloseButtonPressed: {
+    opacity: 0.7,
+    transform: [{ scale: 0.96 }],
   },
   modalCloseText: {
     color: '#ffffff',
     fontSize: 13,
-    fontWeight: '700',
+    fontWeight: '800',
   },
   modalScrollView: {
     flex: 1,
@@ -684,7 +723,9 @@ const styles = StyleSheet.create({
     height: 420,
   },
   modalFooter: {
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingTop: 14,
+    paddingBottom: 16,
     backgroundColor: '#0f172a',
     borderTopWidth: 1,
     borderTopColor: '#1e293b',
@@ -694,5 +735,21 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 18,
     textAlign: 'center',
+    marginBottom: 10,
+  },
+  modalFooterCloseBtn: {
+    backgroundColor: '#1e293b',
+    borderWidth: 1,
+    borderColor: '#334155',
+    paddingVertical: 11,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalFooterCloseBtnText: {
+    color: '#ffffff',
+    fontSize: 14,
+    fontWeight: '700',
   },
 });

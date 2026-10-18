@@ -1,3 +1,0 @@
-# Dependencias núcleo para el módulo de telemetría ECG (PhysioNet)
-wfdb>=4.1.0
-numpy>=1.20.0
