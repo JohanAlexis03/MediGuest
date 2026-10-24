@@ -1,4 +1,5 @@
 import { Platform } from 'react-native';
+import Constants from 'expo-constants';
 
 export class ApiError extends Error {
   status: number;
@@ -26,9 +27,26 @@ export class ApiError extends Error {
   }
 }
 
+/**
+ * Obtiene la IP de la máquina anfitriona para permitir que dispositivos móviles
+ * físicos conectados por Wi-Fi alcancen el backend de Spring Boot (puerto 8080).
+ */
+const getDevHost = (): string => {
+  const hostUri = Constants.expoConfig?.hostUri;
+  if (hostUri) {
+    const host = hostUri.split(':')[0];
+    if (host && host !== 'localhost' && host !== '127.0.0.1') {
+      return host;
+    }
+  }
+  return '192.168.1.137';
+};
+
+const DEV_HOST = Platform.OS === 'web' ? 'localhost' : getDevHost();
+
 const DEFAULT_BASE_URL = Platform.select({
-  android: 'http://10.0.2.2:8080/api',
-  default: 'http://localhost:8080/api',
+  web: 'http://localhost:8080/api',
+  default: `http://${DEV_HOST}:8080/api`,
 });
 
 export const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || DEFAULT_BASE_URL;
