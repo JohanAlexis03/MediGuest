@@ -1,0 +1,78 @@
+{
+  "id": "caso-edema-agudo-pulmonar-cardiogenico",
+  "title": "Edema Agudo de Pulmón Cardiogénico Hipertensivo con Insuficiencia Respiratoria Grave",
+  "specialty": "CARDIOVASCULAR",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Adulto mayor de 65 años con ahogo nocturno súbito, desesperación por aire y expulsión de flema rosada espumosa.",
+  "scene": "Dormitorio. Paciente sentado al borde de la cama inclinado hacia adelante con las manos apoyadas en las rodillas (posición en trípode), sudoroso y cianótico.",
+  "kinematicsOrOnset": "Disnea paroxística nocturna iniciada bruscamente hace 40 minutos mientras dormía, con progresión rápida a sensación de ahogo total.",
+  "protocolReference": "ESC Heart Failure Guidelines / AHA ACLS Emergency Cardiovascular Care",
+  "patient": {
+    "age": 65,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 84,
+    "occupation": "Comerciante"
+  },
+  "vitals": {
+    "heartRate": 126,
+    "respiratoryRate": 34,
+    "bloodPressure": "215/122",
+    "oxygenSaturation": 81,
+    "bodyTemperature": 36.6,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 14
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea permeable pero con abundante expectoración espumosa asalmonada (líquido de edema alveolar teñido de hematíes). Tos húmeda continua.",
+    "breathing": "Insuficiencia respiratoria aguda catastrófica: taquipnea a 34 rpm con respiración paradójica y uso de musculatura accesoria. A la auscultación se perciben estertores crepitantes húmedos difusos desde ambas bases hasta los tercios superiores de ambos hemitórax ('marea montante') y sibilancias de estasis. SatO₂ 81% al aire ambiente.",
+    "circulation": "Crisis hipertensiva grave con postcarga disparada (PA 215/122 mmHg), taquicardia sinusal reactiva a 126 lpm. Ingurgitación yugular a 45 grados evidente. Piel fría, pálida y profusamente diaforética con frialdad distal.",
+    "disability": "Glasgow 14/15, angustiado, con sensación inminente de muerte por asfixia. Pupilas reactivas de 3 mm.",
+    "exposure": "Edema bilateral con fóvea (godet +++) en miembros inferiores hasta tercio medio de pierna. Sin traumatismos."
+  },
+  "sampleHistory": {
+    "symptoms": "Disnea paroxística nocturna, ortopnea a 0 almohadas, tos con esputo asalmonado y palpitaciones rápidas.",
+    "allergies": "No refiere.",
+    "medications": "Losartán 50 mg/día, Amlodipino 10 mg/día y Furosemida 40 mg/día (abandonó la medicación hace 4 días por viaje familiar).",
+    "pastHistory": "Insuficiencia Cardíaca con fracción de eyección reducida (FEVI 35%) e hipertensión arterial crónica no controlada.",
+    "lastMeal": "Cena abundante con alto contenido de sodio hace 5 horas.",
+    "events": "Se despertó sobresaltado con tos y ahogo progresivo hasta no tolerar acostarse."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Frente a un edema agudo de pulmón cardiogénico hiperdinámico con hipertensión severa (215/122 mmHg) e hipoxemia crítica (SatO₂ 81%), ¿cuál es la combinación de intervenciones prehospitalarias prioritarias con mayor evidencia fisiopatológica para reducir la poscarga y el trabajo respiratorio?",
+      "protocolReference": "ESC Heart Failure Guidelines / Prehospital CPAP Protocol",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Mantener al paciente sentado erguido, iniciar inmediatamente ventilación no invasiva con presión positiva continua (CPAP con PEEP de 5 a 10 cmH₂O) y titular Nitroglicerina sublingual o infusión intravenosa rápida para vasodilatación venosa y arteriolar masiva.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En el EAP hipertensivo, el problema central es el aumento monstruoso de la postcarga ventricular izquierda. La CPAP con PEEP recluta alvéolos inundados, desplaza el líquido hacia el espacio intersticial mejorando la difusión de oxígeno, y reduce el retorno venoso y la postcarga del VI. La nitroglicerina a dosis plena dilata el lecho venoso (reduciendo precarga) y reduce la resistencia vascular sistémica (poscarga), aliviando el miocardio de inmediato."
+        },
+        {
+          "optionKey": "B",
+          "text": "Acostar al paciente completamente plano en decúbito supino e infundir un bolo de 1000 mL de solución salina normal para mejorar el llenado ventricular.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Colocar en decúbito plano a un paciente con edema agudo pulmonar causa un retorno venoso masivo al ventrículo izquierdo fallido, provocando asfixia inmediata y paro cardiorrespiratorio en cuestión de minutos. Además, añadir volumen agrava la sobrecarga pulmonar."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administración inmediata de Propranolol o Metoprolol intravenoso para bajar rápidamente la frecuencia cardíaca por debajo de 60 lpm.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los betabloqueadores intravenosos en el fallo cardíaco agudo descompensado con edema pulmonar e hipoxemia están absolutamente contraindicados, ya que suprimen el soporte inotrópico adrenérgico compensatorio y precipitan colapso cardiogénico refractario."
+        },
+        {
+          "optionKey": "D",
+          "text": "Realizar aspiración traqueal profunda reiterada mediante sonda rígida sin oxigenación previa y administrar Salbutamol nebulizado con compresor de aire.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El líquido en los alvéolos proviene del lecho capilar transudado por alta presión hidrostática, no de secreciones mucosas en la tráquea; intentar aspirarlo con sonda rígida causa laringoespasmo e hipoxia severa sin aliviar el edema alveolar."
+        }
+      ]
+    }
+  ]
+}

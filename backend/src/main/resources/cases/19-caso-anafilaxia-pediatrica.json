@@ -1,0 +1,78 @@
+{
+  "id": "caso-anafilaxia-pediatrica",
+  "title": "Shock Anafiláctico Pediátrico por Alérgeno Alimentario con Compromiso Laringotraqueal",
+  "specialty": "PEDIATRIA",
+  "difficulty": "INTERMEDIO",
+  "dispatchContext": "Madre desesperada en parque infantil solicita ambulancia urgente porque su hijo de 5 años presenta hinchazón en la cara y ahogo severo tras comer una galleta.",
+  "scene": "Parque infantil al aire libre. Niño en brazos de su madre, llorando débilmente, con ruidos respiratorios audibles a distancia.",
+  "kinematicsOrOnset": "Ingesta involuntaria de galleta con trazas de frutos secos hace 15 minutos. Inicio rápido de prurito palmar, urticaria en cuello y edema peribucal.",
+  "protocolReference": "PALS (Pediatric Advanced Life Support) AHA / World Allergy Organization (WAO)",
+  "patient": {
+    "age": 5,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 18,
+    "occupation": "Preescolar"
+  },
+  "vitals": {
+    "heartRate": 148,
+    "respiratoryRate": 38,
+    "bloodPressure": "80/46",
+    "oxygenSaturation": 90,
+    "bodyTemperature": 36.8,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 14
+    }
+  },
+  "primarySurvey": {
+    "airway": "Angioedema labial y lingual evidente. Estridor inspiratorio de tono alto audible sin fonendoscopio indicativo de edema de glotis.",
+    "breathing": "Trabajo respiratorio severo con tirajes subcostales e intercostales marcados, aleteo nasal y quejido espiratorio. SatO₂ 90% con aire ambiente.",
+    "circulation": "Taquicardia sinusal compensatoria a 148 lpm. Llenado capilar de 3 segundos, pulsos periféricos débiles. Hipotensión relativa (80/46 mmHg). Habones eritematosos y placas de urticaria confluentes en tórax y extremidades.",
+    "disability": "Glasgow 14/15, reactivo al entorno pero con agitación y llanto disfónico por sensación inminente de asfixia. Pupilas reactivas de 3 mm.",
+    "exposure": "Eritema generalizado pruriginoso. Temperatura preservada."
+  },
+  "sampleHistory": {
+    "symptoms": "Dificultad respiratoria aguda, estridor, hinchazón de labios y ojos, prurito intenso.",
+    "allergies": "Alergia conocida al maní y frutos secos diagnosticada hace 1 año.",
+    "medications": "Ninguno habitual. La madre olvidó el autoinyector de adrenalina en casa.",
+    "pastHistory": "Dermatitis atópica.",
+    "lastMeal": "Galleta comercial compartida hace 20 minutos.",
+    "events": "Comió la galleta y a los 5 minutos comenzó a frotarse la boca diciendo que 'sentía fuego' en la garganta."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Ante un niño de 18 kg con anafilaxia grave que presenta estridor inspiratorio (edema laríngeo) e hipotensión, ¿cuál es el fármaco de primera línea irremplazable, la vía y la dosis correcta para salvar la vida del paciente?",
+      "protocolReference": "PALS AHA / Guías WAO de Anafilaxia Pediátrica",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Adrenalina (Epinefrina) 1:1000 (1 mg/mL) a dosis de 0.01 mg/kg (0.18 mg = 0.18 mL) por vía INTRAMUSCULAR inmediata en la cara anterolateral del tercio medio del muslo (vasto lateral), administración de oxígeno a alto flujo y preparación de bolo cristaloide de 20 mL/kg.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! La Adrenalina intramuscular en el muslo anterolateral es el ÚNICO fármaco de primera línea que detiene la progresión del edema de glotis y el colapso vascular en la anafilaxia. En el muslo la absorción es significativamente más rápida y alcanza concentraciones plasmáticas terapéuticas en minutos, a diferencia de la vía subcutánea o deltoidea. La dosis pediátrica exacta es 0.01 mg/kg de la ampolla 1:1000 (máximo 0.3 mg en preescolares)."
+        },
+        {
+          "optionKey": "B",
+          "text": "Administración exclusiva de Difenhidramina 1 mg/kg por vía oral o intramuscular y nebulización con Salbutamol 2.5 mg, reservando la adrenalina sólo si entra en paro cardiorrespiratorio.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los antihistamínicos NO revierten la obstrucción de la vía aérea ni revierten la hipotensión por vasodilatación anafiláctica. Retrasar la administración de adrenalina es la principal causa de muerte evitable por anafilaxia en pediatría."
+        },
+        {
+          "optionKey": "C",
+          "text": "Hidrocortisona 100 mg por vía intravenosa lenta como único tratamiento de choque inicial.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los corticoides tardan entre 4 a 6 horas en comenzar su acción genómica en las células diana. Aunque ayudan a prevenir reacciones anafilácticas bifásicas tardías, no tienen ningún efecto en la emergencia aguda del edema laríngeo agudo."
+        },
+        {
+          "optionKey": "D",
+          "text": "Intubación orotraqueal a ciegas sin sedación de inmediato en el parque infantil antes de cualquier fármaco.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La intubación en un niño con edema de glotis sin preoxigenación ni adrenalina previa suele precipitar espasmo laríngeo total, sangrado y cierre irreversible de la vía aérea ('no puedo intubar, no puedo ventilar'). La adrenalina reduce rápidamente el edema de la mucosa faringolaríngea."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "caso-paro-cardiaco-fv-tv",
+  "title": "Paro Cardiorrespiratorio en Fibrilación Ventricular primaria presenciado",
+  "specialty": "CARDIOVASCULAR",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Colapso súbito en cancha deportiva de tenis. Testigos reportan paciente inconsciente que no respira.",
+  "scene": "Cancha de polvo de ladrillo. Paciente en decúbito supino en el suelo. Testigos realizan compresiones torácicas con dudas sobre la técnica.",
+  "kinematicsOrOnset": "Colapso presenciado hace 4 minutos tras quejarse de opresión torácica durante el calentamiento deportivo.",
+  "protocolReference": "AHA Guías de Reanimación Cardiopulmonar y Atención Cardiovascular de Emergencia (ACLS) / ERC",
+  "patient": {
+    "age": 56,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 82,
+    "occupation": "Abogado"
+  },
+  "vitals": {
+    "heartRate": 0,
+    "respiratoryRate": 0,
+    "bloodPressure": "0/0",
+    "oxygenSaturation": 0,
+    "bodyTemperature": 36.2,
+    "glasgow": {
+      "ocularResponse": 1,
+      "verbalResponse": 1,
+      "motorResponse": 1,
+      "totalScore": 3
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea desobstruida mediante hiperextensión cervical controlada y cánula orofaríngea de Guedel.",
+    "breathing": "Apnea total. Ausencia de movimientos torácicos espontáneos o ruidos respiratorios.",
+    "circulation": "Ausencia de pulso carotídeo central palpable tras chequeo de 10 segundos. Palidez generalizada y cianosis peribucal incipiente. El monitor desfibrilador en parches muestra Fibrilación Ventricular (FV) de moderada amplitud.",
+    "disability": "Glasgow 3/15. Pupilas midriáticas intermedias (4 mm) hiporreactivas.",
+    "exposure": "Tórax descubierto seco para colocación adecuada de parches de desfibrilación en posición anterolateral (infraclavicular derecha y ápex axilar anterior izquierda)."
+  },
+  "sampleHistory": {
+    "symptoms": "Dolor retroesternal opresivo de 10 minutos de evolución antes del colapso.",
+    "allergies": "No refiere familiar.",
+    "medications": "Desconocidos por los testigos.",
+    "pastHistory": "Tabaquismo crónico y sobrepeso.",
+    "lastMeal": "Desayuno ligero hace 2 horas.",
+    "events": "Jugaba el segundo set cuando llevó su mano al pecho, cayó desplomado y presentó respiración agónica que cesó."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Al confirmar en el monitor desfibrilador un ritmo desfibrilable (Fibrilación Ventricular), ¿cuál es la secuencia inmediata de intervención conforme a las guías AHA ACLS para maximizar el retorno de circulación espontánea (RCE)?",
+      "protocolReference": "AHA ACLS Guidelines / Algoritmo de Paro Cardíaco Adulto",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Descarga eléctrica inmediata no sincronizada (120-200 J bifásico), reinicio inmediato de compresiones torácicas de alta calidad por 2 minutos sin chequear pulso tras el choque, acceso vascular (IV/IO) y preparación de Adrenalina 1 mg para después de la 2da descarga.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En ritmos desfibrilables (FV / TV sin pulso), cada minuto de demora en la desfibrilación reduce la supervivencia un 7-10%. Tras la descarga eléctrica, el miocardio aturdido requiere soporte hemodinámico inmediato; chequear el pulso de inmediato interrumpe innecesariamente la perfusión coronaria. La Adrenalina 1 mg se reserva para después de la segunda descarga fallida, y los antiarrítmicos (Amiodarona 300 mg o Lidocaína 1-1.5 mg/kg) tras la tercera descarga."
+        },
+        {
+          "optionKey": "B",
+          "text": "Administración inmediata de un bolo IV de Adrenalina 1 mg y Atropina 1 mg antes de intentar la descarga eléctrica, para mejorar la receptividad ventricular.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La desfibrilación NUNCA debe demorarse por la administración de fármacos o la obtención de accesos vasculares. Además, la Atropina fue retirada definitivamente de los algoritmos de PCR por carecer de beneficio clínico."
+        },
+        {
+          "optionKey": "C",
+          "text": "Detener el ciclo para intubación orotraqueal inmediata con videolaringoscopio antes de aplicar la primera descarga eléctrica.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Detener las compresiones torácicas o retrasar la desfibrilación eléctrica para intentar un manejo avanzado de vía aérea es un error crítico de campo que reduce drásticamente la tasa de retorno de circulación espontánea."
+        },
+        {
+          "optionKey": "D",
+          "text": "Sincronizar el desfibrilador en modo cardioversión con 50 J y administrar infusión de Gluconato de Calcio profiláctico.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La Fibrilación Ventricular es un ritmo totalmente caótico sin ondas R reconocibles; sincronizar el desfibrilador impedirá que el equipo entregue la descarga. Se requiere desfibrilación pura no sincronizada con energía máxima recomendada."
+        }
+      ]
+    }
+  ]
+}
