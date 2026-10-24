@@ -1,0 +1,6 @@
+{
+  "name": "MediQuest - Casos Clínicos APH",
+  "description": "Aplicación clínica de entrenamiento y resolución de casos clínicos interactivos para estudiantes y profesionales de Atención Prehospitalaria (APH).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
