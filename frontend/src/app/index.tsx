@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link, useRouter } from 'expo-router';
 import { Image } from 'expo-image';
+import { AuthService, UserSession } from '@/services/auth.service';
 
 export default function IndexScreen() {
   const router = useRouter();
+  const [currentUser, setCurrentUser] = useState<UserSession | null>(null);
+
+  useEffect(() => {
+    AuthService.getCurrentUser().then(setCurrentUser);
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
@@ -67,27 +73,43 @@ export default function IndexScreen() {
 
         {/* Action Buttons */}
         <View style={styles.actionsSection}>
-          <Link href="/login" asChild>
-            <Pressable style={styles.btnPrimary} accessibilityRole="button">
-              <Text style={styles.btnPrimaryText}>Iniciar sesión</Text>
-            </Pressable>
-          </Link>
+          {currentUser ? (
+            <>
+              <Pressable
+                style={styles.btnPrimary}
+                onPress={() => router.push('/cases')}
+                accessibilityRole="button"
+              >
+                <Text style={styles.btnPrimaryText}>
+                  Continuar como {currentUser.name} →
+                </Text>
+              </Pressable>
+              <Pressable
+                style={styles.btnSecondary}
+                onPress={async () => {
+                  await AuthService.logout();
+                  setCurrentUser(null);
+                }}
+                accessibilityRole="button"
+              >
+                <Text style={styles.btnSecondaryText}>Cambiar de cuenta</Text>
+              </Pressable>
+            </>
+          ) : (
+            <>
+              <Link href="/login" asChild>
+                <Pressable style={styles.btnPrimary} accessibilityRole="button">
+                  <Text style={styles.btnPrimaryText}>Iniciar sesión</Text>
+                </Pressable>
+              </Link>
 
-          <Link href="/registro" asChild>
-            <Pressable style={styles.btnSecondary} accessibilityRole="button">
-              <Text style={styles.btnSecondaryText}>Crear cuenta</Text>
-            </Pressable>
-          </Link>
-
-          <Pressable
-            style={styles.btnGuest}
-            onPress={() => router.push('/cases')}
-            accessibilityRole="button"
-          >
-            <Text style={styles.btnGuestText}>
-              👤 Explorar casos como Estudiante de Prueba →
-            </Text>
-          </Pressable>
+              <Link href="/registro" asChild>
+                <Pressable style={styles.btnSecondary} accessibilityRole="button">
+                  <Text style={styles.btnSecondaryText}>Crear cuenta</Text>
+                </Pressable>
+              </Link>
+            </>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

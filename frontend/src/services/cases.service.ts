@@ -229,13 +229,18 @@ export const CasesService = {
     }
   },
 
+  async getAllCases(): Promise<ClinicalCase[]> {
+    return this.getCases();
+  },
+
   /**
    * Envía la opción elegida por el estudiante para evaluación y persistencia en base de datos (RF08, RF10).
    */
   async solveCase(
     caseId: string,
     selectedOptionKey: 'A' | 'B' | 'C' | 'D',
-    timeSpentSeconds: number = 30
+    timeSpentSeconds: number = 30,
+    userEmail: string = 'student@mediquest.edu'
   ): Promise<SolveCaseResponse> {
     try {
       return await apiRequest<SolveCaseResponse>(`/cases/${caseId}/solve`, {
@@ -243,7 +248,7 @@ export const CasesService = {
         body: JSON.stringify({
           selectedOptionKey,
           timeSpentSeconds,
-          userEmail: 'student@mediquest.edu',
+          userEmail,
         }),
       });
     } catch (error) {
@@ -272,11 +277,16 @@ export const CasesService = {
   /**
    * Obtiene el historial de intentos y progreso desde el backend (RF11).
    */
-  async getProgress(): Promise<AttemptProgress[]> {
+  async getProgress(userEmail: string = 'student@mediquest.edu'): Promise<AttemptProgress[]> {
     try {
-      return await apiRequest<AttemptProgress[]>('/progress?userEmail=student@mediquest.edu');
+      const cleanEmail = encodeURIComponent(userEmail.trim().toLowerCase());
+      return await apiRequest<AttemptProgress[]>(`/progress?userEmail=${cleanEmail}`);
     } catch {
       return [];
     }
+  },
+
+  async getUserProgress(userEmail?: string): Promise<AttemptProgress[]> {
+    return this.getProgress(userEmail || 'student@mediquest.edu');
   },
 };
