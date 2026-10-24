@@ -10,6 +10,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
 import { CaseOption } from '@/types/clinical-case';
+import { HttpCatAlert } from '@/components/ui/http-cat-alert';
+import { CasesService } from '@/services/cases.service';
 
 export default function CaseSolveScreen() {
   const router = useRouter();
@@ -22,6 +24,13 @@ export default function CaseSolveScreen() {
   if (!clinicalCase) {
     return (
       <SafeAreaView style={styles.centerContainer} edges={['bottom', 'left', 'right']}>
+        <HttpCatAlert
+          visible={true}
+          statusCode={404}
+          title="Caso No Encontrado"
+          message="El caso clínico que intentas resolver no está disponible."
+          onClose={() => router.replace('/cases')}
+        />
         <Text style={styles.errorText}>Caso no encontrado</Text>
         <Pressable onPress={() => router.replace('/cases')}>
           <Text style={styles.linkText}>Volver a casos</Text>
@@ -37,6 +46,10 @@ export default function CaseSolveScreen() {
   const handleEvaluate = () => {
     if (!selectedOptionId) return;
     setIsEvaluated(true);
+    // Persiste el intento en MySQL a través del servicio backend (RF10)
+    CasesService.solveCase(clinicalCase.id, selectedOptionId, 45).catch(() => {
+      // Manejo transparente en segundo plano
+    });
   };
 
   const handleReset = () => {

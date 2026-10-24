@@ -12,6 +12,7 @@ import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
 import { getClinicalImageSource } from '@/data/clinical-assets';
+import { HttpCatAlert } from '@/components/ui/http-cat-alert';
 
 export default function CaseDetailScreen() {
   const router = useRouter();
@@ -28,6 +29,13 @@ export default function CaseDetailScreen() {
   if (!clinicalCase) {
     return (
       <SafeAreaView style={styles.notFoundContainer} edges={['bottom', 'left', 'right']}>
+        <HttpCatAlert
+          visible={true}
+          statusCode={404}
+          title="Caso Clínico No Encontrado"
+          message={`El caso clínico "${id || 'desconocido'}" no existe en la base de datos o fue archivado.`}
+          onClose={() => router.back()}
+        />
         <Text style={styles.notFoundTitle}>Caso clínico no encontrado</Text>
         <Pressable style={styles.backButton} onPress={() => router.back()}>
           <Text style={styles.backButtonText}>← Volver al catálogo</Text>
