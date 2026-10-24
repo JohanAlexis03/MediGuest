@@ -7,7 +7,7 @@
 
 ## 1. Visión y Rama Activa
 * **Proyecto:** MediQuest — Plataforma de Entrenamiento Clínico para Atención Prehospitalaria (APH).
-* **Rama Git Activa:** `feature/production-readiness`.
+* **Rama Git Activa:** `feature/cases-seed-expansion`.
 * **Stack Tecnológico:**
   * **Frontend:** Expo SDK 57 (React Native 0.86, React 19.2, Expo Router).
   * **Backend:** Java 23 con Spring Boot 4 + Base de Datos Relacional MySQL 9.3 (`mediquest_db`).
@@ -31,6 +31,7 @@
 | **Cliente Frontend & Alertas Cat** | Integración y UX Defensiva | ✅ | Commit `83b5ca6` (`services/api.ts`, `HttpCatAlert`, soporte 404/500/503) |
 | **Gobernanza Git & Agente Auditor** | Disciplina de Repositorio | ✅ | `.agents/skills/mediquest-auditor/SKILL.md`, `AGENTS.md` (Checklist bloqueante) |
 | **Producción & Persistencia Real** | RF01, RF02, RF08, RF10, RF11 | ✅ | Limpieza de pistas de prueba, `AuthService` con `AsyncStorage`, endpoints `/api/auth`, catálogo, resolución y progreso 100% conectados a MySQL |
+| **Expansión a 10 Casos APH** | RF03, RF05, RF06, RF08, RF09 | ✅ | `DataSeeder.java` normalizado e idempotente con 10 casos en las 6 especialidades clínicas (Trauma, Tóxicos, Cardio, Respiratorio, Neuro, Pediatría) |
 
 ---
 
@@ -45,14 +46,15 @@
 * **ADR-07 (Manejo Defensivo de Errores con http.cat):** Integrar `https://http.cat/{status}.jpg` en el `GlobalExceptionHandler` y en el componente móvil `HttpCatAlert` para erradicar pantallas en blanco ante errores 404 o caídas de conexión.
 * **ADR-08 (Aislamiento de Ramas Git y Agente Auditor):** Prohibir el desarrollo de backend en ramas de navegación. Aislar el trabajo en `feature/backend-api` y formalizar el Agente 5 con checklist bloqueante.
 * **ADR-09 (Autenticación Real, Sesión con AsyncStorage y Reactividad en Producción):** Desacoplar definitivamente la aplicación de mocks en memoria. Persistir la sesión en el dispositivo con `@react-native-async-storage/async-storage`, sincronizar registro y login contra MySQL (`/api/auth`), y ligar la resolución clínica y estadísticas de progreso al usuario autenticado.
+* **ADR-10 (Sembrado Idempotente y Banco Clínico Normalizado de 10 Casos):** Garantizar la persistencia y ampliación continua del banco de datos sin pérdida de intentos previos, verificando la existencia por ID de cada caso clínico antes de persistir, expandiendo la cobertura diagnóstica a las 6 especialidades reglamentarias (Trauma, Toxicología, Cardiovascular, Respiratorio, Neurología, Pediatría) bajo directrices PHTLS, ATLS y AHA.
 
 ---
 
 ## 4. Estado Actual (En Curso)
 * **Frontend:** 100% productivo sin botones demo ni textos de prueba. Catálogo, detalle, resolución y progreso alimentados desde MySQL con RefreshControl (**0 errores TS, 0 warnings lint**).
 * **Backend:** Spring Boot activo con endpoints `/api/cases`, `/api/progress` y `/api/auth` validados (**8/8 tests de integración en verde**).
-* **Base de Datos:** MySQL `mediquest_db` con tablas `users`, `clinical_cases`, `questions`, `question_options` e historial `attempts`.
-* **Gobierno de Proyecto:** Rama `feature/production-readiness` blindada con el agente auditor.
+* **Base de Datos:** MySQL `mediquest_db` con 10 casos clínicos completos sembrados de forma idempotente.
+* **Gobierno de Proyecto:** Rama `feature/cases-seed-expansion` con auditoría activa.
 
 ---
 
