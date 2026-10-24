@@ -7,7 +7,7 @@
 
 ## 1. Visión y Rama Activa
 * **Proyecto:** MediQuest — Plataforma de Entrenamiento Clínico para Atención Prehospitalaria (APH).
-* **Rama Git Activa:** `feature/json-cases-loader`.
+* **Rama Git Activa:** `feature/cases-seed-batch-2`.
 * **Stack Tecnológico:**
   * **Frontend:** Expo SDK 57 (React Native 0.86, React 19.2, Expo Router).
   * **Backend:** Java 23 con Spring Boot 4 + Base de Datos Relacional MySQL 9.3 (`mediquest_db`).
@@ -35,6 +35,7 @@
 | **Normalización de Filtros y Resiliencia** | RF01, RF02, RF03 | ✅ | Normalización diacrítica de especialidades y dificultades, blindaje de URLs `/api/` en `api.ts` y manejo 404 en backend |
 | **Imágenes Clínicas & Conectividad LAN** | RF06, RNF01 | ✅ | Vinculación de imágenes diagnósticas reales por ID de caso (ECG, tórax, Cincinnati), erradicación de fotos Unsplash y detección dinámica de IP para Expo Go |
 | **Arquitectura Ingesta JSON & 15 Casos** | RF03, RF05, RF06, RF08, RF09 | ✅ | `CaseLoaderService.java`, `CaseJsonDto.java`, `classpath*:cases/*.json`, reducción de `DataSeeder.java` (590 a 45 líneas) y banco ampliado a 15 casos |
+| **Expansión a 25 Casos Clínicos (Lote 2)** | RF03, RF05, RF06, RF08, RF09 | ✅ | 10 nuevos casos JSON de alta fidelidad (ACV ventana trombolisis, PCR en FV, bloqueo AV 3er grado, anafilaxia pediátrica, estatus epiléptico, X-ABCDE torniquete, crup, EAP hipertensivo, trauma eléctrico alto voltaje, intoxicación CO) |
 
 ---
 
@@ -58,13 +59,13 @@
 
 ## 4. Estado Actual (En Curso)
 * **Frontend:** 100% productivo con auxiliares diagnósticos médicos reales, filtros calibrados y conectividad LAN dinámica (**0 errores TS, 0 warnings lint**).
-* **Backend:** Spring Boot activo en puerto 8080 con MySQL 9.3 (**8/8 tests en verde**, carga masiva JSON operativa).
-* **Base de Datos:** MySQL `mediquest_db` con 15 casos clínicos completos sembrados de forma idempotente.
-* **Gobierno de Proyecto:** Rama `feature/json-cases-loader` con auditoría activa.
+* **Backend:** Spring Boot activo en puerto 8080 con MySQL 9.3 (**8/8 tests en verde**, carga masiva JSON de 25 casos operativa).
+* **Base de Datos:** MySQL `mediquest_db` con 25 casos clínicos completos sembrados de forma idempotente.
+* **Gobierno de Proyecto:** Rama `feature/cases-seed-batch-2` con auditoría activa.
 
 ---
 
 ## 5. Próximos Pasos en Secuencia (Backlog Priorizado)
-1. **Paso 1:** Escalar banco de 15 a 30 casos clínicos mediante archivos JSON normalizados bajo estándares APH (`aph-clinical-modeler`).
-2. **Paso 2:** Consolidar meta de 100 casos clínicos distribuidos en las 6 especialidades clínicas.
+1. **Paso 1:** Escalar banco de 25 a 50 casos clínicos mediante lotes modulares de 10-15 casos estructurados (`aph-clinical-modeler`).
+2. **Paso 2:** Consolidar meta de 100 casos clínicos distribuidos equitativamente en las 6 especialidades.
 3. **Paso 3 (RF12):** Módulo de administración para docentes (creación, edición y auditoría de casos desde UI).

@@ -25,13 +25,13 @@ Aplicación móvil para que estudiantes de **Atención Prehospitalaria (APH)** r
 - 🟢 **Backend (API REST & Persistencia):** Java 23 con Spring Boot 4 + MySQL 9.3 (`mediquest_db`).
   - ✅ Dominio clínico JPA normalizado (`ClinicalCase`, `Question`, `Option`, `User`, `Attempt`).
   - ✅ Arquitectura de ingesta desacoplada JSON (`classpath*:cases/*.json`) vía `CaseLoaderService`.
-  - ✅ Banco ampliado a 15 casos clínicos de alta fidelidad sembrados de forma idempotente en las 6 especialidades de APH.
+  - ✅ Banco ampliado a 25 casos clínicos de alta fidelidad sembrados de forma idempotente en las 6 especialidades de APH.
   - ✅ Endpoints REST `/api/cases`, `/api/progress` y `/api/auth` (login y registro) con DTOs seguros.
   - ✅ Evaluación pedagógica en servidor con persistencia inmutable en tabla `attempts` (RF10).
   - ✅ Manejador global de excepciones integrado con **http.cat** (`404.jpg`, `500.jpg`, `503.jpg`) y CORS configurado.
   - ✅ 8/8 pruebas de integración automatizadas en verde (`mvn test`).
 - 🟢 **Documentación & Auditoría:** Skill `mediquest-auditor` activa, 5 agentes especializados y bitácora en `ESTADO_DEL_PROYECTO.md`.
-- 🟢 **Git:** Rama de trabajo activa `feature/json-cases-loader`.
+- 🟢 **Git:** Rama de trabajo activa `feature/cases-seed-batch-2`.
 
 ## Matriz de Requerimientos Funcionales (MVP)
 
