@@ -1,0 +1,78 @@
+{
+  "id": "caso-intoxicacion-monoxido-carbono",
+  "title": "Intoxicación Aguda por Monóxido de Carbono (CO) con Pulsioximetría Convencional Engañosa",
+  "specialty": "TOXICOLOGIA",
+  "difficulty": "INTERMEDIO",
+  "dispatchContext": "Llamada por mujer de 45 años encontrada semiinconsciente y desorientada en el baño de su vivienda tras usar calentador a gas.",
+  "scene": "Vivienda en edificio antiguo. Baño pequeño cerrado herméticamente sin rejilla de ventilación con calefón a gas encendido. Bomberos ya ventilaron el ambiente y aseguraron la escena.",
+  "kinematicsOrOnset": "Exposición inhalatoria prolongada de aproximadamente 45 minutos al humo y gases de combustión incompleta en recinto confinado.",
+  "protocolReference": "Goldfrank's Toxicologic Emergencies / UpToDate Carbon Monoxide Poisoning / PHTLS 9na Edición",
+  "patient": {
+    "age": 45,
+    "ageUnit": "años",
+    "sex": "Femenino",
+    "weightKg": 65,
+    "occupation": "Docente"
+  },
+  "vitals": {
+    "heartRate": 114,
+    "respiratoryRate": 24,
+    "bloodPressure": "118/76",
+    "oxygenSaturation": 99,
+    "bodyTemperature": 36.9,
+    "glasgow": {
+      "ocularResponse": 3,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 13
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea permeable con reflejos protectores conservados.",
+    "breathing": "Taquipnea a 24 rpm con esfuerzo ventilatorio moderado. Murmullo vesicular conservado sin ruidos sobreagregados. La pulsioximetría estándar de pulso marca una lectura falsamente tranquilizadora del 99% con aire ambiente.",
+    "circulation": "Taquicardia sinusal compensatoria a 114 lpm. Llenado capilar de 2 segundos. Piel sonrosada y caliente (el clásico color 'rojo cereza' es un signo tardío poco frecuente o post-mortem).",
+    "disability": "Glasgow 13/15 (cefalea holocraneana pulsátil severa, náuseas, vómitos, mareo rotatorio y dificultad para recordar la fecha). Pupilas isocóricas de 3 mm fotorreactivas.",
+    "exposure": "Sin signos de quemaduras ni traumatismo físico externo."
+  },
+  "sampleHistory": {
+    "symptoms": "Cefalea intensa refractaria, náuseas, visión borrosa, debilidad muscular y confusión.",
+    "allergies": "Ninguna.",
+    "medications": "Ninguno habitual.",
+    "pastHistory": "Mujer sana sin antecedentes crónicos.",
+    "lastMeal": "Almuerzo hace 5 horas.",
+    "events": "Se estaba duchando cuando comenzó a sentir mareo intenso y dolor de cabeza punzante, alcanzando a salir del baño antes de desplomarse en el pasillo."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Considerando que el pulsioxímetro de pulso estándar no distingue la oxihemoglobina de la carboxihemoglobina (marcando un valor normal del 99% a pesar de una hipoxia tisular severa), ¿cuál es el pilar de tratamiento prehospitalario inmediato y su fundamento fisiopatológico?",
+      "protocolReference": "Goldfrank's Toxicologic Emergencies / Carbon Monoxide Guidelines",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Retirar de la fuente de exposición y administrar de inmediato Oxígeno al 100% mediante mascarilla con bolsa reservorio de no reinhalación a 12-15 L/min, reduciendo la vida media de la carboxihemoglobina (COHb) de 300 minutos a aproximadamente 60-90 minutos.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! El monóxido de carbono tiene una afinidad por la hemoglobina 200 a 250 veces mayor que el oxígeno, formando carboxihemoglobina (COHb) y desviando la curva de disociación hacia la izquierda (inhibe la entrega de O₂ a los tejidos). Los oxímetros de pulso comunes leen la COHb a la misma longitud de onda (660 nm) que la oxihemoglobina, arrojando lecturas falsamente normales (98-100%). Administrar O₂ al 100% compite masivamente por los sitios de unión y desplaza al CO de la hemoglobina y los citocromos celulares mitocondriales, acortando su vida media de 300 min (aire ambiente) a menos de 90 min."
+        },
+        {
+          "optionKey": "B",
+          "text": "Confiar en la lectura del 99% del saturómetro y retener el oxígeno suplementario para no causar toxicidad por radicales libres de oxígeno en el cerebro.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Confiar en la saturación estándar en sospecha de monóxido de carbono es una negligencia médica crítica: el oxímetro convencional de dos longitudes de onda no detecta carboxihemoglobina y la paciente sufre hipoxia celular profunda con acidosis láctica celular."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administrar Hidroxocobalamina 5 g por infusión rápida intravenosa bajo sospecha de intoxicación exclusiva por cianuro.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La hidroxocobalamina es el antídoto específico para intoxicación por cianuro (común en incendios con combustión de plásticos o espumas sintéticas). En este caso el mecanismo fue un calefón a gas defectuoso de hidrocarburos puros sin incendio de materiales plásticos."
+        },
+        {
+          "optionKey": "D",
+          "text": "Administrar solución de Bicarbonato de Sodio 1 mEq/kg en bolo para alcalinizar la orina y acelerar la excreción renal del monóxido de carbono.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El monóxido de carbono se elimina exclusivamente por vía pulmonar mediante el intercambio alveolar con el oxígeno; la eliminación renal es nula y la alcalinización con bicarbonato no tiene ninguna indicación fisiológica."
+        }
+      ]
+    }
+  ]
+}

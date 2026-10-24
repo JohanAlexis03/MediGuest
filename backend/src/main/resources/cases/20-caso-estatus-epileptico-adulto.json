@@ -1,0 +1,78 @@
+{
+  "id": "caso-estatus-epileptico-adulto",
+  "title": "Estatus Epiléptico Convulsivo Generalizado Prolongado sin Acceso Venoso Inmediato",
+  "specialty": "NEUROLOGIA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Llamada de urgencia por paciente masculino de 28 años convulsionando de forma continua desde hace más de 7 minutos en la vía pública.",
+  "scene": "Acera peatonal. Paciente en decúbito dorsal con movimientos tónico-clónicos generalizados en las cuatro extremidades y saliva espumosa con sangre.",
+  "kinematicsOrOnset": "Crisis convulsiva tónico-clónica generalizada iniciada súbitamente sin recuperación de la conciencia entre sacudidas, con duración acumulada de 8 minutos al arribo de la tripulación.",
+  "protocolReference": "American Epilepsy Society (AES) Guidelines / ILAE Definition of Status Epilepticus (Tiempo t1 y t2)",
+  "patient": {
+    "age": 28,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 70,
+    "occupation": "Estudiante universitario"
+  },
+  "vitals": {
+    "heartRate": 138,
+    "respiratoryRate": 26,
+    "bloodPressure": "162/98",
+    "oxygenSaturation": 87,
+    "bodyTemperature": 38.3,
+    "glasgow": {
+      "ocularResponse": 1,
+      "verbalResponse": 1,
+      "motorResponse": 2,
+      "totalScore": 4
+    }
+  },
+  "primarySurvey": {
+    "airway": "Trismus mandibular severo con mordedura del borde lateral de la lengua y abundante secreción hemática espumosa. Riesgo inminente de broncoaspiración.",
+    "breathing": "Patrón respiratorio entrecortado e inefectivo durante las contracciones tónicas con cianosis labial. SatO₂ 87% con aire ambiente.",
+    "circulation": "Taquicardia sinusal intensa (138 lpm) e hipertensión refleja por descarga adrenérgica masiva (162/98 mmHg). Pulsos periféricos hiperdinámicos. Diaforesis profusa.",
+    "disability": "Glasgow 4/15 durante la actividad ictal. Pupilas con midriasis bilateral hiporreactiva (5 mm). Movimientos tónico-clónicos continuos sincronizados. Glucometría rápida: 98 mg/dL.",
+    "exposure": "Hipertermia de 38.3°C secundaria a contracción muscular sostenida. Sin signos de traumatismo previo al evento."
+  },
+  "sampleHistory": {
+    "symptoms": "Crisis convulsiva generalizada que no cede espontáneamente.",
+    "allergies": "Desconocidas.",
+    "medications": "Carbamazepina según carnet encontrado en su billetera.",
+    "pastHistory": "Epilepsia focal con evolución a tónico-clónica bilateral diagnosticada en la adolescencia.",
+    "lastMeal": "Desconocida.",
+    "events": "Caminaba con compañeros de facultad cuando gritó brevemente, perdió el conocimiento y comenzó con la crisis convulsiva ininterrumpida."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Al superar los 5 minutos de crisis continua (Tiempo t1 de estatus epiléptico con riesgo de daño neuronal excitotóxico irreversible) y sin un acceso intravenoso canalizado todavía, ¿cuál es la mejor opción farmacológica de primera línea recomendada por el ensayo RAMPART y la American Epilepsy Society?",
+      "protocolReference": "AES Status Epilepticus Guideline / Ensayo RAMPART (NEJM)",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Midazolam 10 mg por vía INTRAMUSCULAR inmediata (o intranasal con atomizador mucosal MAD), protección de la cabeza, aspiración suave de secreciones sin forzar la apertura bucal y oxígeno a alto flujo mediante cánula o mascarilla.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! El ensayo clínico multicéntrico RAMPART demostró que el Midazolam 10 mg por vía intramuscular (en pacientes de más de 40 kg) es superior al Lorazepam intravenoso en el entorno prehospitalario, ya que se administra rápidamente sin perder minutos valiosos intentando canalizar una vena en un paciente con convulsiones activas violentas, logrando el cese de la crisis con mayor rapidez y menos ingresos a UCI."
+        },
+        {
+          "optionKey": "B",
+          "text": "Introducir un bajalenguas de madera envuelto en gasa o una cánula orofaríngea entre los dientes a la fuerza para evitar que se muerda la lengua, mientras se busca acceso venoso periférico.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Está absolutamente prohibido forzar la apertura de la boca o introducir objetos en un paciente con trismus convulsivo. Esto provoca fracturas dentales, luxación temporomandibular y riesgo de obstrucción por cuerpos extraños o hemorragia en la orofaringe."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administración de Fenitoína 1000 mg por vía intramuscular profunda para evitar la depresión respiratoria.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La Fenitoína NO debe administrarse por vía intramuscular debido a su absorción errática, precipitación tisular y necrosis estéril. Además, no es un fármaco abortivo de primera línea; las benzodiacepinas son el tratamiento de elección inmediato."
+        },
+        {
+          "optionKey": "D",
+          "text": "Esperar 15 minutos más sin medicación bajo la premisa de que toda crisis convulsiva es autolimitada y cede por agotamiento de neurotransmisores.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Una crisis que dura más de 5 minutos difícilmente cesará por sí sola e inicia el estatus epiléptico. A partir de los 30 minutos (tiempo t2) se produce necrosis neuronal por excitotoxicidad mediada por glutamato, edema cerebral e insuficiencia respiratoria severa."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "caso-hemorragia-exanguinante-torniquete",
+  "title": "Trauma Penetrante con Hemorragia Exanguinante de Extremidad (Algoritmo X-ABCDE de PHTLS)",
+  "specialty": "TRAUMA",
+  "difficulty": "BASICO",
+  "dispatchContext": "Accidente laboral con sierra circular portátil en taller metalmecánico. Obrero con corte profundo en muslo y sangrado masivo a chorro.",
+  "scene": "Suelo de taller cubierto por charco hemático de más de 1 metro de diámetro. Compañeros intentan contener el sangrado con trapos impregnados de aceite sin éxito.",
+  "kinematicsOrOnset": "Retroceso ('kickback') de disco de corte abrasivo que impactó la cara anteromedial del tercio medio del muslo derecho hace 3 minutos.",
+  "protocolReference": "PHTLS 9na Edición, Cap. 6 (Shock y Hemorragias) / Guías CoTCCC (Tactical Combat Casualty Care)",
+  "patient": {
+    "age": 34,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 78,
+    "occupation": "Operario metalmecánico"
+  },
+  "vitals": {
+    "heartRate": 134,
+    "respiratoryRate": 24,
+    "bloodPressure": "82/48",
+    "oxygenSaturation": 94,
+    "bodyTemperature": 35.6,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 14
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea permeable. El paciente responde con frases cortas y voz débil por hipoperfusión.",
+    "breathing": "Taquipnea compensatoria a 24 rpm con buena ventilación bilateral simétrica. SatO₂ 94% al aire.",
+    "circulation": "Hemorragia exanguinante activa pulsátil a chorro (laceración de vasos femorales derechos) con pérdida estimada superior a 1200 mL. Pulso carotídeo rápido y filiforme, pulso radial apenas perceptible a 134 lpm. PA 82/48 mmHg. Piel pálida, sudorosa y fría.",
+    "disability": "Glasgow 14/15, ansioso, con sensación inminente de desvanecimiento. Pupilas reactivas de 3 mm.",
+    "exposure": "Herida incisa profunda de 12 cm en muslo derecho con exposición de planos musculares y flujo continuo de sangre arterial y venosa. Resto del cuerpo sin lesiones evidentes. Hipotermia incipiente (35.6°C)."
+  },
+  "sampleHistory": {
+    "symptoms": "Dolor urente en muslo, mareo severo, visión borrosa y sed intensa.",
+    "allergies": "No refiere.",
+    "medications": "Ninguno.",
+    "pastHistory": "Sano, deportista aficionado.",
+    "lastMeal": "Almuerzo hace 4 horas.",
+    "events": "La sierra se atascó en una viga metálica, saltó violentamente y le cortó la pierna derecha."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Bajo la sistemática X-ABCDE del PHTLS 9na Edición ante una hemorragia catastrófica exanguinante en extremidad, ¿cuál es la primera acción crítica y no postergable que debe ejecutar la tripulación antes de evaluar la vía aérea?",
+      "protocolReference": "PHTLS 9na Edición / Algoritmo X-ABCDE / Stop The Bleed",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Aplicación inmediata de un torniquete táctico comercial de molinete (ej. CAT o SOFTT) 5-7 cm proximal a la herida (o 'alto y apretado' en la raíz del muslo), ajustándolo hasta el cese total del sangrado arterial y la desaparición del pulso distal, registrando la hora exacta de colocación.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En el paradigma moderno de trauma (PHTLS y CoTCCC), la 'X' (eXsanguinating hemorrhage) antecede a la vía aérea ('A'). Una hemorragia arterial femoral puede provocar el exanguinado y la muerte por shock hipovolemia clase IV en menos de 3 minutos. El torniquete táctico es el método estándar de oro, seguro y salva vidas cuando se aplica con la tensión adecuada para colapsar el flujo arterial."
+        },
+        {
+          "optionKey": "B",
+          "text": "Colocar primero un collarín cervical rígido e inmovilizador lateral antes de atender la herida de la pierna para no violar el orden alfabético A-B-C-D-E.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Seguir rígidamente el A-B-C ignorando la 'X' mientras la arteria femoral sangra activamente provocará que el paciente entre en paro por exanguinación mientras se le coloca el collarín. La cinemática además fue un trauma penetrante focal en la pierna sin compromiso cervical."
+        },
+        {
+          "optionKey": "C",
+          "text": "Intentar compresión digital leve con una gasa estéril de 5x5 cm mientras se canalizan dos accesos venosos calibre 14G para infundir 3 litros de solución salina fría.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La compresión manual suave es inútil ante el flujo de la arteria femoral. Además, infundir cristaloides fríos masivos en trauma promueve la tríada de la muerte (hipotermia, acidosis y coagulopatía) al diluir los factores de coagulación y 'romper' los coágulos formados."
+        },
+        {
+          "optionKey": "D",
+          "text": "Elevar la pierna a 45 grados y colocar una bolsa con hielo local sobre la herida para provocar vasoconstricción espontánea.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La elevación de la extremidad es totalmente ineficaz frente a una rotura arterial femoral y el hielo directo empeora la vasoconstricción distal y la hipotermia sistémica, retrasando la única medida salvadora que es la oclusión mecánica con torniquete."
+        }
+      ]
+    }
+  ]
+}
