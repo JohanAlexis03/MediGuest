@@ -16,3 +16,8 @@ web-build/
 
 # Sistema operativo
 .DS_Store
+
+# Backend Java / Maven
+backend/target/
+**/target/
+*.jar
