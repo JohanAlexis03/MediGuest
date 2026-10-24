@@ -24,19 +24,19 @@ Aplicación móvil para que estudiantes de **Atención Prehospitalaria (APH)** r
   - ✅ Manejo defensivo de errores y pantallas no encontradas con alertas visuales de **http.cat**.
 - 🟢 **Backend (API REST & Persistencia):** Java 23 con Spring Boot 4 + MySQL 9.3 (`mediquest_db`).
   - ✅ Dominio clínico JPA normalizado (`ClinicalCase`, `Question`, `Option`, `User`, `Attempt`).
-  - ✅ Endpoints REST `/api/cases` y `/api/progress` con DTOs seguros que protegen las respuestas correctas.
+  - ✅ Endpoints REST `/api/cases`, `/api/progress` y `/api/auth` (login y registro) con DTOs seguros.
   - ✅ Evaluación pedagógica en servidor con persistencia inmutable en tabla `attempts` (RF10).
   - ✅ Manejador global de excepciones integrado con **http.cat** (`404.jpg`, `500.jpg`, `503.jpg`) y CORS configurado.
-  - ✅ 5/5 pruebas de integración automatizadas en verde (`mvn test`).
+  - ✅ 8/8 pruebas de integración automatizadas en verde (`mvn test`).
 - 🟢 **Documentación & Auditoría:** Skill `mediquest-auditor` activa, 5 agentes especializados y bitácora en `ESTADO_DEL_PROYECTO.md`.
-- 🟢 **Git:** Rama de trabajo activa `feature/backend-api`.
+- 🟢 **Git:** Rama de trabajo activa `feature/production-readiness`.
 
 ## Matriz de Requerimientos Funcionales (MVP)
 
 | ID | Requerimiento | Estado | Detalle / Ruta |
 |---|---|:---:|---|
-| **RF01** | Registro de usuario | ✅ | `frontend/src/app/registro.tsx` y tabla `users` |
-| **RF02** | Inicio de sesión | ✅ | `frontend/src/app/login.tsx` |
+| **RF01** | Registro de usuario | ✅ | `POST /api/auth/register`, `frontend/src/app/registro.tsx` y tabla `users` |
+| **RF02** | Inicio de sesión | ✅ | `POST /api/auth/login`, `frontend/src/app/login.tsx` y `AsyncStorage` |
 | **RF03** | Visualización de casos clínicos | ✅ | `GET /api/cases` y `frontend/src/app/cases/index.tsx` |
 | **RF04** | Selección de caso clínico | ✅ | `frontend/src/components/clinical/case-card.tsx` |
 | **RF05** | Presentación de info clínica | ✅ | `GET /api/cases/{id}` y `frontend/src/app/cases/[id].tsx` (ABCDE, SAMPLE) |
