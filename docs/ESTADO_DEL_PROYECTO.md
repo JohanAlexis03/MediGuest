@@ -7,7 +7,7 @@
 
 ## 1. Visión y Rama Activa
 * **Proyecto:** MediQuest — Plataforma de Entrenamiento Clínico para Atención Prehospitalaria (APH).
-* **Rama Git Activa:** `fix/filters-and-auth-resilience`.
+* **Rama Git Activa:** `feature/json-cases-loader`.
 * **Stack Tecnológico:**
   * **Frontend:** Expo SDK 57 (React Native 0.86, React 19.2, Expo Router).
   * **Backend:** Java 23 con Spring Boot 4 + Base de Datos Relacional MySQL 9.3 (`mediquest_db`).
@@ -34,6 +34,7 @@
 | **Expansión a 10 Casos APH** | RF03, RF05, RF06, RF08, RF09 | ✅ | `DataSeeder.java` normalizado e idempotente con 10 casos en las 6 especialidades clínicas (Trauma, Tóxicos, Cardio, Respiratorio, Neuro, Pediatría) |
 | **Normalización de Filtros y Resiliencia** | RF01, RF02, RF03 | ✅ | Normalización diacrítica de especialidades y dificultades, blindaje de URLs `/api/` en `api.ts` y manejo 404 en backend |
 | **Imágenes Clínicas & Conectividad LAN** | RF06, RNF01 | ✅ | Vinculación de imágenes diagnósticas reales por ID de caso (ECG, tórax, Cincinnati), erradicación de fotos Unsplash y detección dinámica de IP para Expo Go |
+| **Arquitectura Ingesta JSON & 15 Casos** | RF03, RF05, RF06, RF08, RF09 | ✅ | `CaseLoaderService.java`, `CaseJsonDto.java`, `classpath*:cases/*.json`, reducción de `DataSeeder.java` (590 a 45 líneas) y banco ampliado a 15 casos |
 
 ---
 
@@ -51,17 +52,19 @@
 * **ADR-10 (Sembrado Idempotente y Banco Clínico Normalizado de 10 Casos):** Garantizar la persistencia y ampliación continua del banco de datos sin pérdida de intentos previos, verificando la existencia por ID de cada caso clínico antes de persistir, expandiendo la cobertura diagnóstica a las 6 especialidades reglamentarias (Trauma, Toxicología, Cardiovascular, Respiratorio, Neurología, Pediatría) bajo directrices PHTLS, ATLS y AHA.
 * **ADR-11 (Normalización Canónica de Enums y Filtros APH):** Desacoplar las representaciones textuales de especialidades y dificultades entre backend (`TRAUMA`, `TOXICOLOGIA`) y frontend (`Trauma`, `Toxicología`), aplicando normalización insensible a diacríticos (NFD) y mayúsculas en el servicio de casos y componentes de catálogo/progreso.
 * **ADR-12 (Auxiliares Diagnósticos Pertinentes y Conectividad LAN Multi-dispositivo):** Descartar fotos genéricas de stock de Unsplash y vincular los casos a imágenes diagnósticas reales de alta fidelidad (ECGs de 12 derivaciones, placas de tórax AP, escalas neurológicas) mapeadas por ID de caso. Resolver la IP anfitriona dinámicamente mediante `expo-constants` para posibilitar pruebas desde dispositivos físicos en la misma red Wi-Fi sin configuración manual.
+* **ADR-13 (Arquitectura de Ingesta Masiva JSON y Desacoplamiento de Semillas):** Para escalar de forma sostenible hacia el objetivo pedagógico de 100 casos clínicos sin inflar clases de configuración Java (`DataSeeder.java`), se implementa una arquitectura desacoplada basada en DTOs JSON (`CaseJsonDto`) y un servicio de carga automática (`CaseLoaderService`) que escanea recursos `classpath*:cases/*.json`. La persistencia mantiene idempotencia verificando `existsById` y preserva la integridad relacional JPA bidireccional.
 
 ---
 
 ## 4. Estado Actual (En Curso)
 * **Frontend:** 100% productivo con auxiliares diagnósticos médicos reales, filtros calibrados y conectividad LAN dinámica (**0 errores TS, 0 warnings lint**).
-* **Backend:** Spring Boot activo en puerto 8080 con MySQL 9.3 (**8/8 tests en verde**).
-* **Base de Datos:** MySQL `mediquest_db` con 10 casos clínicos completos sembrados de forma idempotente.
-* **Gobierno de Proyecto:** Rama `fix/assets-and-lan-connectivity` con auditoría activa.
+* **Backend:** Spring Boot activo en puerto 8080 con MySQL 9.3 (**8/8 tests en verde**, carga masiva JSON operativa).
+* **Base de Datos:** MySQL `mediquest_db` con 15 casos clínicos completos sembrados de forma idempotente.
+* **Gobierno de Proyecto:** Rama `feature/json-cases-loader` con auditoría activa.
 
 ---
 
 ## 5. Próximos Pasos en Secuencia (Backlog Priorizado)
-1. **Paso 1:** Ingesta masiva y estructuración de los casos clínicos hacia el hito de los 100 casos (`feature/cases-seed-100`).
-2. **Paso 2 (RF12):** Módulo de administración para docentes (creación, edición y auditoría de casos desde UI).
+1. **Paso 1:** Escalar banco de 15 a 30 casos clínicos mediante archivos JSON normalizados bajo estándares APH (`aph-clinical-modeler`).
+2. **Paso 2:** Consolidar meta de 100 casos clínicos distribuidos en las 6 especialidades clínicas.
+3. **Paso 3 (RF12):** Módulo de administración para docentes (creación, edición y auditoría de casos desde UI).

@@ -1,0 +1,86 @@
+{
+  "id": "caso-toxicologia-erct-hiperpotasemia",
+  "title": "Crisis colinérgica por organofosforados en paciente renal anúrico con hiperpotasemia",
+  "specialty": "TOXICOLOGIA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Hombre de 58 años en hemodiálisis encontrado inconsciente en garaje tras fumigación agrícola doméstica.",
+  "scene": "Olor fuerte a insecticida. Paciente en decúbito supino con vómito y sialorrea abundante.",
+  "kinematicsOrOnset": "Inhalación accidental de pesticida organofosforado concentrado con omisión de las últimas dos sesiones de diálisis por paro de transporte.",
+  "protocolReference": "Manejo de Emergencias Toxicológicas y Alteraciones Electrolíticas en APH",
+  "patient": {
+    "age": 58,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 70,
+    "occupation": "Obrero jubilado"
+  },
+  "vitals": {
+    "heartRate": 38,
+    "respiratoryRate": 32,
+    "bloodPressure": "80/40",
+    "oxygenSaturation": 80,
+    "bodyTemperature": 35.9,
+    "glasgow": {
+      "ocularResponse": 1,
+      "verbalResponse": 2,
+      "motorResponse": 4,
+      "totalScore": 7
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea totalmente inundada de secreciones salivales y bronquiales espumosas.",
+    "breathing": "Taquipnea de 32 rpm con roncus y estertores crepitantes bilaterales. SatO₂ 80% al aire ambiente.",
+    "circulation": "Bradicardia extrema a 38 lpm, hipotensión marcada (80/40), llenado capilar 5 seg. Fístula arteriovenosa normofuncionante en MSI.",
+    "disability": "Glasgow 7/15. Pupilas puntiformes en cabeza de alfiler (1 mm). Fasciculaciones torácicas y diafragmáticas marcadas.",
+    "exposure": "Ropa impregnada de pesticida. Piel fría, diaforética y pálida."
+  },
+  "sampleHistory": {
+    "symptoms": "Inconsciencia, disnea asfíctica y convulsiones mioclónicas breves.",
+    "allergies": "Penicilina.",
+    "medications": "Eritropoyetina, carbonato de calcio, amlodipino.",
+    "pastHistory": "Enfermedad Renal Crónica Terminal (ERCT) en hemodiálisis trisemanal.",
+    "lastMeal": "Desconocida.",
+    "events": "Fumigaba en espacio cerrado sin mascarilla ni ventilación adecuada."
+  },
+  "media": {
+    "mediaType": "ecg",
+    "title": "ECG de 12 Derivaciones",
+    "subtitle": "Ondas T picudas simétricas y QRS ancho",
+    "findings": "Bradicardia severa con complejos QRS ensanchados a 0.14 s y ondas T hiperagudas simétricas características de hiperpotasemia severa.",
+    "badgeLabel": "ECG Cardiotóxico",
+    "imageUrl": "",
+    "imageCaption": "Signos electrocardiográficos inminentes de paro en actividad eléctrica sin pulso."
+  },
+  "questions": [
+    {
+      "prompt": "Ante la necesidad de intubación urgente (Glasgow 7) y los hallazgos electrocardiográficos de hiperpotasemia, ¿cuál es la conducta combinada prioritaria?",
+      "protocolReference": "Protocolos de Secuencia de Intubación Rápida en Paciente Renal y Toxicológico",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Administrar Gluconato de Calcio 10% IV para estabilizar membrana miocárdica + Atropina; contraindicar de forma absoluta la Succinilcolina y utilizar Rocuronio para la inducción.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! El calcio estabiliza de inmediato el umbral miocárdico ante la hiperpotasemia letal. La succinilcolina está absolutamente contraindicada porque eleva el potasio extracelular en 0.5-1.0 mEq/L adicional, lo que desencadenaría fibrilación ventricular o asistolia instantánea en este paciente."
+        },
+        {
+          "optionKey": "B",
+          "text": "Proceder a intubación rápida con Succinilcolina (1.5 mg/kg) para asegurar la vía aérea antes de cualquier otra intervención.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La succinilcolina en un paciente anúrico con hiperpotasemia y ondas T picudas precipita paro cardíaco refractario por paro despolarizante."
+        },
+        {
+          "optionKey": "C",
+          "text": "Infusión rápida de Bicarbonato de Sodio como único tratamiento antes de tocar la vía aérea.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El bicarbonato tiene un inicio de acción lento y no estabiliza de inmediato la membrana miocárdica frente al calcio."
+        },
+        {
+          "optionKey": "D",
+          "text": "Cardioversión eléctrica sincronizada a 100 Joules para elevar la frecuencia cardíaca.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La cardioversión no trata bradiarritmias sinusales tóxicas ni trastornos metabólicos de membrana."
+        }
+      ]
+    }
+  ]
+}

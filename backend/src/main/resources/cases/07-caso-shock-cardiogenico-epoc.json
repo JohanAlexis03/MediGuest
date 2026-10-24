@@ -1,0 +1,86 @@
+{
+  "id": "caso-shock-cardiogenico-epoc",
+  "title": "Shock cardiogénico refractario con compromiso hemodinámico tras infarto agudo de miocardio",
+  "specialty": "CARDIOVASCULAR",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Hombre de 68 años con dolor precordial opresivo, disnea y mareo profundo.",
+  "scene": "Vivienda. Paciente pálido, frío y con livideces en rodillas, sentado en sillón reclinable.",
+  "kinematicsOrOnset": "Infarto agudo de miocardio transmural anterior extenso con evolución de 4 horas hacia falla de bomba aguda.",
+  "protocolReference": "Guías AHA/ERC de Síndromes Coronarios Agudos y Shock Cardiogénico",
+  "patient": {
+    "age": 68,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 74,
+    "occupation": "Pensionado"
+  },
+  "vitals": {
+    "heartRate": 115,
+    "respiratoryRate": 28,
+    "bloodPressure": "76/48",
+    "oxygenSaturation": 88,
+    "bodyTemperature": 36.1,
+    "glasgow": {
+      "ocularResponse": 3,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 13
+    }
+  },
+  "primarySurvey": {
+    "airway": "Permeable sin estridor ni cuerpos extraños.",
+    "breathing": "Taquipnea superficial, crepitantes húmedos bilaterales basales en marea ascendente. SatO₂ 88% con cánula nasal.",
+    "circulation": "Shock cardiogénico evidente (PA 76/48, FC 115 lpm), pulsos periféricos casi imperceptibles, llenado capilar 4.5 s. Extremidades frías.",
+    "disability": "Glasgow 13/15 por hipoperfusión encefálica. Somnoliento pero responde a la voz.",
+    "exposure": "Palidez terrosa, diaforesis fría y livideces reticulares en miembros inferiores."
+  },
+  "sampleHistory": {
+    "symptoms": "Dolor opresivo retroesternal desgarrador, sensación de muerte inminente y ahogo.",
+    "allergies": "Sin alergias conocidas.",
+    "medications": "Inhalador de Bromuro de Ipratropio y Enalapril 10 mg.",
+    "pastHistory": "EPOC de larga data y tabaquismo pesado.",
+    "lastMeal": "Cena liviana hace 7 horas.",
+    "events": "Dolor torácico iniciado en reposo a las 04:00 AM con progresivo desvanecimiento."
+  },
+  "media": {
+    "mediaType": "ecg",
+    "title": "Electrocardiograma de 12 Derivaciones",
+    "subtitle": "Elevación del segmento ST en cara anterior extensa",
+    "findings": "Supradesnivel del segmento ST de 4 mm en V1-V4 con ondas Q patológicas incipientes y taquicardia sinusal.",
+    "badgeLabel": "ECG IAMCEST",
+    "imageUrl": "",
+    "imageCaption": "Infarto agudo de miocardio transmural con compromiso de ventrículo izquierdo y falla de bomba."
+  },
+  "questions": [
+    {
+      "prompt": "En presencia de shock cardiogénico con hipotensión profunda (PA 76/48) y estertores crepitantes, ¿cuál es el soporte inotrópico/vasopresor de primera línea recomendado?",
+      "protocolReference": "Guías AHA/ESC de Soporte en Shock Cardiogénico",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Noradrenalina en infusión continua: provee soporte presor potente por estimulación alfa-1 con menor taquicardia arritmogénica y menor consumo de oxígeno miocárdico que la dopamina.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En shock cardiogénico hipotensivo, la noradrenalina es el fármaco de elección para restaurar la presión de perfusión coronaria sin inducir taquiarritmias severas ni sobrecargar el gasto metabólico miocárdico frente a la dopamina."
+        },
+        {
+          "optionKey": "B",
+          "text": "Dopamina en dosis altas (> 15 mcg/kg/min) en bolo directo.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Las dosis altas de dopamina disparan la incidencia de arritmias ventriculares y mortalidad en comparación directa con la noradrenalina."
+        },
+        {
+          "optionKey": "C",
+          "text": "Infusión rápida de 2000 ml de solución salina para elevar la precarga cardíaca.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. En shock cardiogénico con falla ventricular izquierda, la sobrecarga hídrica causa edema agudo de pulmón masivo y asfixia."
+        },
+        {
+          "optionKey": "D",
+          "text": "Propranolol intravenoso para disminuir la frecuencia cardíaca a menos de 60 lpm.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los betabloqueadores están absolutamente contraindicados en shock cardiogénico por ser inotrópicos negativos."
+        }
+      ]
+    }
+  ]
+}

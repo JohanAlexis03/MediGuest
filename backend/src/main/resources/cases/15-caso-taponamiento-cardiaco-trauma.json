@@ -1,0 +1,78 @@
+{
+  "id": "caso-taponamiento-cardiaco-trauma",
+  "title": "Shock obstructivo por taponamiento cardíaco secundario a trauma torácico penetrante",
+  "specialty": "CARDIOVASCULAR",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Agresión con arma blanca en tórax anterior. Varón de 27 años colapsado en vía pública.",
+  "scene": "Entorno seguro. Paciente en decúbito supino, pálido, con herida punzopenetrante paraesternal izquierda.",
+  "kinematicsOrOnset": "Herida por arma cortopunzante en 4to espacio intercostal línea paraesternal izquierda ('caja torácica de Ziedler').",
+  "protocolReference": "ATLS 10ma Edición, Cap. 4 (Trauma Torácico) y PHTLS",
+  "patient": {
+    "age": 27,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 75,
+    "occupation": "Estudiante universitario"
+  },
+  "vitals": {
+    "heartRate": 130,
+    "respiratoryRate": 26,
+    "bloodPressure": "80/60",
+    "oxygenSaturation": 94,
+    "bodyTemperature": 36.3,
+    "glasgow": {
+      "ocularResponse": 3,
+      "verbalResponse": 4,
+      "motorResponse": 5,
+      "totalScore": 12
+    }
+  },
+  "primarySurvey": {
+    "airway": "Permeable sin secreciones ni estridor.",
+    "breathing": "Taquipneico (26 rpm), pero los ruidos respiratorios (murmullo vesicular) son simétricos y limpios en ambos hemitórax, sin timpanismo ni matidez pulmonar.",
+    "circulation": "Shock severo con Presión de Pulso pinzada (80/60 mmHg), pulso paradójico marcado (descenso > 10 mmHg de PAS durante la inspiración), ingurgitación yugular evidente y ruidos cardíacos marcadamente velados/apagados.",
+    "disability": "Glasgow 12/15 por hipoperfusión. Somnoliento y angustiado.",
+    "exposure": "Herida de 2 cm en 4to EIC paraesternal izquierdo sin sangrado externo activo."
+  },
+  "sampleHistory": {
+    "symptoms": "Debilidad extrema, mareo, opresión precordial asfixiante y visión en túnel.",
+    "allergies": "Ninguna conocida.",
+    "medications": "Ninguno.",
+    "pastHistory": "Joven sano.",
+    "lastMeal": "Hace 1 hora.",
+    "events": "Atraco en vía pública hace 15 minutos."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Al auscultar campos pulmonares limpios y simétricos, pero hallar ruidos cardíacos apagados, ingurgitación yugular e hipotensión con presión de pulso pinzada (Tríada de Beck), ¿cuál es la conducta prehospitalaria crucial mientras se traslada de emergencia?",
+      "protocolReference": "ATLS 10ma Edición / PHTLS 9na Edición",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Reconocimiento de taponamiento cardíaco (Tríada de Beck), administración cuidadosa de bolo de cristaloides para aumentar la precarga y contrarrestar la compresión pericárdica, prealerta hospitalaria inmediata para ventana pericárdica o toracotomía y pericardiocentesis subxifoidea de rescate únicamente si hay paro cardíaco inminente.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! La tríada de Beck (hipotensión con presión de pulso estrecha + ruidos cardíacos apagados + ingurgitación yugular) en presencia de una herida en la 'caja de Ziedler' es diagnóstica de taponamiento cardíaco. La administración de fluidos intravenosos aumenta la presión de llenado de la aurícula derecha para vencer la presión intrapericárdica de forma transitoria. La pericardiocentesis a ciegas tiene alta tasa de complicaciones y se reserva solo ante el paro inminente mientras se traslada a toda velocidad a quirófano."
+        },
+        {
+          "optionKey": "B",
+          "text": "Descompresión torácica con aguja en el 2do espacio intercostal derecho asumiendo neumotórax a tensión.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los campos pulmonares ventilan simétricamente y no hay timpanismo; perforar el hemitórax contralateral no alivia el pericardio e induce un neumotórax innecesario."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administrar Nitroglicerina sublingual para calmar el dolor torácico.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los nitratos son venodilatadores potentes que colapsan la precarga de la aurícula derecha, precipitando el paro cardíaco fulminante inmediato en el taponamiento."
+        },
+        {
+          "optionKey": "D",
+          "text": "Realizar intubación con alta presión positiva al final de la espiración (PEEP de 15 cmH2O).",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La presión intratorácica alta por PEEP aplasta el retorno venoso cavo, agravando el taponamiento y deteniendo el gasto cardíaco."
+        }
+      ]
+    }
+  ]
+}

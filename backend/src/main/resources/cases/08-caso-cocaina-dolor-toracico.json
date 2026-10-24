@@ -1,0 +1,86 @@
+{
+  "id": "caso-cocaina-dolor-toracico",
+  "title": "Vasoespasmo coronario e hipertensión crítica secundaria a consumo de cocaína",
+  "specialty": "TOXICOLOGIA",
+  "difficulty": "INTERMEDIO",
+  "dispatchContext": "Varón de 29 años con dolor precordial opresivo agudo tras consumo de sustancias ilícitas en evento social.",
+  "scene": "Ambiente ruidoso. Paciente sumamente agitado, combativo y sudoroso.",
+  "kinematicsOrOnset": "Consumo intranasal de clorhidrato de cocaína hace 40 minutos con aparición de opresión retroesternal irradiada a mandíbula.",
+  "protocolReference": "Protocolos AHA y PHTLS para Tóxicos Simpaticomiméticos y Dolor Torácico Agudo",
+  "patient": {
+    "age": 29,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 78,
+    "occupation": "Empleado de comercio"
+  },
+  "vitals": {
+    "heartRate": 128,
+    "respiratoryRate": 24,
+    "bloodPressure": "198/112",
+    "oxygenSaturation": 97,
+    "bodyTemperature": 37.8,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 14
+    }
+  },
+  "primarySurvey": {
+    "airway": "Permeable, hiperventilación evidente.",
+    "breathing": "Taquipnea sin tirajes, campos pulmonares limpios y murmullo vesicular presente bilateralmente.",
+    "circulation": "Taquicardia marcada (128 lpm), crisis hipertensiva crítica (198/112), pulsos radiales saltones y llenos.",
+    "disability": "Glasgow 14/15 por agitación psicomotriz. Pupilas midriáticas bilaterales de 6 mm simétricas con fotorreactividad lenta.",
+    "exposure": "Diaforesis intensa, hipertermia moderada (37.8 °C) y temblor distal en ambas manos."
+  },
+  "sampleHistory": {
+    "symptoms": "Dolor opresivo retroesternal que no cede con el reposo, palpitaciones veloces y cefalea punzante.",
+    "allergies": "Niega alergias.",
+    "medications": "Ninguno habitual.",
+    "pastHistory": "Consumo recreativo esporádico de alcohol y estimulantes.",
+    "lastMeal": "Cena hace 4 horas.",
+    "events": "Inhaló cocaína hace 40 minutos en una fiesta y comenzó con opresión torácica 20 minutos después."
+  },
+  "media": {
+    "mediaType": "ecg",
+    "title": "ECG Prehospitalario de 12 Derivaciones",
+    "subtitle": "Taquicardia sinusal con cambios dinámicos de repolarización",
+    "findings": "Taquicardia sinusal a 128 lpm con infradesnivel transitorio del segmento ST en derivaciones laterales.",
+    "badgeLabel": "ECG Tóxico",
+    "imageUrl": "",
+    "imageCaption": "Vasoespasmo coronario agudo inducido por inhibición de la recaptación de catecolaminas."
+  },
+  "questions": [
+    {
+      "prompt": "Ante la sospecha de vasoespasmo coronario e hipertensión severa por cocaína, ¿cuál es el abordaje farmacológico de primera línea y qué grupo de fármacos debe evitarse?",
+      "protocolReference": "Guías AHA de Síndrome Coronario Asociado a Cocaína",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Benzodiacepinas IV (Diazepam o Lorazepam) y vasodilatadores; evitar betabloqueadores puros por riesgo de estimulación alfa-1 sin oposición que agrava el vasoespasmo y la hipertensión.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! Las benzodiacepinas atenúan el exceso simpático central. Los betabloqueadores no selectivos dejan los receptores alfa vasculares expuestos a las catecolaminas sin balance vasodilatador beta-2, desencadenando crisis hipertensivas paradójicas e infarto fulminante."
+        },
+        {
+          "optionKey": "B",
+          "text": "Administrar Propranolol o Metoprolol IV en bolo para frenar rápidamente la taquicardia y la tensión.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El bloqueo beta aislado deja la estimulación alfa sin oposición ('unopposed alpha stimulation'), disparando la vasoconstricción coronaria y el riesgo de paro."
+        },
+        {
+          "optionKey": "C",
+          "text": "Morfina en altas dosis como único tratamiento para calmar el dolor y la ansiedad.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La morfina no frena la hiperestimulación adrenérgica de base y puede enlentecer la absorción de otros medicamentos."
+        },
+        {
+          "optionKey": "D",
+          "text": "Maniobras de Valsalva continuas y masaje carotídeo en escena.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Las maniobras vagales no son efectivas ante la tormenta adrenérgica simpaticomimética por cocaína y conllevan riesgo carotídeo."
+        }
+      ]
+    }
+  ]
+}

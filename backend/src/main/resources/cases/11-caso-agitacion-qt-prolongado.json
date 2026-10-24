@@ -1,0 +1,78 @@
+{
+  "id": "caso-agitacion-qt-prolongado",
+  "title": "Agitación psicótica severa en paciente con riesgo de Torsades de Pointes por QT prolongado",
+  "specialty": "NEUROLOGIA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Despacho por solicitud familiar: paciente psiquiátrico de 29 años combativo y con insomnio de 3 días.",
+  "scene": "Vivienda particular. Paciente hostil, lenguaje incoherente y heteroagresividad hacia el equipo paramédico.",
+  "kinematicsOrOnset": "Brote psicótico agudo en paciente con esquizofrenia y antecedente de QTc basal prolongado (480 ms) por ziprasidona previa.",
+  "protocolReference": "Protocolos Prehospitalarios de Emergencias Psiquiátricas y Manejo de Sedación Segura",
+  "patient": {
+    "age": 29,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 80,
+    "occupation": "Desempleado"
+  },
+  "vitals": {
+    "heartRate": 112,
+    "respiratoryRate": 22,
+    "bloodPressure": "145/90",
+    "oxygenSaturation": 98,
+    "bodyTemperature": 37.1,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 3,
+      "motorResponse": 6,
+      "totalScore": 13
+    }
+  },
+  "primarySurvey": {
+    "airway": "Permeable, grita con lenguaje desorganizado. Rechaza tajantemente la vía oral.",
+    "breathing": "Polipnea moderada sin tirajes ni dificultad mecánica. Murmullo vesicular conservado bilateralmente.",
+    "circulation": "Taquicárdico sinusal (112 lpm), PA 145/90, pulsos periféricos llenos y simétricos.",
+    "disability": "Glasgow 13/15. Agitación psicomotriz psicótica, ideas delirantes persecutorias activas, contacto ocular agresivo.",
+    "exposure": "Sin lesiones traumáticas. Sudoración moderada por esfuerzo psicomotor continuo."
+  },
+  "sampleHistory": {
+    "symptoms": "Insomnio refractario de 72 horas, ideación paranoide violenta y alucinaciones auditivas.",
+    "allergies": "Sin alergias declaradas.",
+    "medications": "Antecedente de uso crónico de ziprasidona (suspendida hace 2 meses).",
+    "pastHistory": "Esquizofrenia paranoide. Electrocardiograma previo con QTc prolongado (480 ms).",
+    "lastMeal": "Hace más de 12 horas.",
+    "events": "Abandono de controles ambulatorios y descompensación maníaco-psicótica."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Dado el antecedente documentado de QTc prolongado (480 ms) y la necesidad de contención farmacológica urgente para traslado seguro, ¿cuál es la pauta farmacológica más segura y qué antipsicótico debe evitarse activamente?",
+      "protocolReference": "Consenso de Sedación y Agitación Psicomotriz en APH / Guías AHA de Toxicidad de Fármacos Proarritmogénicos",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Uso de Benzodiacepinas puras (Midazolam 5 mg IM/IN o Lorazepam) como primera línea; evitar Haloperidol o antipsicóticos que bloquean canales de potasio hERG y prolongan aún más el intervalo QT desencadenando Torsades de Pointes.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En pacientes con QT prolongado previo, los antipsicóticos típicos y atípicos (como haloperidol, ziprasidona o droperidol) bloquean los canales de potasio hERG/IKr, prolongando el potencial de acción y precipitando taquicardia ventricular polimórfica (Torsades de Pointes). Las benzodiacepinas no alteran la repolarización miocárdica y proveen sedación segura."
+        },
+        {
+          "optionKey": "B",
+          "text": "Administrar Haloperidol 10 mg IV en bolo rápido para sedación inmediata.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El haloperidol por vía intravenosa tiene el mayor riesgo documentado de inducir arritmias ventriculares malignas por prolongación del QT, especialmente sin monitorización continua."
+        },
+        {
+          "optionKey": "C",
+          "text": "Obligar al paciente a ingerir Ziprasidona oral mezclada con agua.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. En un paciente combativo que rechaza la vía oral, intentar forzar la deglución provoca broncoaspiración y trauma."
+        },
+        {
+          "optionKey": "D",
+          "text": "Contención física estricta con correas en las 4 extremidades durante el viaje de 40 minutos sin sedación química.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La contención mecánica aislada en agitación grave genera hipertermia por esfuerzo, rabdomiólisis masiva, acidosis metabólica y paro cardíaco por asfixia posicional o hipercalemia."
+        }
+      ]
+    }
+  ]
+}
