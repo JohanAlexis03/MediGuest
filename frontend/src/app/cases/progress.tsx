@@ -98,9 +98,17 @@ export default function ProgressScreen() {
     ];
 
     return allSpecs.map((spec) => {
-      const completed = attempts.filter(
-        (a) => a.specialty?.toUpperCase() === spec.name.toUpperCase() && a.isCorrect
-      ).length;
+      const cleanTarget = spec.name
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+      const completed = attempts.filter((a) => {
+        const cleanSpec = (a.specialty || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+        return cleanSpec === cleanTarget && a.isCorrect;
+      }).length;
       return {
         ...spec,
         completed,

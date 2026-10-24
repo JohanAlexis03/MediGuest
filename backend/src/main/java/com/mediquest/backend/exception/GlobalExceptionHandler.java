@@ -60,6 +60,23 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(ex.getStatusCode()).body(error);
     }
 
+    @ExceptionHandler(org.springframework.web.servlet.resource.NoResourceFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleNoResourceFound(
+            org.springframework.web.servlet.resource.NoResourceFoundException ex,
+            HttpServletRequest request
+    ) {
+        int status = HttpStatus.NOT_FOUND.value();
+        ErrorResponseDto error = ErrorResponseDto.builder()
+                .status(status)
+                .error("Ruta No Encontrada")
+                .message("El endpoint solicitado no existe: " + request.getRequestURI())
+                .catUrl("https://http.cat/" + status + ".jpg")
+                .path(request.getRequestURI())
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleGeneral(Exception ex, HttpServletRequest request) {
         int status = HttpStatus.INTERNAL_SERVER_ERROR.value();

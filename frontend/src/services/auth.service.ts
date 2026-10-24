@@ -15,7 +15,7 @@ export const AuthService = {
    * Autenticación contra el backend en Spring Boot / MySQL (RF01)
    */
   async login(email: string, password: string): Promise<UserSession> {
-    const user = await apiRequest<UserSession>('/api/auth/login', {
+    const user = await apiRequest<UserSession>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
     });
@@ -27,7 +27,7 @@ export const AuthService = {
    * Registro de nuevo estudiante o docente en MySQL (RF02)
    */
   async register(name: string, email: string, password: string): Promise<UserSession> {
-    const user = await apiRequest<UserSession>('/api/auth/register', {
+    const user = await apiRequest<UserSession>('/auth/register', {
       method: 'POST',
       body: JSON.stringify({
         name: name.trim(),

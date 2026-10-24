@@ -7,7 +7,7 @@
 
 ## 1. Visión y Rama Activa
 * **Proyecto:** MediQuest — Plataforma de Entrenamiento Clínico para Atención Prehospitalaria (APH).
-* **Rama Git Activa:** `feature/cases-seed-expansion`.
+* **Rama Git Activa:** `fix/filters-and-auth-resilience`.
 * **Stack Tecnológico:**
   * **Frontend:** Expo SDK 57 (React Native 0.86, React 19.2, Expo Router).
   * **Backend:** Java 23 con Spring Boot 4 + Base de Datos Relacional MySQL 9.3 (`mediquest_db`).
@@ -32,6 +32,7 @@
 | **Gobernanza Git & Agente Auditor** | Disciplina de Repositorio | ✅ | `.agents/skills/mediquest-auditor/SKILL.md`, `AGENTS.md` (Checklist bloqueante) |
 | **Producción & Persistencia Real** | RF01, RF02, RF08, RF10, RF11 | ✅ | Limpieza de pistas de prueba, `AuthService` con `AsyncStorage`, endpoints `/api/auth`, catálogo, resolución y progreso 100% conectados a MySQL |
 | **Expansión a 10 Casos APH** | RF03, RF05, RF06, RF08, RF09 | ✅ | `DataSeeder.java` normalizado e idempotente con 10 casos en las 6 especialidades clínicas (Trauma, Tóxicos, Cardio, Respiratorio, Neuro, Pediatría) |
+| **Normalización de Filtros y Resiliencia** | RF01, RF02, RF03 | ✅ | Normalización diacrítica de especialidades y dificultades, blindaje de URLs `/api/` en `api.ts` y manejo 404 en backend |
 
 ---
 
@@ -47,14 +48,15 @@
 * **ADR-08 (Aislamiento de Ramas Git y Agente Auditor):** Prohibir el desarrollo de backend en ramas de navegación. Aislar el trabajo en `feature/backend-api` y formalizar el Agente 5 con checklist bloqueante.
 * **ADR-09 (Autenticación Real, Sesión con AsyncStorage y Reactividad en Producción):** Desacoplar definitivamente la aplicación de mocks en memoria. Persistir la sesión en el dispositivo con `@react-native-async-storage/async-storage`, sincronizar registro y login contra MySQL (`/api/auth`), y ligar la resolución clínica y estadísticas de progreso al usuario autenticado.
 * **ADR-10 (Sembrado Idempotente y Banco Clínico Normalizado de 10 Casos):** Garantizar la persistencia y ampliación continua del banco de datos sin pérdida de intentos previos, verificando la existencia por ID de cada caso clínico antes de persistir, expandiendo la cobertura diagnóstica a las 6 especialidades reglamentarias (Trauma, Toxicología, Cardiovascular, Respiratorio, Neurología, Pediatría) bajo directrices PHTLS, ATLS y AHA.
+* **ADR-11 (Normalización Canónica de Enums y Filtros APH):** Desacoplar las representaciones textuales de especialidades y dificultades entre backend (`TRAUMA`, `TOXICOLOGIA`) y frontend (`Trauma`, `Toxicología`), aplicando normalización insensible a diacríticos (NFD) y mayúsculas en el servicio de casos y componentes de catálogo/progreso.
 
 ---
 
 ## 4. Estado Actual (En Curso)
-* **Frontend:** 100% productivo sin botones demo ni textos de prueba. Catálogo, detalle, resolución y progreso alimentados desde MySQL con RefreshControl (**0 errores TS, 0 warnings lint**).
-* **Backend:** Spring Boot activo con endpoints `/api/cases`, `/api/progress` y `/api/auth` validados (**8/8 tests de integración en verde**).
+* **Frontend:** 100% productivo con filtros por especialidad y badges calibrados de forma canónica (**0 errores TS, 0 warnings lint**).
+* **Backend:** Spring Boot activo con endpoints normalizados y manejo 404 para URLs no mapeadas (**8/8 tests de integración en verde**).
 * **Base de Datos:** MySQL `mediquest_db` con 10 casos clínicos completos sembrados de forma idempotente.
-* **Gobierno de Proyecto:** Rama `feature/cases-seed-expansion` con auditoría activa.
+* **Gobierno de Proyecto:** Rama `fix/filters-and-auth-resilience` con auditoría activa.
 
 ---
 

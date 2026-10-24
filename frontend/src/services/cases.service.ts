@@ -102,6 +102,66 @@ export interface AttemptProgress {
   completedAt: string;
 }
 
+export function normalizeSpecialty(backendSpecialty?: string): Specialty {
+  if (!backendSpecialty) return 'Trauma';
+  const clean = backendSpecialty
+    .toUpperCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+
+  switch (clean) {
+    case 'TRAUMA':
+      return 'Trauma';
+    case 'CARDIOVASCULAR':
+      return 'Cardiovascular';
+    case 'RESPIRATORIO':
+      return 'Respiratorio';
+    case 'NEUROLOGIA':
+      return 'Neurología';
+    case 'PEDIATRIA':
+      return 'Pediatría';
+    case 'TOXICOLOGIA':
+      return 'Toxicología';
+    default:
+      return 'Trauma';
+  }
+}
+
+export function normalizeDifficulty(backendDifficulty?: string): Difficulty {
+  if (!backendDifficulty) return 'Básico';
+  const clean = backendDifficulty
+    .toUpperCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+
+  switch (clean) {
+    case 'BASICO':
+      return 'Básico';
+    case 'INTERMEDIO':
+      return 'Intermedio';
+    case 'AVANZADO':
+      return 'Avanzado';
+    default:
+      return 'Básico';
+  }
+}
+
+export function toBackendSpecialty(s: Specialty): string {
+  return s
+    .toUpperCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+export function toBackendDifficulty(d: Difficulty): string {
+  return d
+    .toUpperCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
 function mapBackendToClinicalCase(b: BackendCaseDetail): ClinicalCase {
   const q = b.questions && b.questions.length > 0 ? b.questions[0] : null;
 
@@ -117,8 +177,8 @@ function mapBackendToClinicalCase(b: BackendCaseDetail): ClinicalCase {
   return {
     id: b.id,
     title: b.title,
-    specialty: b.specialty as Specialty,
-    difficulty: b.difficulty as Difficulty,
+    specialty: normalizeSpecialty(b.specialty),
+    difficulty: normalizeDifficulty(b.difficulty),
     dispatchContext: b.dispatchContext || '',
     patient: b.patient,
     vitals: {
@@ -180,8 +240,8 @@ export const CasesService = {
   async getCases(specialty?: Specialty, difficulty?: Difficulty): Promise<ClinicalCase[]> {
     try {
       const params = new URLSearchParams();
-      if (specialty) params.append('specialty', specialty.toUpperCase());
-      if (difficulty) params.append('difficulty', difficulty.toUpperCase());
+      if (specialty) params.append('specialty', toBackendSpecialty(specialty));
+      if (difficulty) params.append('difficulty', toBackendDifficulty(difficulty));
 
       const query = params.toString() ? `?${params.toString()}` : '';
       const remoteCases = await apiRequest<BackendCaseSummary[]>(`/cases${query}`);
@@ -280,7 +340,12 @@ export const CasesService = {
   async getProgress(userEmail: string = 'student@mediquest.edu'): Promise<AttemptProgress[]> {
     try {
       const cleanEmail = encodeURIComponent(userEmail.trim().toLowerCase());
-      return await apiRequest<AttemptProgress[]>(`/progress?userEmail=${cleanEmail}`);
+      const rawAttempts = await apiRequest<AttemptProgress[]>(`/progress?userEmail=${cleanEmail}`);
+      return rawAttempts.map((att) => ({
+        ...att,
+        specialty: normalizeSpecialty(att.specialty as unknown as string),
+        difficulty: normalizeDifficulty(att.difficulty as unknown as string),
+      }));
     } catch {
       return [];
     }
