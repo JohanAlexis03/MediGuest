@@ -1,0 +1,86 @@
+{
+  "id": "caso-sindrome-neuroleptico-maligno",
+  "title": "Hipertermia y rigidez muscular severa por Síndrome Neuroléptico Maligno",
+  "specialty": "NEUROLOGIA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Mujer de 38 años encontrada confusa, muy rígida y con fiebre alta tras ajuste de medicación psiquiátrica.",
+  "scene": "Habitación con calefacción encendida. Paciente sudorosa y rígida en cama.",
+  "kinematicsOrOnset": "Aparición subaguda en 48 horas de rigidez plástica 'en tubo de plomo' y deterioro cognitivo tras recibir haloperidol oral.",
+  "protocolReference": "Guías Neurocríticas de Urgencias Médicas y Reacciones Adversas Psiquiátricas",
+  "patient": {
+    "age": 38,
+    "ageUnit": "años",
+    "sex": "Femenino",
+    "weightKg": 62,
+    "occupation": "Docente"
+  },
+  "vitals": {
+    "heartRate": 118,
+    "respiratoryRate": 26,
+    "bloodPressure": "160/95",
+    "oxygenSaturation": 94,
+    "bodyTemperature": 38.9,
+    "glasgow": {
+      "ocularResponse": 2,
+      "verbalResponse": 3,
+      "motorResponse": 5,
+      "totalScore": 10
+    }
+  },
+  "primarySurvey": {
+    "airway": "Permeable pero con trismo mandibular moderado por hipertonía muscular generalizada.",
+    "breathing": "Taquipneica (26 rpm), murmullo vesicular rudo bilateral sin secreciones abundantes.",
+    "circulation": "Taquicardia sinusal a 118 lpm, hipertensión arterial reactiva (160/95), pulsos llenos y piel caliente.",
+    "disability": "Glasgow 10/15. Estado confusional fluctuante, desorientación témporo-espacial, mutismo acinético intermitente.",
+    "exposure": "Hipertermia marcada (38.9 °C), diaforesis profusa y rigidez generalizada en rueda dentada / tubo de plomo."
+  },
+  "sampleHistory": {
+    "symptoms": "Rigidez corporal dolorosa, sudoración empapante, temblores e incoherencia verbal.",
+    "allergies": "Sin alergias conocidas.",
+    "medications": "Haloperidol 10 mg/día iniciado hace 48h y carbonato de litio.",
+    "pastHistory": "Trastorno Afectivo Bipolar tipo I en fase maníaca reciente.",
+    "lastMeal": "Líquidos hace 6 horas.",
+    "events": "Ajuste ambulatorio de antipsicóticos por agitación psicomotriz severa."
+  },
+  "media": {
+    "mediaType": "scale",
+    "title": "Evaluación Neurológica de Tono Muscular",
+    "subtitle": "Tétrada Clínica de SNM",
+    "findings": "Hipertermia + Rigidez extrapiramidal severa + Inestabilidad autonómica + Alteración del estado de conciencia.",
+    "badgeLabel": "Semiología Neuro",
+    "imageUrl": "",
+    "imageCaption": "Tétrada clínica clásica representativa del Síndrome Neuroléptico Maligno."
+  },
+  "questions": [
+    {
+      "prompt": "Ante la tétrada de hipertermia (38.9 °C), rigidez en tubo de plomo, inestabilidad autonómica y uso de haloperidol, ¿cuál es la conducta prehospitalaria prioritaria?",
+      "protocolReference": "Manejo Prehospitalario de Urgencias Neuropsiquiátricas",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Suspensión inmediata del antipsicótico, enfriamiento físico activo agresivo y fluidoterapia abundante con cristaloides isotónicos para prevenir rabdomiólisis e injuria renal.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! El SNM es una emergencia por bloqueo dopaminérgico agudo. El enfriamiento físico disipa el calor generado por la contracción muscular tónica y la hidratación vigorosa protege los túbulos renales de la mioglobina precipitada por rabdomiólisis."
+        },
+        {
+          "optionKey": "B",
+          "text": "Administrar Haloperidol intramuscular adicional para controlar el estado confusional y la agitación residual.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Repetir el neuroléptico exacerba la catástrofe dopaminérgica y precipita colapso autonómico mortal."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administrar Paracetamol oral o intravenoso para normalizar el centro termorregulador hipotalámico.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los antipiréticos actúan sobre prostaglandinas en fiebre por pirógenos; la hipertermia del SNM es periférica por hiperactividad muscular y no responde a antipiréticos."
+        },
+        {
+          "optionKey": "D",
+          "text": "Inmovilización mecánica en posición prona para contener la hipertonía.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La contención en prono en hipertermia y rabdomiólisis aumenta la acidosis láctica y causa muerte súbita por asfixia postural."
+        }
+      ]
+    }
+  ]
+}
