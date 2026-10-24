@@ -32,7 +32,9 @@ export default function LoginScreen() {
       await AuthService.login(correo, contrasena);
       router.replace('/cases');
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Error al iniciar sesión. Verificá tus credenciales.';
+      const message =
+        (err as { message?: string })?.message ||
+        (err instanceof Error ? err.message : 'Error al iniciar sesión. Verificá tus credenciales.');
       setError(message);
     } finally {
       setIsLoading(false);

@@ -86,7 +86,20 @@ export default function CasesScreen() {
     if (selectedSpecialty === 'Todos') {
       return cases;
     }
-    return cases.filter((c) => c.specialty === selectedSpecialty);
+    const cleanTarget = selectedSpecialty
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+
+    return cases.filter((c) => {
+      const cleanCaseSpec = (c.specialty || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim();
+      return cleanCaseSpec === cleanTarget;
+    });
   }, [cases, selectedSpecialty]);
 
   const handleSelectCase = (caseItem: ClinicalCase) => {

@@ -39,7 +39,9 @@ export default function RegistroScreen() {
       await AuthService.register(fullName, correo, contrasena);
       router.replace('/cases');
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Error al registrar tu cuenta. Verificá los datos ingresados.';
+      const message =
+        (err as { message?: string })?.message ||
+        (err instanceof Error ? err.message : 'Error al registrar tu cuenta. Verificá los datos ingresados.');
       setError(message);
     } finally {
       setIsLoading(false);
