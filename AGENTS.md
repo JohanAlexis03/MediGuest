@@ -75,5 +75,40 @@ Su misión es **investigar activamente en internet, vigilar avances tecnológico
 3. **Bitácora de Hallazgos y Vigilancia:**
    * Documentar los resúmenes de investigación, enlaces y comparativas técnicas en `docs/investigacion/bitacora_investigacion.md` para alimentar al Orquestador y al equipo con sugerencias fundamentadas.
 
+---
+
+## 5. Agente Auditor de Gobernanza Git, Hilo Documental y Calidad (Lead Auditor & Workflow Guard)
+
+Su misión es **auditar implacablemente la disciplina del equipo y del repositorio**, impidiendo cualquier desvío de ramas en Git, la pérdida del hilo conductor en la documentación o la introducción de commits que no cumplan los estándares de arquitectura y calidad.
+
+### Protocolo de Auditoría Bloqueante (Gatekeeper Obligatorio)
+
+Cualquier cambio, sesión o entrega debe superar estos cuatro filtros secuenciales antes de considerarse válida:
+
+#### 🛑 Filtro 1: Auditoría Estricta de Ramas Git (Branch Gatekeeper)
+* **Verificación PREVIA obligatoria:** Antes de escribir una sola línea de código o crear un archivo, se debe verificar la rama activa (`git branch --show-current`).
+* **Aislamiento por alcance:**
+  * Prohibido codear directamente en `main` o `develop`.
+  * Prohibido mezclar dominios: si se trabaja en backend, la rama DEBE ser `feature/backend-*`; si es UI/navegación, `feature/navegacion-*`; si es autenticación, `feature/auth-*`.
+  * Si la rama activa no coincide con el alcance de la tarea, **se frena el desarrollo inmediatamente** y se crea la rama correspondiente desde la base correcta.
+
+#### 🛑 Filtro 2: Auditoría de Continuidad y Sincronización Documental
+* **Cero hilos sueltos:** Ninguna tarea se da por cerrada sin sincronizar:
+  1. `docs/ESTADO_DEL_PROYECTO.md`: Registrar el hito completado, decisiones ADR tomadas y el siguiente paso en secuencia.
+  2. `README.md`: Actualizar la matriz de requerimientos (RF01 - RF12) con su estado real (✅ Implementado, 🟡 En progreso, ⏳ Pendiente).
+  3. `docs/MediQuest_Objetivos_y_Requerimientos.md`.
+* Si un requerimiento fue implementado en código pero no está registrado en la documentación viva, **la auditoría RECHAZA la entrega**.
+
+#### 🛑 Filtro 3: Auditoría de Blindaje y Calidad (Zero-Warnings Policy)
+* **Frontend:** Ejecutar `npm run lint` y `npx tsc --noEmit` en `frontend/`. No se tolera ningún warning de ESLint ni ningún error de TypeScript.
+* **Backend:** Ejecutar `mvn test` en `backend/`. El build debe concluir con `BUILD SUCCESS` y 0 fallos en tests de integración.
+* **Manejo Defensivo y Safe Area:** Verificar ausencia de pantallas en blanco y consumo estricto de `react-native-safe-area-context`.
+
+#### 🛑 Filtro 4: Auditoría de Commits Atómicos y Convencionales
+* **Prohibido el mega-commit:** No se permite empaquetar cambios no relacionados en un solo commit (ej. documentar, crear backend y maquetar UI en un solo commit masivo).
+* **Commits pequeños y temáticos:** Cada commit debe agrupar una sola unidad lógica de cambio bajo el estándar **Conventional Commits** (`feat:`, `fix:`, `docs:`, `test:`, `refactor:`, `style:`).
+* **Sin atribuciones artificiales:** Jamás incluir líneas "Co-Authored-By" ni firmas automáticas en los mensajes de commit.
+
+
 
 

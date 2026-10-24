@@ -12,7 +12,7 @@ Aplicación móvil para que estudiantes de **Atención Prehospitalaria (APH)** r
 |---|---|
 | `assets/` | Material fuente del proyecto: logo, radiografías e imágenes originales |
 | `docs/` | Documentación: visión, casos clínicos, mockups, diagramas |
-| `backend/` | API REST y base de datos (en construcción) |
+| `backend/` | API REST en Java 23 (Spring Boot 4) y base de datos relacional MySQL 9.3 |
 | `frontend/` | Aplicación móvil con Expo SDK 57 (React Native + TypeScript) |
 
 ## Estado del proyecto
@@ -21,29 +21,47 @@ Aplicación móvil para que estudiantes de **Atención Prehospitalaria (APH)** r
   - ✅ Flujo completo del estudiante implementado (Login, Registro, Catálogo con filtros, Ficha clínica ABCDE/SAMPLE, Resolución evaluada y Progreso).
   - ✅ Safe Area multiplataforma garantizada con `react-native-safe-area-context` (Android gestos, punch-hole, iOS Dynamic Island/notch).
   - ✅ Visor de imágenes diagnósticas interactivo con zoom y pantalla completa (RF06).
-- 🟡 **Backend:** Java con Spring Boot + MySQL (según Documento Maestro en `docs/`). Carpeta `backend/` lista para iniciar.
-- 🟢 **Documentación:** Agente de documentación activo (`AGENTS.md`), documento maestro y matriz de requerimientos sincronizados.
-- 🟢 **Git:** Rama de trabajo `feature/navegacion`.
+  - ✅ Manejo defensivo de errores y pantallas no encontradas con alertas visuales de **http.cat**.
+- 🟢 **Backend (API REST & Persistencia):** Java 23 con Spring Boot 4 + MySQL 9.3 (`mediquest_db`).
+  - ✅ Dominio clínico JPA normalizado (`ClinicalCase`, `Question`, `Option`, `User`, `Attempt`).
+  - ✅ Endpoints REST `/api/cases` y `/api/progress` con DTOs seguros que protegen las respuestas correctas.
+  - ✅ Evaluación pedagógica en servidor con persistencia inmutable en tabla `attempts` (RF10).
+  - ✅ Manejador global de excepciones integrado con **http.cat** (`404.jpg`, `500.jpg`, `503.jpg`) y CORS configurado.
+  - ✅ 5/5 pruebas de integración automatizadas en verde (`mvn test`).
+- 🟢 **Documentación & Auditoría:** Skill `mediquest-auditor` activa, 5 agentes especializados y bitácora en `ESTADO_DEL_PROYECTO.md`.
+- 🟢 **Git:** Rama de trabajo activa `feature/backend-api`.
 
 ## Matriz de Requerimientos Funcionales (MVP)
 
 | ID | Requerimiento | Estado | Detalle / Ruta |
 |---|---|:---:|---|
-| **RF01** | Registro de usuario | ✅ | `frontend/src/app/registro.tsx` |
+| **RF01** | Registro de usuario | ✅ | `frontend/src/app/registro.tsx` y tabla `users` |
 | **RF02** | Inicio de sesión | ✅ | `frontend/src/app/login.tsx` |
-| **RF03** | Visualización de casos clínicos | ✅ | `frontend/src/app/cases/index.tsx` (Filtros APH) |
+| **RF03** | Visualización de casos clínicos | ✅ | `GET /api/cases` y `frontend/src/app/cases/index.tsx` |
 | **RF04** | Selección de caso clínico | ✅ | `frontend/src/components/clinical/case-card.tsx` |
-| **RF05** | Presentación de info clínica | ✅ | `frontend/src/app/cases/[id].tsx` (Signos vitales, ABCDE, SAMPLE) |
-| **RF06** | Visualización de imágenes diagnósticas | ✅ | `frontend/src/app/cases/[id].tsx` (Visor inmersivo con zoom/pan) |
-| **RF07** | Resolución de preguntas | ✅ | `frontend/src/app/cases/solve.tsx` |
-| **RF08** | Evaluación automática y puntaje | ✅ | Algoritmo de ponderación y acierto inmediato |
-| **RF09** | Retroalimentación clínica | ✅ | Justificaciones basadas en protocolos PHTLS/ATLS |
-| **RF10** | Registro y persistencia de resultados | 🟡 | En frontend con mocks; pendiente persistencia en Backend |
-| **RF11** | Consulta de progreso e historial | ✅ | `frontend/src/app/cases/progress.tsx` |
-| **RF12** | Gestión de casos (Admin/Docente) | ⏳ | Módulo administrativo |
+| **RF05** | Presentación de info clínica | ✅ | `GET /api/cases/{id}` y `frontend/src/app/cases/[id].tsx` (ABCDE, SAMPLE) |
+| **RF06** | Visualización de imágenes diagnósticas | ✅ | Visor inmersivo con zoom/pan y campo `ClinicalMedia` |
+| **RF07** | Resolución de preguntas | ✅ | Selección múltiple con DTOs seguros |
+| **RF08** | Evaluación automática y puntaje | ✅ | Algoritmo en servidor `EvaluationService` |
+| **RF09** | Retroalimentación clínica | ✅ | Justificaciones formativas PHTLS/ATLS retornadas tras evaluar |
+| **RF10** | Registro y persistencia de resultados | ✅ | Guardado inmutable en tabla `attempts` de MySQL (`mediquest_db`) |
+| **RF11** | Consulta de progreso e historial | ✅ | `GET /api/progress` y `frontend/src/app/cases/progress.tsx` |
+| **RF12** | Gestión de casos (Admin/Docente) | ⏳ | Módulo administrativo para creación de casos |
 
-## Cómo ejecutar la aplicación
+## Cómo ejecutar el proyecto
 
+### 1. Iniciar Base de Datos y Backend (Spring Boot)
+```bash
+# Iniciar motor de base de datos
+brew services start mysql
+
+# Ejecutar API REST
+cd backend
+mvn spring-boot:run
+```
+La API estará disponible en `http://localhost:8080/api/cases`.
+
+### 2. Iniciar Aplicación Móvil (Expo)
 ```bash
 cd frontend
 npm install
