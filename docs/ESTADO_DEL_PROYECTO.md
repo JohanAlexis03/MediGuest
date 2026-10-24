@@ -24,6 +24,9 @@
 | **Blindaje Safe Area Multiplataforma** | Usabilidad (RNF01, RNF05) | ✅ | Commit `deb4b1c` (Migración a `react-native-safe-area-context` global) |
 | **Gobierno de Agentes Técnicos** | Reglas permanentes | ✅ | Commit `deb4b1c` (`AGENTS.md`: 4 agentes especializados) |
 | **Visor de Imágenes Diagnósticas** | RF06 | ✅ | `cases/[id].tsx` (Visor inmersivo con zoom/pan y modal nativo) |
+| **Infraestructura Base de Datos** | Persistencia y Escala | ✅ | Motor MySQL 9.3 activo, BD `mediquest_db` (`utf8mb4`) creada |
+| **Banco Clínico Ampliado** | Insumos de Casos | ✅ | 9 casos clínicos redactados en `docs/Casos_Clinicos/` |
+| **Guía de Estudio NotebookLM** | Síntesis y Estudio | ✅ | `docs/guia_estudio_notebooklm.md` preparado para estudio interactivo |
 
 ---
 
@@ -43,16 +46,21 @@
 * **ADR-05 (Identidad Visual y Logotipo APH):**
   * *Decisión:* Reemplazar el archivo horizontal deformado por un isotipo cuadrado 1:1 representativo de la disciplina.
   * *Solución:* Incorporar la **Estrella de la Vida** en azul prehospitalario (`#0B3D91`) con la vara de Asclepio en relieve y bordes redondeados, garantizando nitidez en cualquier escala móvil.
+* **ADR-06 (Escala de 100 Casos y Persistencia Relacional):**
+  * *Decisión:* Ante el requerimiento académico de al menos 100 casos clínicos, descartar el almacenamiento de casos dentro del bundle móvil (`mock-cases.ts`).
+  * *Solución:* Almacenar y paginar casos en MySQL (`mediquest_db`) con juego de caracteres `utf8mb4` (para símbolos médicos como $\text{SpO}_2$, $\mu\text{g}$, acentos y flechas) y proveer semillas de datos para carga masiva.
 
 ---
 
 ## 4. Estado Actual (En Curso)
-* **Frontend:** 100% de los requerimientos de la experiencia del estudiante completados (RF01 a RF09 y RF11).
-* **Validación QA:** **0 errores de TypeScript, 0 warnings de linter**.
+* **Frontend:** 100% de la experiencia del estudiante completada con mocks y validación QA impecable (**0 errores TS, 0 warnings lint**).
+* **Base de Datos:** MySQL corriendo y base de datos `mediquest_db` creada.
+* **Documentación:** Guía para NotebookLM creada y sincronizada.
 
 ---
 
 ## 5. Próximos Pasos en Secuencia (Backlog Priorizado)
-1. **Paso 1:** Guardar commit de RF06 en `feature/navegacion`.
-2. **Paso 2 (Backend / RF10):** Inicializar la estructura de backend en Java Spring Boot con entidades JPA para casos y persistencia de resultados de estudiantes en MySQL (reemplazar mocks).
-3. **Paso 3 (RF12):** Módulo de administración para docentes (creación y edición de casos).
+1. **Paso 1:** Inicializar la estructura del backend en Java Spring Boot en `backend/` con Maven y JPA conectado a `mediquest_db`.
+2. **Paso 2:** Crear las entidades JPA y el esquema DDL de tablas (`usuarios`, `casos_clinicos`, `preguntas`, `opciones`, `intentos`).
+3. **Paso 3:** Implementar script/servicio de semilla (Seed) para cargar los casos clínicos en la base de datos.
+4. **Paso 4 (RF10 / RF11):** Endpoints REST para resolver casos, calcular notas y consultar progreso.
