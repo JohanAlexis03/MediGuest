@@ -12,6 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { Link, useRouter, Stack } from 'expo-router';
+import { AuthService } from '@/services/auth.service';
 
 export default function RegistroScreen() {
   const router = useRouter();
@@ -20,8 +21,9 @@ export default function RegistroScreen() {
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!nombre.trim() || !apellido.trim() || !correo.trim() || !contrasena.trim()) {
       setError('Por favor completá todos los campos requeridos.');
       return;
@@ -30,8 +32,18 @@ export default function RegistroScreen() {
       setError('La contraseña debe tener al menos 6 caracteres.');
       return;
     }
-    setError(null);
-    router.replace('/cases');
+    try {
+      setIsLoading(true);
+      setError(null);
+      const fullName = `${nombre.trim()} ${apellido.trim()}`;
+      await AuthService.register(fullName, correo, contrasena);
+      router.replace('/cases');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Error al registrar tu cuenta. Verificá los datos ingresados.';
+      setError(message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -144,11 +156,14 @@ export default function RegistroScreen() {
 
             {/* Botón Principal Registrarse */}
             <Pressable
-              style={styles.btnPrimary}
+              style={[styles.btnPrimary, isLoading && { opacity: 0.7 }]}
               onPress={handleRegister}
+              disabled={isLoading}
               accessibilityRole="button"
             >
-              <Text style={styles.btnPrimaryText}>Crear cuenta</Text>
+              <Text style={styles.btnPrimaryText}>
+                {isLoading ? 'Registrando...' : 'Crear cuenta'}
+              </Text>
             </Pressable>
 
             {/* Beneficios de la Formación APH */}

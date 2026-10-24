@@ -12,26 +12,31 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { Link, useRouter, Stack } from 'expo-router';
+import { AuthService } from '@/services/auth.service';
 
 export default function LoginScreen() {
   const router = useRouter();
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!correo.trim() || !contrasena.trim()) {
       setError('Por favor completá correo y contraseña.');
       return;
     }
-    setError(null);
-    router.replace('/cases');
-  };
-
-  const handleQuickDemo = () => {
-    setCorreo('aph.estudiante@mediquest.edu');
-    setContrasena('emergencias2026');
-    setError(null);
+    try {
+      setIsLoading(true);
+      setError(null);
+      await AuthService.login(correo, contrasena);
+      router.replace('/cases');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Error al iniciar sesión. Verificá tus credenciales.';
+      setError(message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -99,7 +104,7 @@ export default function LoginScreen() {
                 <Text style={styles.inputLabel}>CONTRASEÑA</Text>
                 <Pressable
                   onPress={() =>
-                    setError('Tip: Tocá el botón azul de credenciales demo abajo para ingresar de inmediato.')
+                    setError('Por seguridad institucional, comunicate con soporte académico o docente para recuperar tu acceso.')
                   }
                 >
                   <Text style={styles.forgotPasswordText}>¿Olvidaste tu clave?</Text>
@@ -120,21 +125,13 @@ export default function LoginScreen() {
 
             {/* Botón Principal Iniciar Sesión */}
             <Pressable
-              style={styles.btnPrimary}
+              style={[styles.btnPrimary, isLoading && { opacity: 0.7 }]}
               onPress={handleLogin}
+              disabled={isLoading}
               accessibilityRole="button"
             >
-              <Text style={styles.btnPrimaryText}>Iniciar sesión</Text>
-            </Pressable>
-
-            {/* Acceso Rápido Demo */}
-            <Pressable
-              style={styles.btnDemo}
-              onPress={handleQuickDemo}
-              accessibilityRole="button"
-            >
-              <Text style={styles.btnDemoText}>
-                🛡️ Rellenar con credenciales demo APH
+              <Text style={styles.btnPrimaryText}>
+                {isLoading ? 'Verificando...' : 'Iniciar sesión'}
               </Text>
             </Pressable>
           </View>

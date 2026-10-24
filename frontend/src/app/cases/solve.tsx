@@ -1,25 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   ScrollView,
   Pressable,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
-import { CaseOption } from '@/types/clinical-case';
+import { CaseOption, ClinicalCase } from '@/types/clinical-case';
 import { HttpCatAlert } from '@/components/ui/http-cat-alert';
-import { CasesService } from '@/services/cases.service';
+import { CasesService, SolveCaseResponse } from '@/services/cases.service';
+import { AuthService, UserSession } from '@/services/auth.service';
 
 export default function CaseSolveScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [selectedOptionId, setSelectedOptionId] = useState<'A' | 'B' | 'C' | 'D' | null>(null);
   const [isEvaluated, setIsEvaluated] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [solveResult, setSolveResult] = useState<SolveCaseResponse | null>(null);
+  const [currentUser, setCurrentUser] = useState<UserSession | null>(null);
+  const [startTime] = useState<number>(() => Date.now());
 
-  const clinicalCase = CLINICAL_CASES.find((c) => c.id === id);
+  const [clinicalCase, setClinicalCase] = useState<ClinicalCase | null>(() => {
+    return CLINICAL_CASES.find((c) => c.id === id) || null;
+  });
+  const [isLoading, setIsLoading] = useState(!clinicalCase);
+
+  useEffect(() => {
+    AuthService.getCurrentUser().then(setCurrentUser);
+    if (id) {
+      CasesService.getCaseById(id)
+        .then((c) => {
+          if (c) setClinicalCase(c);
+        })
+        .finally(() => setIsLoading(false));
+    }
+  }, [id]);
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.centerContainer} edges={['bottom', 'left', 'right']}>
+        <ActivityIndicator size="large" color="#0b3d91" />
+        <Text style={styles.loadingText}>Cargando evaluación clínica...</Text>
+      </SafeAreaView>
+    );
+  }
 
   if (!clinicalCase) {
     return (
@@ -40,36 +69,62 @@ export default function CaseSolveScreen() {
   }
 
   const { question, vitals } = clinicalCase;
-  const selectedOption = question.options.find((o) => o.id === selectedOptionId);
-  const correctOption = question.options.find((o) => o.isCorrect);
 
-  const handleEvaluate = () => {
-    if (!selectedOptionId) return;
-    setIsEvaluated(true);
-    // Persiste el intento en MySQL a través del servicio backend (RF10)
-    CasesService.solveCase(clinicalCase.id, selectedOptionId, 45).catch(() => {
-      // Manejo transparente en segundo plano
-    });
+  const handleEvaluate = async () => {
+    if (!selectedOptionId || isSubmitting) return;
+    try {
+      setIsSubmitting(true);
+      const elapsedSeconds = Math.max(5, Math.round((Date.now() - startTime) / 1000));
+      const userEmail = currentUser?.email || 'student@mediquest.edu';
+
+      const result = await CasesService.solveCase(
+        clinicalCase.id,
+        selectedOptionId,
+        elapsedSeconds,
+        userEmail
+      );
+      setSolveResult(result);
+      setIsEvaluated(true);
+    } catch {
+      // Fallback local si el backend no responde
+      const opt = question.options.find((o) => o.id === selectedOptionId);
+      const correctOpt = question.options.find((o) => o.isCorrect) || question.options[0];
+      const isCorrect = opt ? opt.isCorrect : false;
+      setSolveResult({
+        caseId: clinicalCase.id,
+        selectedOptionKey: selectedOptionId,
+        correctOptionKey: correctOpt.id as 'A' | 'B' | 'C' | 'D',
+        isCorrect,
+        scorePercentage: isCorrect ? 100 : 0,
+        clinicalFeedback: opt?.feedback || 'Evaluación registrada.',
+        protocolReference: clinicalCase.protocolReference,
+        completedAt: new Date().toISOString(),
+      });
+      setIsEvaluated(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
     setSelectedOptionId(null);
     setIsEvaluated(false);
+    setSolveResult(null);
   };
 
   const getOptionStyle = (option: CaseOption) => {
-    if (!isEvaluated) {
+    if (!isEvaluated || !solveResult) {
       if (selectedOptionId === option.id) {
         return [styles.optionCard, styles.optionSelected];
       }
       return styles.optionCard;
     }
 
-    if (option.isCorrect) {
+    if (option.id === solveResult.correctOptionKey) {
       return [styles.optionCard, styles.optionCorrect];
     }
 
-    if (selectedOptionId === option.id && !option.isCorrect) {
+    if (selectedOptionId === option.id && !solveResult.isCorrect) {
       return [styles.optionCard, styles.optionIncorrect];
     }
 
@@ -119,40 +174,32 @@ export default function CaseSolveScreen() {
         </View>
 
         {/* Retroalimentación Post-Evaluación */}
-        {isEvaluated && selectedOption && (
+        {isEvaluated && solveResult && (
           <View
             style={[
               styles.feedbackCard,
-              selectedOption.isCorrect ? styles.feedbackCorrect : styles.feedbackIncorrect,
+              solveResult.isCorrect ? styles.feedbackCorrect : styles.feedbackIncorrect,
             ]}
           >
             <Text style={styles.feedbackTitle}>
-              {selectedOption.isCorrect ? '✓ ¡Respuesta Correcta!' : '✕ Respuesta Incorrecta'}
+              {solveResult.isCorrect ? '✓ ¡Respuesta Correcta! (100%)' : '✕ Respuesta Incorrecta (0%)'}
             </Text>
-            <Text style={styles.feedbackText}>{selectedOption.feedback}</Text>
+            <Text style={styles.feedbackText}>{solveResult.clinicalFeedback}</Text>
 
-            {!selectedOption.isCorrect && correctOption && (
+            {!solveResult.isCorrect && (
               <View style={styles.correctRevealBox}>
                 <Text style={styles.correctRevealTitle}>
-                  Conducta esperada (Opción {correctOption.id}):
+                  Conducta esperada (Opción {solveResult.correctOptionKey}):
                 </Text>
-                <Text style={styles.correctRevealText}>{correctOption.text}</Text>
-              </View>
-            )}
-
-            {selectedOption.keyPoints && selectedOption.keyPoints.length > 0 && (
-              <View style={styles.keyPointsBox}>
-                <Text style={styles.keyPointsTitle}>Perlas clínicas clave:</Text>
-                {selectedOption.keyPoints.map((point, index) => (
-                  <Text key={index} style={styles.keyPointItem}>
-                    • {point}
-                  </Text>
-                ))}
+                <Text style={styles.correctRevealText}>
+                  {question.options.find((o) => o.id === solveResult.correctOptionKey)?.text ||
+                    'Revisar las guías de manejo de la especialidad.'}
+                </Text>
               </View>
             )}
 
             <Text style={styles.protocolRef}>
-              Referencia: {clinicalCase.protocolReference}
+              Referencia: {solveResult.protocolReference || clinicalCase.protocolReference}
             </Text>
           </View>
         )}
@@ -160,11 +207,16 @@ export default function CaseSolveScreen() {
         {/* Botones de acción */}
         {!isEvaluated ? (
           <Pressable
-            disabled={!selectedOptionId}
-            style={[styles.primaryButton, !selectedOptionId && styles.buttonDisabled]}
+            disabled={!selectedOptionId || isSubmitting}
+            style={[
+              styles.primaryButton,
+              (!selectedOptionId || isSubmitting) && styles.buttonDisabled,
+            ]}
             onPress={handleEvaluate}
           >
-            <Text style={styles.primaryButtonText}>Validar Respuesta</Text>
+            <Text style={styles.primaryButtonText}>
+              {isSubmitting ? 'Evaluando con servidor...' : 'Validar Respuesta'}
+            </Text>
           </Pressable>
         ) : (
           <View style={styles.actionsRow}>
@@ -399,5 +451,11 @@ const styles = StyleSheet.create({
     color: '#0b3d91',
     fontSize: 14,
     fontWeight: '700',
+  },
+  loadingText: {
+    marginTop: 12,
+    fontSize: 14,
+    color: '#64748b',
+    fontWeight: '600',
   },
 });

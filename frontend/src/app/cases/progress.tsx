@@ -1,56 +1,122 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   View,
   Text,
   ScrollView,
   Pressable,
   StyleSheet,
+  ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, Stack } from 'expo-router';
-import { CLINICAL_CASES } from '@/data/mock-cases';
+import { CasesService, AttemptProgress } from '@/services/cases.service';
+import { AuthService, UserSession } from '@/services/auth.service';
 
 export default function ProgressScreen() {
   const router = useRouter();
+  const [currentUser, setCurrentUser] = useState<UserSession | null>(null);
+  const [attempts, setAttempts] = useState<AttemptProgress[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
-  // Datos simulados de progreso del estudiante (RF11)
-  const student = {
-    name: 'Alexis Estudiante',
-    email: 'estudiante@aph.edu',
-    role: 'Estudiante de APH - 4to Semestre',
-    completedCasesCount: 2,
-    totalCasesCount: CLINICAL_CASES.length,
-    accuracyPercentage: 85,
-    averageScore: 92,
-  };
+  const loadProgress = useCallback(async () => {
+    try {
+      const user = await AuthService.getCurrentUser();
+      setCurrentUser(user);
+      const email = user?.email || 'student@mediquest.edu';
+      const progressData = await CasesService.getUserProgress(email);
+      setAttempts(progressData);
+    } catch {
+      // Si falla, se mantiene la lista vacía o previa
+    } finally {
+      setIsLoading(false);
+      setIsRefreshing(false);
+    }
+  }, []);
 
-  const specialties = [
-    { name: 'Trauma', completed: 1, total: 1, color: '#ef4444' },
-    { name: 'Cardiovascular', completed: 1, total: 1, color: '#f59e0b' },
-    { name: 'Respiratorio', completed: 0, total: 1, color: '#3b82f6' },
-    { name: 'Neurología', completed: 0, total: 1, color: '#8b5cf6' },
-    { name: 'Pediatría', completed: 0, total: 1, color: '#ec4899' },
-    { name: 'Toxicología', completed: 0, total: 1, color: '#10b981' },
-  ];
+  useEffect(() => {
+    let isMounted = true;
+    (async () => {
+      try {
+        const user = await AuthService.getCurrentUser();
+        if (isMounted) setCurrentUser(user);
+        const email = user?.email || 'student@mediquest.edu';
+        const progressData = await CasesService.getUserProgress(email);
+        if (isMounted) setAttempts(progressData);
+      } catch {
+        // Ignora error silencioso
+      } finally {
+        if (isMounted) setIsLoading(false);
+      }
+    })();
 
-  const recentAttempts = [
-    {
-      id: 'att-1',
-      caseTitle: 'Accidente de tránsito con neumotórax a tensión',
-      specialty: 'Trauma',
-      date: 'Hoy, 15:30',
-      isCorrect: true,
-      score: 100,
-    },
-    {
-      id: 'att-2',
-      caseTitle: 'Dolor precordial opresivo con irradiación a mandíbula',
-      specialty: 'Cardiovascular',
-      date: 'Ayer, 18:20',
-      isCorrect: true,
-      score: 85,
-    },
-  ];
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const onRefresh = useCallback(() => {
+    setIsRefreshing(true);
+    loadProgress();
+  }, [loadProgress]);
+
+  const stats = useMemo(() => {
+    const totalAttempts = attempts.length;
+    if (totalAttempts === 0) {
+      return {
+        completedCasesCount: 0,
+        totalCasesCount: 3,
+        accuracyPercentage: 0,
+        averageScore: 0,
+      };
+    }
+
+    const uniqueCases = new Set(attempts.map((a) => a.caseId)).size;
+    const correctCount = attempts.filter((a) => a.isCorrect).length;
+    const accuracy = Math.round((correctCount / totalAttempts) * 100);
+    const avgScore = Math.round(
+      attempts.reduce((sum, a) => sum + (a.scorePercentage || 0), 0) / totalAttempts
+    );
+
+    return {
+      completedCasesCount: uniqueCases,
+      totalCasesCount: Math.max(3, uniqueCases),
+      accuracyPercentage: accuracy,
+      averageScore: avgScore,
+    };
+  }, [attempts]);
+
+  const specialties = useMemo(() => {
+    const allSpecs = [
+      { name: 'Trauma', color: '#ef4444' },
+      { name: 'Cardiovascular', color: '#f59e0b' },
+      { name: 'Respiratorio', color: '#3b82f6' },
+      { name: 'Neurología', color: '#8b5cf6' },
+      { name: 'Pediatría', color: '#ec4899' },
+      { name: 'Toxicología', color: '#10b981' },
+    ];
+
+    return allSpecs.map((spec) => {
+      const completed = attempts.filter(
+        (a) => a.specialty?.toUpperCase() === spec.name.toUpperCase() && a.isCorrect
+      ).length;
+      return {
+        ...spec,
+        completed,
+        total: Math.max(1, completed),
+      };
+    });
+  }, [attempts]);
+
+  const initials = useMemo(() => {
+    if (!currentUser?.name) return 'AP';
+    const parts = currentUser.name.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+    }
+    return parts[0].substring(0, 2).toUpperCase();
+  }, [currentUser]);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom', 'left', 'right']}>
@@ -60,17 +126,28 @@ export default function ProgressScreen() {
           headerTintColor: '#0b3d91',
         }}
       />
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        refreshControl={
+          <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} colors={['#0b3d91']} />
+        }
+      >
         {/* Ficha del Estudiante */}
         <View style={styles.profileCard}>
           <View style={styles.avatar}>
-            <Text style={styles.avatarText}>AE</Text>
+            <Text style={styles.avatarText}>{initials}</Text>
           </View>
           <View style={styles.profileInfo}>
-            <Text style={styles.profileName}>{student.name}</Text>
-            <Text style={styles.profileEmail}>{student.email}</Text>
+            <Text style={styles.profileName}>
+              {currentUser?.name || 'Estudiante APH'}
+            </Text>
+            <Text style={styles.profileEmail}>
+              {currentUser?.email || 'student@mediquest.edu'}
+            </Text>
             <View style={styles.roleBadge}>
-              <Text style={styles.roleText}>{student.role}</Text>
+              <Text style={styles.roleText}>
+                {currentUser?.role === 'ROLE_TEACHER' ? 'Docente APH' : 'Estudiante de APH'}
+              </Text>
             </View>
           </View>
         </View>
@@ -79,21 +156,21 @@ export default function ProgressScreen() {
         <View style={styles.statsRow}>
           <View style={styles.statCard}>
             <Text style={styles.statNumber}>
-              {student.completedCasesCount}/{student.totalCasesCount}
+              {stats.completedCasesCount}/{stats.totalCasesCount}
             </Text>
             <Text style={styles.statLabel}>Casos Resueltos</Text>
           </View>
 
           <View style={styles.statCard}>
             <Text style={[styles.statNumber, { color: '#10b981' }]}>
-              {student.accuracyPercentage}%
+              {stats.accuracyPercentage}%
             </Text>
             <Text style={styles.statLabel}>Tasa de Acierto</Text>
           </View>
 
           <View style={styles.statCard}>
             <Text style={[styles.statNumber, { color: '#0b3d91' }]}>
-              {student.averageScore}
+              {stats.averageScore}
             </Text>
             <Text style={styles.statLabel}>Promedio / 100</Text>
           </View>
@@ -114,7 +191,7 @@ export default function ProgressScreen() {
                   <View style={styles.specialtyHeader}>
                     <Text style={styles.specialtyName}>{item.name}</Text>
                     <Text style={styles.specialtyCount}>
-                      {item.completed} de {item.total} resueltos
+                      {item.completed} resuelto{item.completed === 1 ? '' : 's'}
                     </Text>
                   </View>
                   <View style={styles.progressBarBackground}>
@@ -136,50 +213,73 @@ export default function ProgressScreen() {
 
         {/* Historial de Intentos Recientes (RF10 + RF11) */}
         <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>Historial de Intentos</Text>
+          <Text style={styles.sectionTitle}>Historial de Intentos (MySQL)</Text>
           <Text style={styles.sectionSubtitle}>
-            Últimos casos clínicos evaluados por el sistema
+            Intentos registrados y evaluados en la base de datos
           </Text>
 
-          <View style={styles.attemptsList}>
-            {recentAttempts.map((att) => (
-              <View key={att.id} style={styles.attemptItem}>
-                <View style={styles.attemptTop}>
-                  <View style={styles.attemptSpecialty}>
-                    <Text style={styles.attemptSpecialtyText}>{att.specialty}</Text>
-                  </View>
-                  <Text style={styles.attemptDate}>{att.date}</Text>
-                </View>
-
-                <Text style={styles.attemptTitle}>{att.caseTitle}</Text>
-
-                <View style={styles.attemptBottom}>
-                  <View
-                    style={[
-                      styles.resultBadge,
-                      att.isCorrect ? styles.resultCorrect : styles.resultIncorrect,
-                    ]}
-                  >
-                    <Text
-                      style={[
-                        styles.resultText,
-                        att.isCorrect ? styles.resultCorrectText : styles.resultIncorrectText,
-                      ]}
-                    >
-                      {att.isCorrect ? '✓ Aprobado' : '✕ A reforzar'}
+          {isLoading ? (
+            <ActivityIndicator size="small" color="#0b3d91" style={{ marginVertical: 20 }} />
+          ) : attempts.length === 0 ? (
+            <View style={styles.emptyAttemptsBox}>
+              <Text style={styles.emptyAttemptsText}>
+                Aún no has resuelto ningún caso clínico.
+              </Text>
+              <Pressable
+                style={styles.solveFirstCaseBtn}
+                onPress={() => router.replace('/cases')}
+              >
+                <Text style={styles.solveFirstCaseBtnText}>Resolver un caso ahora →</Text>
+              </Pressable>
+            </View>
+          ) : (
+            <View style={styles.attemptsList}>
+              {attempts.map((att) => (
+                <View key={att.attemptId} style={styles.attemptItem}>
+                  <View style={styles.attemptTop}>
+                    <View style={styles.attemptSpecialty}>
+                      <Text style={styles.attemptSpecialtyText}>{att.specialty}</Text>
+                    </View>
+                    <Text style={styles.attemptDate}>
+                      {att.completedAt
+                        ? att.completedAt.replace('T', ' ').substring(0, 16)
+                        : 'Reciente'}
                     </Text>
                   </View>
-                  <Text style={styles.attemptScore}>{att.score} pts</Text>
+
+                  <Text style={styles.attemptTitle}>{att.caseTitle}</Text>
+
+                  <View style={styles.attemptBottom}>
+                    <View
+                      style={[
+                        styles.resultBadge,
+                        att.isCorrect ? styles.resultCorrect : styles.resultIncorrect,
+                      ]}
+                    >
+                      <Text
+                        style={[
+                          styles.resultText,
+                          att.isCorrect ? styles.resultCorrectText : styles.resultIncorrectText,
+                        ]}
+                      >
+                        {att.isCorrect ? '✓ Aprobado' : '✕ A reforzar'}
+                      </Text>
+                    </View>
+                    <Text style={styles.attemptScore}>{att.scorePercentage} pts</Text>
+                  </View>
                 </View>
-              </View>
-            ))}
-          </View>
+              ))}
+            </View>
+          )}
         </View>
 
         {/* Botón de cerrar sesión */}
         <Pressable
           style={styles.logoutButton}
-          onPress={() => router.replace('/')}
+          onPress={async () => {
+            await AuthService.logout();
+            router.replace('/');
+          }}
         >
           <Text style={styles.logoutText}>Cerrar Sesión</Text>
         </Pressable>
@@ -406,5 +506,29 @@ const styles = StyleSheet.create({
     color: '#dc2626',
     fontSize: 14,
     fontWeight: '700',
+  },
+  emptyAttemptsBox: {
+    padding: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+  },
+  emptyAttemptsText: {
+    fontSize: 14,
+    color: '#64748b',
+    textAlign: 'center',
+  },
+  solveFirstCaseBtn: {
+    backgroundColor: '#eff6ff',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#bfdbfe',
+  },
+  solveFirstCaseBtnText: {
+    color: '#0b3d91',
+    fontWeight: '700',
+    fontSize: 13,
   },
 });

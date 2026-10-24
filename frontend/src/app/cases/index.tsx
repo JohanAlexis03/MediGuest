@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -7,10 +7,13 @@ import {
   ScrollView,
   StyleSheet,
   StatusBar,
+  RefreshControl,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, Link } from 'expo-router';
-import { CLINICAL_CASES } from '@/data/mock-cases';
+import { CasesService } from '@/services/cases.service';
+import { AuthService, UserSession } from '@/services/auth.service';
 import { Specialty, ClinicalCase } from '@/types/clinical-case';
 import { CaseCard } from '@/components/clinical/case-card';
 
@@ -26,17 +29,67 @@ const SPECIALTIES: ('Todos' | Specialty)[] = [
 
 export default function CasesScreen() {
   const router = useRouter();
+  const [cases, setCases] = useState<ClinicalCase[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [user, setUser] = useState<UserSession | null>(null);
   const [selectedSpecialty, setSelectedSpecialty] = useState<'Todos' | Specialty>('Todos');
+
+  const loadData = useCallback(async () => {
+    try {
+      const [fetchedCases, currentUser] = await Promise.all([
+        CasesService.getAllCases(),
+        AuthService.getCurrentUser(),
+      ]);
+      setCases(fetchedCases);
+      setUser(currentUser);
+    } catch {
+      // Fallback a los datos iniciales
+    } finally {
+      setIsLoading(false);
+      setIsRefreshing(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+    (async () => {
+      try {
+        const [fetchedCases, currentUser] = await Promise.all([
+          CasesService.getAllCases(),
+          AuthService.getCurrentUser(),
+        ]);
+        if (isMounted) {
+          setCases(fetchedCases);
+          setUser(currentUser);
+        }
+      } catch {
+        // Fallback
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    })();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const onRefresh = useCallback(() => {
+    setIsRefreshing(true);
+    loadData();
+  }, [loadData]);
 
   const filteredCases = useMemo(() => {
     if (selectedSpecialty === 'Todos') {
-      return CLINICAL_CASES;
+      return cases;
     }
-    return CLINICAL_CASES.filter((c) => c.specialty === selectedSpecialty);
-  }, [selectedSpecialty]);
+    return cases.filter((c) => c.specialty === selectedSpecialty);
+  }, [cases, selectedSpecialty]);
 
   const handleSelectCase = (caseItem: ClinicalCase) => {
-    // Navigate to case detail
     router.push({
       pathname: '/cases/[id]',
       params: { id: caseItem.id },
@@ -50,7 +103,9 @@ export default function CasesScreen() {
         {/* Banner Superior */}
         <View style={styles.header}>
           <View style={styles.headerTopRow}>
-            <Text style={styles.headerSubtitle}>Atención Prehospitalaria</Text>
+            <Text style={styles.headerSubtitle}>
+              APH {user ? `• ${user.name}` : ''}
+            </Text>
             <Link href="/cases/progress" asChild>
               <Pressable style={styles.progressButton}>
                 <Text style={styles.progressButtonText}>Mi Progreso 📊</Text>
@@ -90,25 +145,35 @@ export default function CasesScreen() {
         </View>
 
         {/* Lista de Casos */}
-        <FlatList
-          data={filteredCases}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <CaseCard
-              clinicalCase={item}
-              onPress={() => handleSelectCase(item)}
-            />
-          )}
-          contentContainerStyle={styles.listContent}
-          ListEmptyComponent={
-            <View style={styles.emptyContainer}>
-              <Text style={styles.emptyTitle}>No hay casos en esta especialidad</Text>
-              <Text style={styles.emptySubtitle}>
-                Probá seleccionando otra categoría o &quot;Todos&quot;.
-              </Text>
-            </View>
-          }
-        />
+        {isLoading ? (
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color="#0b3d91" />
+            <Text style={styles.loadingText}>Cargando casos desde el servidor...</Text>
+          </View>
+        ) : (
+          <FlatList
+            data={filteredCases}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <CaseCard
+                clinicalCase={item}
+                onPress={() => handleSelectCase(item)}
+              />
+            )}
+            refreshControl={
+              <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} colors={['#0b3d91']} />
+            }
+            contentContainerStyle={styles.listContent}
+            ListEmptyComponent={
+              <View style={styles.emptyContainer}>
+                <Text style={styles.emptyTitle}>No hay casos en esta especialidad</Text>
+                <Text style={styles.emptySubtitle}>
+                  Probá seleccionando otra categoría o &quot;Todos&quot;.
+                </Text>
+              </View>
+            }
+          />
+        )}
       </View>
     </SafeAreaView>
   );
@@ -219,5 +284,17 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#64748b',
     textAlign: 'center',
+  },
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 32,
+    gap: 12,
+  },
+  loadingText: {
+    fontSize: 14,
+    color: '#64748b',
+    fontWeight: '500',
   },
 });

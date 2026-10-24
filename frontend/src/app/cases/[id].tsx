@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   Pressable,
   StyleSheet,
   Modal,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
@@ -13,6 +14,8 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { CLINICAL_CASES } from '@/data/mock-cases';
 import { getClinicalImageSource } from '@/data/clinical-assets';
 import { HttpCatAlert } from '@/components/ui/http-cat-alert';
+import { CasesService } from '@/services/cases.service';
+import { ClinicalCase } from '@/types/clinical-case';
 
 export default function CaseDetailScreen() {
   const router = useRouter();
@@ -20,11 +23,33 @@ export default function CaseDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<'abcde' | 'sample'>('abcde');
   const [isImageModalVisible, setIsImageModalVisible] = useState(false);
+  const [clinicalCase, setClinicalCase] = useState<ClinicalCase | null>(() => {
+    return CLINICAL_CASES.find((c) => c.id === id) || null;
+  });
+  const [isLoading, setIsLoading] = useState(!clinicalCase);
 
-  const clinicalCase = CLINICAL_CASES.find((c) => c.id === id);
+  useEffect(() => {
+    if (id) {
+      CasesService.getCaseById(id)
+        .then((fetched) => {
+          if (fetched) setClinicalCase(fetched);
+        })
+        .finally(() => setIsLoading(false));
+    }
+  }, [id]);
+
   const imageSource = clinicalCase?.media
     ? getClinicalImageSource(clinicalCase.id, clinicalCase.media.imageUrl)
     : undefined;
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.notFoundContainer} edges={['bottom', 'left', 'right']}>
+        <ActivityIndicator size="large" color="#0b3d91" />
+        <Text style={styles.loadingText}>Cargando expediente clínico...</Text>
+      </SafeAreaView>
+    );
+  }
 
   if (!clinicalCase) {
     return (
@@ -759,5 +784,11 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 14,
     fontWeight: '700',
+  },
+  loadingText: {
+    marginTop: 12,
+    fontSize: 14,
+    color: '#64748b',
+    fontWeight: '600',
   },
 });
