@@ -7,7 +7,7 @@
 
 ## 1. Visión y Rama Activa
 * **Proyecto:** MediQuest — Plataforma de Entrenamiento Clínico para Atención Prehospitalaria (APH).
-* **Rama Git Activa:** `docs/multiplatform-onboarding-guide`.
+* **Rama Git Activa:** `develop`.
 * **Stack Tecnológico:**
   * **Frontend:** Expo SDK 57 (React Native 0.86, React 19.2, Expo Router).
   * **Backend:** Java 23 con Spring Boot 4 + Base de Datos Relacional MySQL 9.3 (`mediquest_db`).
