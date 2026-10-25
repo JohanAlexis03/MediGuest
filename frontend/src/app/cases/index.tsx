@@ -102,6 +102,27 @@ export default function CasesScreen() {
     });
   }, [cases, selectedSpecialty]);
 
+  const specialtyCounts = useMemo(() => {
+    const counts: Record<string, number> = { Todos: cases.length };
+    SPECIALTIES.forEach((spec) => {
+      if (spec === 'Todos') return;
+      const cleanSpec = spec
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim();
+      counts[spec] = cases.filter((c) => {
+        const cleanCaseSpec = (c.specialty || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+        return cleanCaseSpec === cleanSpec;
+      }).length;
+    });
+    return counts;
+  }, [cases]);
+
   const handleSelectCase = (caseItem: ClinicalCase) => {
     router.push({
       pathname: '/cases/[id]',
@@ -125,13 +146,38 @@ export default function CasesScreen() {
               </Pressable>
             </Link>
           </View>
-          <Text style={styles.headerTitle}>Casos Clínicos Disponibles</Text>
+
+          <View style={styles.titleRow}>
+            <Text style={styles.headerTitle}>Casos Clínicos</Text>
+            <View style={styles.totalBadge}>
+              <Text style={styles.totalBadgeText}>{cases.length} casos</Text>
+            </View>
+          </View>
+
           <Text style={styles.headerDescription}>
             Entrená tu razonamiento clínico resolviendo escenarios simulados basados en protocolos PHTLS / ATLS.
           </Text>
+
+          {/* Tarjeta de Resumen de Banco */}
+          <View style={styles.statsSummaryCard}>
+            <View style={styles.statsSummaryItem}>
+              <Text style={styles.statsSummaryNumber}>{cases.length}</Text>
+              <Text style={styles.statsSummaryLabel}>Banco Total</Text>
+            </View>
+            <View style={styles.statsDivider} />
+            <View style={styles.statsSummaryItem}>
+              <Text style={styles.statsSummaryNumber}>6</Text>
+              <Text style={styles.statsSummaryLabel}>Especialidades</Text>
+            </View>
+            <View style={styles.statsDivider} />
+            <View style={styles.statsSummaryItem}>
+              <Text style={styles.statsSummaryNumber}>{filteredCases.length}</Text>
+              <Text style={styles.statsSummaryLabel}>En Pantalla</Text>
+            </View>
+          </View>
         </View>
 
-        {/* Filtros por Especialidad */}
+        {/* Filtros por Especialidad con Conteo */}
         <View style={styles.filterWrapper}>
           <ScrollView
             horizontal
@@ -140,6 +186,7 @@ export default function CasesScreen() {
           >
             {SPECIALTIES.map((spec) => {
               const isSelected = selectedSpecialty === spec;
+              const count = specialtyCounts[spec] ?? 0;
               return (
                 <Pressable
                   key={spec}
@@ -151,10 +198,39 @@ export default function CasesScreen() {
                   >
                     {spec}
                   </Text>
+                  <View
+                    style={[
+                      styles.filterBadge,
+                      isSelected && styles.filterBadgeActive,
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        styles.filterBadgeText,
+                        isSelected && styles.filterBadgeTextActive,
+                      ]}
+                    >
+                      {count}
+                    </Text>
+                  </View>
                 </Pressable>
               );
             })}
           </ScrollView>
+
+          {/* Barra Indicadora de Casos Filtrados */}
+          <View style={styles.activeFilterBar}>
+            <Text style={styles.activeFilterText}>
+              {selectedSpecialty === 'Todos'
+                ? `Mostrando ${filteredCases.length} casos clínicos disponibles`
+                : `Mostrando ${filteredCases.length} de ${cases.length} casos en ${selectedSpecialty}`}
+            </Text>
+            {selectedSpecialty !== 'Todos' && (
+              <Pressable onPress={() => setSelectedSpecialty('Todos')} hitSlop={8}>
+                <Text style={styles.clearFilterText}>Ver todos</Text>
+              </Pressable>
+            )}
+          </View>
         </View>
 
         {/* Lista de Casos */}
@@ -236,11 +312,60 @@ const styles = StyleSheet.create({
     letterSpacing: 0.8,
     marginBottom: 4,
   },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginBottom: 6,
+  },
+  totalBadge: {
+    backgroundColor: '#0b3d91',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 12,
+  },
+  totalBadgeText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#ffffff',
+  },
+  statsSummaryCard: {
+    flexDirection: 'row',
+    backgroundColor: '#f8fafc',
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  statsSummaryItem: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  statsSummaryNumber: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#0b3d91',
+  },
+  statsSummaryLabel: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#64748b',
+    marginTop: 2,
+    textTransform: 'uppercase',
+  },
+  statsDivider: {
+    width: 1,
+    height: 24,
+    backgroundColor: '#cbd5e1',
+  },
   headerTitle: {
     fontSize: 22,
     fontWeight: '800',
     color: '#0f172a',
-    marginBottom: 6,
   },
   headerDescription: {
     fontSize: 13,
@@ -258,7 +383,10 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   filterPill: {
-    paddingHorizontal: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 12,
     paddingVertical: 7,
     borderRadius: 20,
     backgroundColor: '#f1f5f9',
@@ -268,6 +396,43 @@ const styles = StyleSheet.create({
   filterPillActive: {
     backgroundColor: '#0b3d91',
     borderColor: '#0b3d91',
+  },
+  filterBadge: {
+    backgroundColor: '#e2e8f0',
+    borderRadius: 10,
+    paddingHorizontal: 6,
+    paddingVertical: 1,
+    minWidth: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  filterBadgeActive: {
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+  },
+  filterBadgeText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#475569',
+  },
+  filterBadgeTextActive: {
+    color: '#ffffff',
+  },
+  activeFilterBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingTop: 8,
+  },
+  activeFilterText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#475569',
+  },
+  clearFilterText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#0b3d91',
   },
   filterText: {
     fontSize: 13,
