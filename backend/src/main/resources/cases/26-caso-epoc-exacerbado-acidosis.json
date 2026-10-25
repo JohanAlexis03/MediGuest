@@ -1,0 +1,86 @@
+{
+  "id": "caso-epoc-exacerbado-acidosis",
+  "title": "Exacerbación Grave de EPOC con Insuficiencia Respiratoria Hipercápnica y Fatiga Ventilatoria",
+  "specialty": "RESPIRATORIO",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Paciente masculino de 66 años con antecedente de tabaquismo severo y EPOC con ahogo extremo progresivo y somnolencia.",
+  "scene": "Domicilio en sala de estar. Paciente en sillón inclinado hacia adelante con respiración con labios fruncidos y cianosis ungueal.",
+  "kinematicsOrOnset": "Deterioro respiratorio de 48 horas tras cuadro gripal con aumento del volumen y purulencia del esputo (Criterios de Anthonisen I) y agotamiento muscular hoy.",
+  "protocolReference": "GOLD Global Strategy for COPD 2024 / BTS Oxygen Guidelines / PHTLS 9na Edición",
+  "patient": {
+    "age": 66,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 70,
+    "occupation": "Jubilado"
+  },
+  "vitals": {
+    "heartRate": 116,
+    "respiratoryRate": 30,
+    "bloodPressure": "150/92",
+    "oxygenSaturation": 82,
+    "bodyTemperature": 37.4,
+    "glasgow": {
+      "ocularResponse": 3,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 13
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea permeable con abundante secreción bronquial mucosa espesa que le cuesta expectorar por fatiga.",
+    "breathing": "Patrón ventilatorio superficial y rápido a 30 rpm con uso prominente de músculos esternocleidomastoideos y tiraje intercostal. Auscultación con murmullo vesicular globalmente disminuido ('tórax enfisematoso silente'), sibilancias espiratorias difusas y roncus en ambas bases. SatO₂ 82% con aire ambiente.",
+    "circulation": "Taquicardia sinusal a 116 lpm, pulsos simétricos llenos. Llenado capilar de 3 segundos con cianosis periférica. PA 150/92 mmHg.",
+    "disability": "Glasgow 13/15 (flapping tremor / asterixis positivo y somnolencia incipiente secundaria a narcosis por retención aguda de CO₂).",
+    "exposure": "Tórax en tonel con diámetro anteroposterior aumentado. Sin signos de traumatismo."
+  },
+  "sampleHistory": {
+    "symptoms": "Disnea en reposo clase IV mMRC, tos productiva purulenta y letargo progresivo.",
+    "allergies": "No refiere.",
+    "medications": "Tiotropio inhalado, Salbutamol de rescate (lo utilizó 8 veces hoy sin mejoría).",
+    "pastHistory": "EPOC diagnosticado hace 9 años, dependiente de oxígeno domiciliario a 1 L/min.",
+    "lastMeal": "Líquidos hace 3 horas.",
+    "events": "Comenzó con tos y aumento de expectoración verde hace 2 días que progresó a imposibilidad para completar oraciones cortas."
+  },
+  "media": {
+    "mediaType": "xray",
+    "title": "Radiografía Portátil / Placa de Tórax AP",
+    "subtitle": "Enfisema Pulmonar y Signos de Atrapamiento Aéreo Severo",
+    "findings": "Hiperinsuflación pulmonar con aplanamiento de cúpulas diafragmáticas, aumento de espacios intercostales y oligohemia periférica.",
+    "badgeLabel": "Rx Tórax",
+    "imageUrl": "emphysema_xray.jpg",
+    "imageCaption": "Rx que evidencia hiperclaridad pulmonar bilateral y diafragmas deprimidos compatibles con EPOC avanzado."
+  },
+  "questions": [
+    {
+      "prompt": "En una crisis grave de EPOC con hipoxemia y riesgo crítico de retención hipercápnica con narcosis por CO₂, ¿cuál es la estrategia de oxigenoterapia y soporte ventilatorio prehospitalario recomendada por las guías internacionales GOLD y BTS?",
+      "protocolReference": "GOLD Guidelines 2024 / BTS Emergency Oxygen Guidelines",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Oxigenoterapia estrictamente controlada titulada a una saturación objetivo del 88% al 92% (mediante mascarilla Venturi al 24-28% o cánula nasal a 1-2 L/min), nebulización combinada con Salbutamol + Bromuro de Ipratropio impulsada con aire comprimido (o flujo mínimo de O₂), e inicio temprano de Ventilación No Invasiva (VNI con BiPAP/CPAP) si persiste acidosis y fatiga muscular.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En pacientes con EPOC que retienen CO₂ crónicamente, el estímulo respiratorio depende del impulso hipóxico (quimiorreceptores aórticos y carotídeos). La hiperoxia descontrolada (> 92%) suprime la ventilación por minuto, anula la vasoconstricción pulmonar hipóxica protectora (aumentando el espacio muerto fisiológico) e induce retención mortal de CO₂ por el efecto Haldane. La VNI reduce el trabajo respiratorio, previene la intubación invasiva y mejora la supervivencia."
+        },
+        {
+          "optionKey": "B",
+          "text": "Oxígeno al 100% con mascarilla con bolsa de reservorio a 15 L/min sin titulación para asegurar una saturación del 100% de inmediato.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Administrar oxígeno al 100% sin control a un paciente con EPOC agudizado suprime el estímulo respiratorio hipóxico, empeora el desequilibrio ventilación/perfusión (V/Q) y puede inducir coma hipercápnico irreversible con paro en apnea."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administración intravenosa rápida de Furosemida 80 mg y Morfina 10 mg para disminuir el esfuerzo ventilatorio.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El cuadro no es un edema agudo cardiogénico sino una crisis broncoobstructiva hipercápnica de EPOC. Los diuréticos provocan alcalosis metabólica que empeora la hipoventilación compensatoria, y la morfina deprime el centro respiratorio causando apnea."
+        },
+        {
+          "optionKey": "D",
+          "text": "Intubación orotraqueal inmediata a ciegas sin intentar ventilación no invasiva previa ni nebulizaciones broncodilatadoras.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La intubación orotraqueal invasiva en el paciente con EPOC conlleva una alta tasa de barotrauma, atrapamiento aéreo con hipotensión por auto-PEEP y gran dificultad posterior para el destete ventilatorio. Las guías señalan a la VNI como primera línea antes de la intubación."
+        }
+      ]
+    }
+  ]
+}

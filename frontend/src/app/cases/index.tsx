@@ -14,7 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, Link } from 'expo-router';
 import { CasesService } from '@/services/cases.service';
 import { AuthService, UserSession } from '@/services/auth.service';
-import { Specialty, ClinicalCase } from '@/types/clinical-case';
+import { Specialty, Difficulty, ClinicalCase } from '@/types/clinical-case';
 import { CaseCard } from '@/components/clinical/case-card';
 
 const SPECIALTIES: ('Todos' | Specialty)[] = [
@@ -27,6 +27,13 @@ const SPECIALTIES: ('Todos' | Specialty)[] = [
   'Toxicología',
 ];
 
+const DIFFICULTIES: ('Todas' | Difficulty)[] = [
+  'Todas',
+  'Básico',
+  'Intermedio',
+  'Avanzado',
+];
+
 export default function CasesScreen() {
   const router = useRouter();
   const [cases, setCases] = useState<ClinicalCase[]>([]);
@@ -34,6 +41,7 @@ export default function CasesScreen() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [user, setUser] = useState<UserSession | null>(null);
   const [selectedSpecialty, setSelectedSpecialty] = useState<'Todos' | Specialty>('Todos');
+  const [selectedDifficulty, setSelectedDifficulty] = useState<'Todas' | Difficulty>('Todas');
 
   const loadData = useCallback(async () => {
     try {
@@ -83,27 +91,48 @@ export default function CasesScreen() {
   }, [loadData]);
 
   const filteredCases = useMemo(() => {
-    if (selectedSpecialty === 'Todos') {
-      return cases;
-    }
-    const cleanTarget = selectedSpecialty
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .trim();
-
     return cases.filter((c) => {
-      const cleanCaseSpec = (c.specialty || '')
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .trim();
-      return cleanCaseSpec === cleanTarget;
+      if (selectedSpecialty !== 'Todos') {
+        const cleanTarget = selectedSpecialty
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+        const cleanCaseSpec = (c.specialty || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+        if (cleanCaseSpec !== cleanTarget) return false;
+      }
+      if (selectedDifficulty !== 'Todas') {
+        const cleanTargetDiff = selectedDifficulty
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+        const cleanCaseDiff = (c.difficulty || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+        if (cleanCaseDiff !== cleanTargetDiff) return false;
+      }
+      return true;
     });
-  }, [cases, selectedSpecialty]);
+  }, [cases, selectedSpecialty, selectedDifficulty]);
 
   const specialtyCounts = useMemo(() => {
-    const counts: Record<string, number> = { Todos: cases.length };
+    const counts: Record<string, number> = { Todos: 0 };
+    const baseCases = selectedDifficulty === 'Todas'
+      ? cases
+      : cases.filter((c) => {
+          const cleanCaseDiff = (c.difficulty || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+          const cleanTargetDiff = selectedDifficulty.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+          return cleanCaseDiff === cleanTargetDiff;
+        });
+
+    counts['Todos'] = baseCases.length;
     SPECIALTIES.forEach((spec) => {
       if (spec === 'Todos') return;
       const cleanSpec = spec
@@ -111,7 +140,7 @@ export default function CasesScreen() {
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
         .trim();
-      counts[spec] = cases.filter((c) => {
+      counts[spec] = baseCases.filter((c) => {
         const cleanCaseSpec = (c.specialty || '')
           .toLowerCase()
           .normalize('NFD')
@@ -121,7 +150,37 @@ export default function CasesScreen() {
       }).length;
     });
     return counts;
-  }, [cases]);
+  }, [cases, selectedDifficulty]);
+
+  const difficultyCounts = useMemo(() => {
+    const counts: Record<string, number> = { Todas: 0 };
+    const baseCases = selectedSpecialty === 'Todos'
+      ? cases
+      : cases.filter((c) => {
+          const cleanCaseSpec = (c.specialty || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+          const cleanTargetSpec = selectedSpecialty.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+          return cleanCaseSpec === cleanTargetSpec;
+        });
+
+    counts['Todas'] = baseCases.length;
+    DIFFICULTIES.forEach((diff) => {
+      if (diff === 'Todas') return;
+      const cleanDiff = diff
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim();
+      counts[diff] = baseCases.filter((c) => {
+        const cleanCaseDiff = (c.difficulty || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+        return cleanCaseDiff === cleanDiff;
+      }).length;
+    });
+    return counts;
+  }, [cases, selectedSpecialty]);
 
   const handleSelectCase = (caseItem: ClinicalCase) => {
     router.push({
@@ -177,8 +236,12 @@ export default function CasesScreen() {
           </View>
         </View>
 
-        {/* Filtros por Especialidad con Conteo */}
+        {/* Filtros por Especialidad y Dificultad */}
         <View style={styles.filterWrapper}>
+          {/* Fila 1: Especialidad */}
+          <View style={styles.filterCategoryHeader}>
+            <Text style={styles.filterCategoryTitle}>Especialidad</Text>
+          </View>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -218,16 +281,77 @@ export default function CasesScreen() {
             })}
           </ScrollView>
 
+          {/* Fila 2: Nivel de Dificultad */}
+          <View style={[styles.filterCategoryHeader, styles.filterCategoryHeaderSecond]}>
+            <Text style={styles.filterCategoryTitle}>Dificultad</Text>
+          </View>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.filterList}
+          >
+            {DIFFICULTIES.map((diff) => {
+              const isSelected = selectedDifficulty === diff;
+              const count = difficultyCounts[diff] ?? 0;
+              return (
+                <Pressable
+                  key={diff}
+                  style={[
+                    styles.difficultyPill,
+                    isSelected && styles.difficultyPillActive,
+                    diff === 'Básico' && styles.difficultyPillBasico,
+                    diff === 'Intermedio' && styles.difficultyPillIntermedio,
+                    diff === 'Avanzado' && styles.difficultyPillAvanzado,
+                    isSelected && diff === 'Básico' && styles.difficultyPillBasicoActive,
+                    isSelected && diff === 'Intermedio' && styles.difficultyPillIntermedioActive,
+                    isSelected && diff === 'Avanzado' && styles.difficultyPillAvanzadoActive,
+                  ]}
+                  onPress={() => setSelectedDifficulty(diff)}
+                >
+                  <Text
+                    style={[
+                      styles.difficultyText,
+                      isSelected && styles.difficultyTextActive,
+                    ]}
+                  >
+                    {diff}
+                  </Text>
+                  <View
+                    style={[
+                      styles.filterBadge,
+                      isSelected && styles.filterBadgeActive,
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        styles.filterBadgeText,
+                        isSelected && styles.filterBadgeTextActive,
+                      ]}
+                    >
+                      {count}
+                    </Text>
+                  </View>
+                </Pressable>
+              );
+            })}
+          </ScrollView>
+
           {/* Barra Indicadora de Casos Filtrados */}
           <View style={styles.activeFilterBar}>
             <Text style={styles.activeFilterText}>
-              {selectedSpecialty === 'Todos'
-                ? `Mostrando ${filteredCases.length} casos clínicos disponibles`
-                : `Mostrando ${filteredCases.length} de ${cases.length} casos en ${selectedSpecialty}`}
+              Mostrando {filteredCases.length} de {cases.length} casos
+              {selectedSpecialty !== 'Todos' ? ` • ${selectedSpecialty}` : ''}
+              {selectedDifficulty !== 'Todas' ? ` • ${selectedDifficulty}` : ''}
             </Text>
-            {selectedSpecialty !== 'Todos' && (
-              <Pressable onPress={() => setSelectedSpecialty('Todos')} hitSlop={8}>
-                <Text style={styles.clearFilterText}>Ver todos</Text>
+            {(selectedSpecialty !== 'Todos' || selectedDifficulty !== 'Todas') && (
+              <Pressable
+                onPress={() => {
+                  setSelectedSpecialty('Todos');
+                  setSelectedDifficulty('Todas');
+                }}
+                hitSlop={8}
+              >
+                <Text style={styles.clearFilterText}>Restablecer</Text>
               </Pressable>
             )}
           </View>
@@ -417,12 +541,71 @@ const styles = StyleSheet.create({
   filterBadgeTextActive: {
     color: '#ffffff',
   },
+  filterCategoryHeader: {
+    paddingHorizontal: 16,
+    paddingTop: 4,
+    paddingBottom: 4,
+  },
+  filterCategoryHeaderSecond: {
+    paddingTop: 10,
+  },
+  filterCategoryTitle: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#64748b',
+    textTransform: 'uppercase',
+    letterSpacing: 0.6,
+  },
+  difficultyPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    backgroundColor: '#f8fafc',
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+  },
+  difficultyPillActive: {
+    backgroundColor: '#0b3d91',
+    borderColor: '#0b3d91',
+  },
+  difficultyPillBasico: {
+    borderColor: '#a7f3d0',
+  },
+  difficultyPillBasicoActive: {
+    backgroundColor: '#059669',
+    borderColor: '#059669',
+  },
+  difficultyPillIntermedio: {
+    borderColor: '#fde68a',
+  },
+  difficultyPillIntermedioActive: {
+    backgroundColor: '#d97706',
+    borderColor: '#d97706',
+  },
+  difficultyPillAvanzado: {
+    borderColor: '#fecaca',
+  },
+  difficultyPillAvanzadoActive: {
+    backgroundColor: '#dc2626',
+    borderColor: '#dc2626',
+  },
+  difficultyText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#334155',
+  },
+  difficultyTextActive: {
+    color: '#ffffff',
+  },
   activeFilterBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingTop: 8,
+    paddingTop: 10,
   },
   activeFilterText: {
     fontSize: 12,
