@@ -50,24 +50,87 @@ Aplicación móvil para que estudiantes de **Atención Prehospitalaria (APH)** r
 | **RF11** | Consulta de progreso e historial | ✅ | `GET /api/progress` y `frontend/src/app/cases/progress.tsx` |
 | **RF12** | Gestión de casos (Admin/Docente) | ⏳ | Módulo administrativo para creación de casos |
 
-## Cómo ejecutar el proyecto
+## Cómo ejecutar el proyecto (Guía Multiplataforma)
 
-### 1. Iniciar Base de Datos y Backend (Spring Boot)
-```bash
-# Iniciar motor de base de datos
-brew services start mysql
+### 1. Iniciar Base de Datos (MySQL 9.3)
 
-# Ejecutar API REST
-cd backend
-mvn spring-boot:run
-```
-La API estará disponible en `http://localhost:8080/api/cases`.
+Selecciona el comando según tu sistema operativo:
 
-### 2. Iniciar Aplicación Móvil (Expo)
+* **macOS (Homebrew):**
+  ```bash
+  brew services start mysql
+  ```
+* **Linux (Ubuntu / Debian):**
+  ```bash
+  sudo systemctl start mysql
+  # o: sudo service mysql start
+  ```
+* **Windows (CMD o PowerShell como Administrador):**
+  ```cmd
+  net start MySQL80
+  :: o inicia el servicio 'MySQL' desde services.msc
+  ```
+* **Docker (Universal multiplataforma):**
+  ```bash
+  docker run --name mediquest-db -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=mediquest_db -p 3306:3306 -d mysql:9.3
+  ```
+
+> **Verificación:** Confirma que la base de datos `mediquest_db` esté creada con codificación `utf8mb4`.
+
+---
+
+### 2. Iniciar API REST Backend (Spring Boot 4 / Java 23)
+
+Requiere **Java JDK 23** instalado.
+
+* **macOS / Linux:**
+  ```bash
+  cd backend
+  mvn spring-boot:run
+  ```
+* **Windows (CMD / PowerShell):**
+  ```cmd
+  cd backend
+  mvn spring-boot:run
+  ```
+
+La API estará disponible en `http://localhost:8080/api/cases` (debe responder con el catálogo de 30 casos en JSON).
+
+---
+
+### 3. Iniciar Aplicación Móvil (Expo SDK 57 / React Native)
+
+#### A. Conectividad LAN para Dispositivos Físicos (Android / iOS)
+Para probar en un smartphone físico en tu misma red local:
+1. Conecta tu teléfono y tu computadora a la **misma red Wi-Fi**.
+2. Obtén la dirección IP local de tu máquina de desarrollo:
+   - **Windows:** Ejecuta `ipconfig` en CMD (busca la IPv4 de tu adaptador Wi-Fi, ej: `192.168.1.X`).
+   - **macOS:** Ejecuta `ipconfig getifaddr en0`.
+   - **Linux:** Ejecuta `hostname -I`.
+3. Crea o edita el archivo `frontend/.env` indicando la IP de tu servidor:
+   ```env
+   EXPO_PUBLIC_API_URL=http://<TU_IP_LOCAL>:8080/api
+   ```
+   *(Ejemplo: `EXPO_PUBLIC_API_URL=http://192.168.1.137:8080/api`)*.
+4. *En Windows/Linux:* Asegúrate de que el Firewall permita conexiones entrantes al puerto `8080`.
+
+#### B. Ejecutar el Servidor de Desarrollo
 ```bash
 cd frontend
 npm install
 npx expo start
 ```
 
-Escanea el QR con **Expo Go** en tu dispositivo físico, o presiona `w` para probar en navegador web.
+#### C. Abrir la Aplicación según tu Dispositivo
+* 📱 **Dispositivo Físico Android:**
+  1. Instala **Expo Go** desde Google Play Store.
+  2. Abre Expo Go y usa la opción **"Scan QR code"** para escanear el código QR de la terminal.
+* 🍎 **Dispositivo Físico iOS (iPhone / iPad):**
+  1. Instala **Expo Go** desde la App Store.
+  2. Abre la app nativa de **Cámara**, enfoca el código QR y pulsa en la notificación emergente para abrir en Expo Go.
+* 🤖 **Emulador Android (Android Studio):**
+  - Con el emulador iniciado, presiona la tecla `a` en la terminal de Expo.
+* 🍏 **Simulador iOS (macOS con Xcode):**
+  - Presiona la tecla `i` en la terminal de Expo.
+* 🌐 **Navegador Web:**
+  - Presiona la tecla `w` en la terminal de Expo para abrir en Chrome, Edge, Firefox o Safari.
