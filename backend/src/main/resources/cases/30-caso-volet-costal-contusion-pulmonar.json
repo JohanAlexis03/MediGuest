@@ -1,0 +1,78 @@
+{
+  "id": "caso-volet-costal-contusion-pulmonar",
+  "title": "Tórax Inestable (Volet Costal) con Respiración Paradójica y Contusión Pulmonar Traumática",
+  "specialty": "RESPIRATORIO",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Colisión frontal vehicular contra árbol a media-alta velocidad. Conductor sin cinturón de seguridad que impactó fuertemente el pecho contra el volante.",
+  "scene": "Carretera secundaria. Vehículo con deformación severa del habitáculo y volante doblado. Conductor atrapado mecánicamente asistido por bomberos con dolor torácico intolerable.",
+  "kinematicsOrOnset": "Trauma cerrado de tórax por desaceleración e impacto directo del volante contra la pared anterior y lateral izquierda del tórax hace 15 minutos.",
+  "protocolReference": "PHTLS 9na Edición, Cap. 9 (Trauma Torácico) / ATLS 10ma Edición",
+  "patient": {
+    "age": 48,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 80,
+    "occupation": "Transportista"
+  },
+  "vitals": {
+    "heartRate": 122,
+    "respiratoryRate": 28,
+    "bloodPressure": "102/64",
+    "oxygenSaturation": 80,
+    "bodyTemperature": 36.3,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 14
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea permeable con control bimanual de la columna cervical en línea media.",
+    "breathing": "Mecánica ventilatoria severamente alterada: taquipnea superficial a 28 rpm por dolor torácico lacerante. Se evidencia segmento libre inestable en parrilla costal izquierda anterolateral (arcos costales 4°, 5° y 6° con fracturas dobles) que se deprime en la inspiración y protruye en la espiración (movimiento respiratorio paradójico). Crepitación ósea a la palpación y enfisema subcutáneo leve. Murmullo vesicular disminuido y estertores en hemitórax izquierdo por contusión pulmonar parenquimatosa. SatO₂ 80% con aire ambiente.",
+    "circulation": "Taquicardia sinusal reactiva al dolor e hipoxia (122 lpm). Presión arterial 102/64 mmHg. Pulsos periféricos simétricos. Sin hemorragias externas evidentes.",
+    "disability": "Glasgow 14/15, lúcido pero agitado por el dolor intenso e incapacidad para meter aire.",
+    "exposure": "Equimosis y estigma del volante en cara anterior del tórax. Sin lesiones pélvicas o de extremidades."
+  },
+  "sampleHistory": {
+    "symptoms": "Dolor torácico insoportable agravado con cada respiración, disnea progresiva y sensación de asfixia.",
+    "allergies": "No refiere.",
+    "medications": "Ninguno.",
+    "pastHistory": "Hombre sano sin antecedentes crónicos.",
+    "lastMeal": "Almuerzo hace 4 horas.",
+    "events": "Perdió el control del camión en una curva mojada y colisionó frontalmente sin cinturón de seguridad."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "En un paciente con volet costal (tórax batiente) y contusión pulmonar subyacente que presenta respiración paradójica e hipoxemia severa (SatO₂ 80%), ¿cuál es el pilar de estabilización ventilatoria y analgésica recomendado por el PHTLS 9na Edición?",
+      "protocolReference": "PHTLS 9na Edición / ATLS 10ma Edición Manejo del Volet Costal",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Oxigenoterapia con mascarilla a alto flujo (o ventilación con presión positiva continua/asistida como 'férula neumática interna' que expande los alvéolos contundidos e inmoviliza el segmento desde adentro), analgesia intravenosa agresiva y multimodal (ej. Fentanilo o Ketamina) para permitir una excursión torácica adecuada sin dolor restrictivo, y prohibición estricta de fijar vendajes adhesivos compresivos circulares al tórax.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En el tórax inestable, la verdadera causa de la hipoxemia mortal no es el movimiento paradójico del hueso, sino la contusión pulmonar masiva subyacente y la hipoventilación secundaria al dolor desgarrador. La ventilación con presión positiva (VNI o invasiva si hay agotamiento) actúa como una 'férula neumática interna' alineando el segmento fracturado desde el interior. La analgesia oportuna permite al paciente expandir los pulmones. Los vendajes adhesivos o sacos de arena externos están prohibidos porque restringen la ventilación, provocan atelectasias y aceleran la insuficiencia respiratoria."
+        },
+        {
+          "optionKey": "B",
+          "text": "Colocar un saco de arena pesado o vendar fuertemente con cinta adhesiva de lado a lado todo el tórax del paciente para inmovilizar por completo la caja torácica.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los vendajes circulares rígidos o bolsas de arena fueron descartados de la práctica prehospitalaria moderna: reducen drásticamente la capacidad residual funcional, restringen aún más la expansión del pulmón sano y precipitan atelectasias masivas, hipoxemia letal y acidosis."
+        },
+        {
+          "optionKey": "C",
+          "text": "Fijar con agujas o pinzas de campo los fragmentos costales rotos a través de la piel en el lugar del accidente antes de iniciar el traslado.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La fijación quirúrgica costal es un procedimiento de quirófano en centros de trauma nivel 1; intentar invasiones traumáticas en la escena solo añade neumotórax iatrogénico, dolor y riesgo de sepsis."
+        },
+        {
+          "optionKey": "D",
+          "text": "Negar analgesia para no enmascarar los síntomas de un posible neumotórax y mantener al paciente respirando aire ambiente.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El dolor descontrolado en trauma torácico perpetúa la respiración superficial (splinting), provocando colapso alveolar progresivo y retención de secreciones. La analgesia es terapéutica y obligatoria en el algoritmo PHTLS."
+        }
+      ]
+    }
+  ]
+}

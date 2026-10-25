@@ -1,0 +1,86 @@
+{
+  "id": "caso-neumotorax-tension",
+  "title": "Shock obstructivo por neumotórax a tensión traumático con compromiso ventilatorio crítico",
+  "specialty": "TRAUMA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Accidente de motocicleta a 70 km/h contra vehículo estacionado. Motociclista despedido a 6 metros.",
+  "scene": "Vía pública. Casco quebrado en el pavimento. Conductor en decúbito lateral con evidente dificultad respiratoria.",
+  "kinematicsOrOnset": "Traumatismo torácico cerrado de alta energía por impacto directo del manubrio contra hemitórax derecho.",
+  "protocolReference": "PHTLS 9na Edición, Cap. 10 (Trauma Torácico)",
+  "patient": {
+    "age": 24,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 72,
+    "occupation": "Mensajero motociclista"
+  },
+  "vitals": {
+    "heartRate": 138,
+    "respiratoryRate": 36,
+    "bloodPressure": "74/38",
+    "oxygenSaturation": 81,
+    "bodyTemperature": 36,
+    "glasgow": {
+      "ocularResponse": 3,
+      "verbalResponse": 3,
+      "motorResponse": 5,
+      "totalScore": 11
+    }
+  },
+  "primarySurvey": {
+    "airway": "Permeable con control cervical bimanual. Desviación visible de la tráquea hacia el lado izquierdo.",
+    "breathing": "Dificultad respiratoria extrema (36 rpm), cianosis peribucal, ausencia total de murmullo vesicular en hemitórax derecho con timpanismo marcado a la percusión. SatO₂ 81% con O₂.",
+    "circulation": "Shock obstructivo severo (PA 74/38, FC 138 lpm taquicárdico filiforme), ingurgitación yugular bilateral evidente, piel fría y pegajosa.",
+    "disability": "Glasgow 11/15 por hipoxia cerebral severa. Agitado, combativo y confuso.",
+    "exposure": "Equimosis y deformidad costal en 4ta y 5ta costilla derecha. Sin heridas abiertas soplantes."
+  },
+  "sampleHistory": {
+    "symptoms": "Imposibilidad de respirar, dolor torácico agudo lacerante y sensación de muerte inminente.",
+    "allergies": "Ninguna.",
+    "medications": "Ninguno.",
+    "pastHistory": "Joven previamente sano.",
+    "lastMeal": "Hace 2 horas.",
+    "events": "Impacto frontal contra automóvil al esquivar un obstáculo en la calzada."
+  },
+  "media": {
+    "mediaType": "xray",
+    "title": "Radiografía de Tórax de Simulación Clínica",
+    "subtitle": "Neumotórax hipertensivo derecho masivo",
+    "findings": "Colapso pulmonar derecho completo, aplanamiento del hemidiafragma derecho y desplazamiento mediastínico contralateral severo.",
+    "badgeLabel": "Rx de Tórax",
+    "imageUrl": "",
+    "imageCaption": "Desplazamiento mediastínico agudo con colapso de retorno venoso a la aurícula derecha."
+  },
+  "questions": [
+    {
+      "prompt": "Ante la tríada clínica de hipotensión severa (74/38), ingurgitación yugular y timpanismo con silencio auscultatorio derecho, ¿cuál es la conducta inmediata?",
+      "protocolReference": "PHTLS 9na Edición / ATLS 10ma Edición",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Descompresión torácica inmediata con catéter grueso (14G o 10G) en el 2do espacio intercostal línea medioclavicular o 5to espacio línea axilar anterior del hemitórax afectado.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! El neumotórax a tensión es una emergencia con riesgo inminente de paro en actividad eléctrica sin pulso (AESP). El diagnóstico es estrictamente clínico y la descompresión con aguja debe preceder a cualquier estudio radiológico o intubación."
+        },
+        {
+          "optionKey": "B",
+          "text": "Intubación orotraqueal inmediata con ventilación a presión positiva para forzar la oxigenación.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Ventilar a presión positiva un neumotórax a tensión no descomprimido eleva aún más la presión intratorácica y detiene inmediatamente el retorno venoso, provocando paro cardíaco."
+        },
+        {
+          "optionKey": "C",
+          "text": "Traslado urgente en código rojo sin realizar intervenciones torácicas en escena.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El colapso hemodinámico es irreversible en minutos; el paciente entrará en paro durante el transporte si no se descomprime de inmediato."
+        },
+        {
+          "optionKey": "D",
+          "text": "Punción pericárdica subxifoidea para descartar taponamiento cardíaco.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La asimetría ventilatoria, el timpanismo y la tráquea desviada definen neumotórax a tensión, no taponamiento cardíaco donde los ruidos son apagados y los campos pulmonares ventilan simétricamente."
+        }
+      ]
+    }
+  ]
+}

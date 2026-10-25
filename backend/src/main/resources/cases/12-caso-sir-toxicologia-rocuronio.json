@@ -1,0 +1,78 @@
+{
+  "id": "caso-sir-toxicologia-rocuronio",
+  "title": "Secuencia de Intubación Rápida en falla ventilatoria por pesticida organofosforado concentrado",
+  "specialty": "TOXICOLOGIA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Zona agrícola periurbana. Agricultor encontrado en depósito de insumos con formulación de plaguicida concentrado.",
+  "scene": "Depósito cerrado con fuerte emanación de hidrocarburos e insecticidas. Paciente empapado con ropa contaminada.",
+  "kinematicsOrOnset": "Exposición dérmica y respiratoria masiva con colapso neuromuscular, broncorrea masiva e hipoxemia progresiva.",
+  "protocolReference": "PHTLS / Manual de Toxicología Clínica y Manejo de Vía Aérea en Materiales Peligrosos",
+  "patient": {
+    "age": 34,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 72,
+    "occupation": "Trabajador agrícola"
+  },
+  "vitals": {
+    "heartRate": 38,
+    "respiratoryRate": 34,
+    "bloodPressure": "82/48",
+    "oxygenSaturation": 78,
+    "bodyTemperature": 36.1,
+    "glasgow": {
+      "ocularResponse": 1,
+      "verbalResponse": 2,
+      "motorResponse": 4,
+      "totalScore": 7
+    }
+  },
+  "primarySurvey": {
+    "airway": "Obstrucción severa por secreciones hialinas masivas continuas (sialorrea y broncorrea espumosa). Estridor inspiratorio intermitente.",
+    "breathing": "Respiración agónica superficial a 34 rpm con tirajes extremos. Crepitantes difusos en ambos hemitórax. SatO₂ 78% con O₂.",
+    "circulation": "Bradicardia sinusal severa (38 lpm), hipotensión marcada (82/48), diaforesis empapante y llenado capilar 4 s.",
+    "disability": "Glasgow 7/15. Pupilas mióticas puntiformes de 1 mm. Fasciculaciones torácicas y diafragmáticas generalizadas.",
+    "exposure": "Ropa impregnada con pesticida. Descontaminación primaria inmediata requerida."
+  },
+  "sampleHistory": {
+    "symptoms": "Disnea asfixiante, miosis, visión borrosa, diarrea involuntaria y pérdida progresiva del conocimiento.",
+    "allergies": "Desconocidas.",
+    "medications": "Ninguno.",
+    "pastHistory": "Agricultor sano.",
+    "lastMeal": "Desconocida.",
+    "events": "Manipulación de pesticida líquido sin máscara de respiración adecuada."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Al persistir con desaturación crítica (78%) y Glasgow de 7/15 se procede a Secuencia de Intubación Rápida (SIR). ¿Qué bloqueante neuromuscular está terminantemente contraindicado y cuál debe usarse?",
+      "protocolReference": "Vía Aérea Prehospitalaria Avanzada / PHTLS 9na Edición",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Contraindicada absolutamente la Succinilcolina por inhibición tóxica de la butirilcolinesterasa plasmática (parálisis de duración indeterminada de varias horas); se debe emplear Rocuronio a dosis de 1.2 mg/kg.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! Los pesticidas organofosforados inhiben no solo la acetilcolinesterasa de la placa motora sino también la pseudocolinesterasa plasmática responsable del aclaramiento de la succinilcolina. Si se aplica succinilcolina, el bloqueo despolarizante dura horas en lugar de minutos y genera hiperpotasemia fatal. El rocuronio a 1.2 mg/kg asegura condiciones de intubación óptimas en 60 segundos sin depender de colinesterasas."
+        },
+        {
+          "optionKey": "B",
+          "text": "Usar Succinilcolina 2 mg/kg duplicando la dosis para superar el bloqueo tóxico enzimático.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Duplicar la succinilcolina en un paciente intoxicado por organofosforados puede provocar una parálisis diafragmática irreversible de días y arritmias hiperpotasémicas."
+        },
+        {
+          "optionKey": "C",
+          "text": "Intubación nasal a ciegas para evitar el uso de cualquier fármaco paralizante.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La intubación nasotraqueal a ciegas en un paciente en hipoxia severa con laringoespasmo y secreciones abundantes fracasa y genera hemorragia de vía aérea masiva."
+        },
+        {
+          "optionKey": "D",
+          "text": "Cisatracurio en infusión continua sin bolo previo.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El cisatracurio tarda más de 3 a 4 minutos en inducir parálisis y no está indicado en la secuencia de intubación rápida prehospitalaria de emergencia."
+        }
+      ]
+    }
+  ]
+}

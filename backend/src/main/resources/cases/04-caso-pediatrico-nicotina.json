@@ -1,0 +1,86 @@
+{
+  "id": "caso-pediatrico-nicotina",
+  "title": "Intoxicación colinérgica nicotínica accidental en paciente pediátrico",
+  "specialty": "PEDIATRIA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Llamada de urgencia por preescolar de 3 años que ingirió líquido de recarga concentrada para vapeador.",
+  "scene": "Hogar familiar. Frasco abierto de e-liquid sobre la mesa baja del salón.",
+  "kinematicsOrOnset": "Ingesta accidental por vía oral de nicotina concentrada hace 20 minutos con rápido inicio de vómitos y dificultad respiratoria.",
+  "protocolReference": "PHTLS Pediátrico / Guías PALS (Pediatric Advanced Life Support)",
+  "patient": {
+    "age": 3,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 15,
+    "occupation": "Preescolar"
+  },
+  "vitals": {
+    "heartRate": 175,
+    "respiratoryRate": 48,
+    "bloodPressure": "110/70",
+    "oxygenSaturation": 83,
+    "bodyTemperature": 36.4,
+    "glasgow": {
+      "ocularResponse": 2,
+      "verbalResponse": 2,
+      "motorResponse": 5,
+      "totalScore": 9
+    }
+  },
+  "primarySurvey": {
+    "airway": "Estridor inspiratorio intenso, sialorrea profusa y tiraje subcostal/intercostal severo con laringoespasmo inminente.",
+    "breathing": "Taquipnea marcada (48 rpm), SatO₂ 83% con máscara de reservorio, sibilancias audibles a distancia.",
+    "circulation": "Frecuencia cardíaca 175 lpm (taquicardia por estímulo nicotínico temprano), pulsos periféricos débiles, llenado capilar 3 segundos.",
+    "disability": "Glasgow Pediátrico 9/15 (O:2, V:2, M:5). Pupilas mióticas reactivas. Fasciculaciones finas en lengua y musculatura facial.",
+    "exposure": "Diaforesis, frialdad distal y palidez cutánea generalizada."
+  },
+  "sampleHistory": {
+    "symptoms": "Vómitos repetidos, llanto débil, babeo excesivo y ahogo.",
+    "allergies": "Sin alergias conocidas.",
+    "medications": "Baclofeno en suspensión por parálisis cerebral infantil leve.",
+    "pastHistory": "Nacido a término sin complicaciones neonatales.",
+    "lastMeal": "Almuerzo hace 3 horas.",
+    "events": "El niño tomó el envase de recarga creyendo que era jarabe dulce."
+  },
+  "media": {
+    "mediaType": "monitor",
+    "title": "Tira de Monitorización Pediátrica",
+    "subtitle": "Taquicardia sinusal estrecha",
+    "findings": "Taquicardia sinusal extrema a 175 lpm con onda P visible y complejos QRS estrechos.",
+    "badgeLabel": "ECG Pediátrico",
+    "imageUrl": "",
+    "imageCaption": "Taquicardia simpática/nicotínica aguda secundaria a sobreestimulación ganglionar."
+  },
+  "questions": [
+    {
+      "prompt": "Ante la sialorrea profusa, desaturación refractaria y peso estimado de 15 kg, ¿cuál es la dosis y consideración farmacológica de Atropina para revertir la hipersecreción pulmonar?",
+      "protocolReference": "PALS 2025 / Guías de Toxicología Pediátrica APH",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Atropina 0.02 mg/kg IV (0.3 mg) respetando una dosis mínima de 0.1 mg para evitar bradicardia paradójica mediada por receptores M1 presinápticos.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En pediatría la dosis de atropina es de 0.02 mg/kg. Dosis subterapéuticas inferiores a 0.1 mg bloquean receptores presinápticos autorreguladores M1, aumentando la liberación de acetilcolina y precipitando bradicardia refleja potencialmente letal."
+        },
+        {
+          "optionKey": "B",
+          "text": "Atropina 0.5 mg IV en bolo rápido sin considerar el peso del paciente.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. 0.5 mg es la dosis fija de adulto; en un niño de 15 kg puede inducir toxicidad anticolinérgica con hipertermia, delirio y convulsiones."
+        },
+        {
+          "optionKey": "C",
+          "text": "Pralidoxima IV directa sin necesidad de atropinización previa.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La reactivación enzimática con oximas no revierte de forma inmediata la broncorrea masiva que amenaza con asfixiar al niño."
+        },
+        {
+          "optionKey": "D",
+          "text": "Inducción de vómito con jarabe de Ipecacuana o carbón activado inmediato por sonda.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Con un Glasgow de 9/15 y compromiso laríngeo, inducir emesis o administrar carbón conlleva un riesgo inaceptable de broncoaspiración mortal."
+        }
+      ]
+    }
+  ]
+}

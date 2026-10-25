@@ -1,0 +1,86 @@
+{
+  "id": "caso-asma-severo-broncospasmo",
+  "title": "Crisis asmática casi fatal con tórax silente y fallo ventilatorio inminente",
+  "specialty": "RESPIRATORIO",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Mujer de 33 años con antecedentes asmáticos graves en paro respiratorio inminente en su domicilio.",
+  "scene": "Paciente sentada en posición de trípode, cianótica, sin poder pronunciar palabras.",
+  "kinematicsOrOnset": "Evolución de 24 horas de disnea progresiva tras exposición a alérgenos que no respondió a su inhalador habitual.",
+  "protocolReference": "Guías GINA (Global Initiative for Asthma) y Protocolos de Urgencias Respiratorias APH",
+  "patient": {
+    "age": 33,
+    "ageUnit": "años",
+    "sex": "Femenino",
+    "weightKg": 58,
+    "occupation": "Arquitecta"
+  },
+  "vitals": {
+    "heartRate": 134,
+    "respiratoryRate": 38,
+    "bloodPressure": "140/90",
+    "oxygenSaturation": 84,
+    "bodyTemperature": 36.8,
+    "glasgow": {
+      "ocularResponse": 3,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 13
+    }
+  },
+  "primarySurvey": {
+    "airway": "Permeable pero con fatiga muscular severa y habla entrecortada por monosílabos.",
+    "breathing": "Taquipnea severa (38 rpm), tiraje intercostal y supraclavicular extremo, tórax silente a la auscultación (ausencia de sibilancias por falta de flujo aéreo). SatO₂ 84% con oxígeno.",
+    "circulation": "Taquicardia sinusal a 134 lpm, pulso paradójico palpable, diaforesis fría y llenado capilar 3 s.",
+    "disability": "Glasgow 13/15. Agotamiento extremo, somnolencia incipiente por hipercapnia y narcosis por CO₂.",
+    "exposure": "Piel diaforética, extremidades frías, sin lesiones traumáticas."
+  },
+  "sampleHistory": {
+    "symptoms": "Sensación de asfixia total, agotamiento físico extremo y opresión torácica.",
+    "allergies": "Acaros del polvo y polen.",
+    "medications": "Salbutamol y budesonida inhalada (uso irregular).",
+    "pastHistory": "Dos ingresos previos a UCI con intubación por asma casi fatal.",
+    "lastMeal": "Almuerzo hace 5 horas.",
+    "events": "Agotó dos cartuchos de salbutamol en las últimas 12 horas sin mejoría."
+  },
+  "media": {
+    "mediaType": "monitor",
+    "title": "Monitor Respiratorio y Oximetría",
+    "subtitle": "Tórax silente y fatiga ventilatoria",
+    "findings": "Curva de pletismografía amortiguada con desaturación persistente a 84% y taquicardia sinusal marcada.",
+    "badgeLabel": "Oximetría",
+    "imageUrl": "",
+    "imageCaption": "Patrón de colapso de flujo aéreo con inminencia de paro por fatiga diafragmática."
+  },
+  "questions": [
+    {
+      "prompt": "Ante el tórax silente (silencio auscultatorio por colapso del flujo aéreo) y fatiga respiratoria inminente, ¿cuál es la pauta terapéutica combinada de rescate en la ambulancia?",
+      "protocolReference": "GINA 2025 / Manejo de Asma Casi Fatal en Emergencias",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Nebulización continua con Salbutamol + Bromuro de Ipratropio impulsada con O₂, Corticoide sistémico IV y Sulfato de Magnesio 2g IV en infusión de 20 minutos.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En asma casi fatal con tórax silente, el sulfato de magnesio intravenoso relaja potentemente el músculo liso bronquial al modular los canales de calcio. La combinación con beta-2 agonistas y anticolinérgicos nebulizados a flujo alto optimiza la penetración alveolar antes de requerir ventilación invasiva."
+        },
+        {
+          "optionKey": "B",
+          "text": "Sedación inmediata con midazolam para calmar la angustia y bajar el consumo de oxígeno.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los sedantes en crisis asmática abolen el impulso ventilatorio reflejo provocando paro respiratorio y muerte inmediata."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administrar únicamente inhalador de dosis medida con aerocámara sin oxígeno suplementario.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Con una saturación de 84% y tórax silente, la paciente no puede generar el flujo inspiratorio necesario para coordinar un MDI."
+        },
+        {
+          "optionKey": "D",
+          "text": "Infusión rápida de 3000 ml de solución salina fría para fluidificar secreciones.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La sobrecarga hídrica masiva no tiene efecto broncodilatador y los fluidos fríos pueden desencadenar broncoespasmo reflejo."
+        }
+      ]
+    }
+  ]
+}

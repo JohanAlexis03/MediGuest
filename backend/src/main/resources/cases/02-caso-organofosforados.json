@@ -1,0 +1,86 @@
+{
+  "id": "caso-organofosforados",
+  "title": "Síndrome colinérgico por intoxicación con organofosforados",
+  "specialty": "TOXICOLOGIA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Incidente en depósito agrícola. Agricultor encontrado inconsciente con recipiente abierto de insecticida concentrado.",
+  "scene": "Olor penetrante a químicos. Paciente empapado con ropa impregnada de pesticida organofosforado.",
+  "kinematicsOrOnset": "Exposición dérmica e inhalatoria masiva aguda con inhibición irreversible de la acetilcolinesterasa.",
+  "protocolReference": "Guías Toxicológicas APH y Protocolo ATLS/PHTLS de Incidentes con Materiales Peligrosos",
+  "patient": {
+    "age": 34,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 70,
+    "occupation": "Agricultor"
+  },
+  "vitals": {
+    "heartRate": 42,
+    "respiratoryRate": 34,
+    "bloodPressure": "85/50",
+    "oxygenSaturation": 82,
+    "bodyTemperature": 36.2,
+    "glasgow": {
+      "ocularResponse": 2,
+      "verbalResponse": 2,
+      "motorResponse": 4,
+      "totalScore": 8
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea parcialmente obstruida por sialorrea profusa y broncorrea masiva hialina.",
+    "breathing": "Taquipnea severa superficial con tirajes intercostales. Auscultación con roncantes y sibilancias bilaterales difusas.",
+    "circulation": "Bradicardia severa (42 lpm), hipotensión, llenado capilar 4 seg, diaforesis profusa.",
+    "disability": "Glasgow 8/15. Pupilas puntiformes mióticas (1 mm) hiporreactivas. Fasciculaciones musculares generalizadas.",
+    "exposure": "Ropa impregnada de sustancia química con olor penetrante."
+  },
+  "sampleHistory": {
+    "symptoms": "Dificultad respiratoria extrema, visión borrosa, vómitos y diarrea involuntaria.",
+    "allergies": "No conocidas.",
+    "medications": "Ninguno.",
+    "pastHistory": "Sin antecedentes patológicos relevantes.",
+    "lastMeal": "Desayuno hace 6 horas.",
+    "events": "Manipulación de pesticida agrícola concentrado sin equipo de protección personal."
+  },
+  "media": {
+    "mediaType": "ecg",
+    "title": "Tira de Ritmo de Monitorización Prehospitalaria",
+    "subtitle": "Bradicardia sinusal extrema",
+    "findings": "Bradicardia sinusal a 42 lpm con complejos ventriculares prematuros aislados.",
+    "badgeLabel": "Tira de ECG",
+    "imageUrl": "",
+    "imageCaption": "Monitor evidencia ritmo sinusal bradicárdico severo secundario a hiperestimulación muscarínica."
+  },
+  "questions": [
+    {
+      "prompt": "Si el paciente requiere Secuencia de Intubación Rápida (SIR) por Glasgow 8 y desaturación refractaria, ¿cuál es la conducta correcta respecto a los bloqueantes neuromusculares?",
+      "protocolReference": "Farmacología Prehospitalaria Avanzada",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Evitar Succinilcolina debido a que los organofosforados inhiben las pseudocolinesterasas plasmáticas, prolongando el bloqueo por horas; usar Rocuronio a dosis ajustada.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! Los organofosforados inhiben tanto la acetilcolinesterasa como la butirilcolinesterasa (pseudocolinesterasa plasmática). Administrar succinilcolina causa una parálisis prolongada impredecible y empeora las fasciculaciones. El rocuronio (1.2 mg/kg) es el paralizante de elección."
+        },
+        {
+          "optionKey": "B",
+          "text": "Administrar Succinilcolina a dosis estándar (1.5 mg/kg) ya que actúa como antagonista competitivo de la acetilcolina.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La succinilcolina es un bloqueante despolarizante hidrolizado por pseudocolinesterasas; al estar inhibidas, el bloqueo neuromuscular persiste por horas."
+        },
+        {
+          "optionKey": "C",
+          "text": "Intubar sin relajantes neuromusculares ni sedación para no deprimir más el sistema nervioso central.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Intentar intubar a un paciente con laringoespasmo y reflejos protectores residuales sin relajación incrementa el riesgo de broncoaspiración masiva y trauma de vía aérea."
+        },
+        {
+          "optionKey": "D",
+          "text": "Administrar Flumazenil antes de la laringoscopia para contrarrestar el efecto tóxico.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El flumazenil es un antagonista de benzodiacepinas y no tiene ningún rol en la intoxicación por organofosforados."
+        }
+      ]
+    }
+  ]
+}

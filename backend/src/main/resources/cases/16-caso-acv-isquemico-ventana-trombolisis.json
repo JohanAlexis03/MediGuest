@@ -1,0 +1,86 @@
+{
+  "id": "caso-acv-isquemico-ventana-trombolisis",
+  "title": "Ataque Cerebrovascular Isquémico Agudo en ventana terapéutica con Escala de Cincinnati positiva",
+  "specialty": "NEUROLOGIA",
+  "difficulty": "INTERMEDIO",
+  "dispatchContext": "Llamada de familiar por pérdida repentina de la movilidad en hemicuerpo derecho y dificultad para hablar iniciada hace 45 minutos.",
+  "scene": "Domicilio particular en sala de estar. Paciente sentado en sillón, lúcido pero frustrado al no poder emitir palabras claras.",
+  "kinematicsOrOnset": "Inicio súbito e ictal de focalización neurológica a las 14:15 horas mientras almorzaba. Ventana de tiempo conocida: 45 minutos de evolución.",
+  "protocolReference": "AHA/ASA Stroke Guidelines 2019 / PHTLS 9na Edición",
+  "patient": {
+    "age": 68,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 74,
+    "occupation": "Jubilado"
+  },
+  "vitals": {
+    "heartRate": 82,
+    "respiratoryRate": 16,
+    "bloodPressure": "178/96",
+    "oxygenSaturation": 96,
+    "bodyTemperature": 36.7,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 3,
+      "motorResponse": 6,
+      "totalScore": 13
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea permeable con reflejos de protección conservados. Sin acumulación de secreciones.",
+    "breathing": "Patrón ventilatorio rítmico a 16 rpm, murmullo vesicular simétrico sin ruidos agregados. SatO₂ 96% al aire ambiente.",
+    "circulation": "Pulsos radiales rítmicos y sincrónicos. Llenado capilar de 2 segundos. Piel tibia y normocoloreada. PA 178/96 mmHg.",
+    "disability": "Glasgow 13/15 por afasia motora/expresiva (emite sonidos incomprensibles pero obedece órdenes con hemicuerpo izquierdo). Paresia facial derecha inferior, claudicación del brazo derecho a los 3 segundos (Cincinnati 3/3). Pupilas isocóricas de 3 mm fotorreactivas. Glucometría capilar: 112 mg/dL.",
+    "exposure": "Sin signos de traumatismo ni lesiones corporales externas. Normotermia."
+  },
+  "sampleHistory": {
+    "symptoms": "Debilidad motora derecha de inicio súbito, asimetría facial y afasia de Broca.",
+    "allergies": "Ninguna conocida.",
+    "medications": "Enalapril 20 mg/día, Ácido Acetilsalicílico 100 mg/día.",
+    "pastHistory": "Hipertensión arterial diagnosticada hace 12 años y dislipidemia.",
+    "lastMeal": "Almuerzo interrumpido hace 50 minutos.",
+    "events": "Estaba comiendo sopa cuando se le cayó la cuchara de la mano derecha y comenzó a balbucear."
+  },
+  "media": {
+    "mediaType": "scale",
+    "title": "Evaluación Prehospitalaria de ACV",
+    "subtitle": "Escala Prehospitalaria de Cincinnati",
+    "findings": "Asimetría facial derecha (+), caída del brazo derecho (+) y alteración en el lenguaje (+). Probabilidad de ACV > 85%.",
+    "badgeLabel": "Neurología",
+    "imageUrl": "cincinnati_stroke.jpg",
+    "imageCaption": "Signos clave de la escala Cincinnati: parálisis facial, caída del brazo y habla anormal."
+  },
+  "questions": [
+    {
+      "prompt": "Con un tiempo de evolución de 45 minutos (plena ventana de trombolisis intravenosa < 4.5 horas) y glucometría normal que descarta hipoglucemia, ¿cuál es la conducta prehospitalaria con mayor impacto en el pronóstico funcional del paciente?",
+      "protocolReference": "AHA/ASA Stroke Guidelines / Cincinnati Prehospital Stroke Scale",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Activación inmediata del 'Código ACV' con pre-notificación al centro receptor con tomografía y hemodinamia, tiempo en escena mínimo (< 15 minutos), cabecera a 30°, mantener la presión arterial permisiva sin antihipertensivos agresivos y traslado prioritario.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En el ACV isquémico agudo dentro de la ventana de reperfusión (trombolisis iv < 4.5 h o trombectomía mecánica < 24 h), el lema es 'tiempo es cerebro' (se pierden 1.9 millones de neuronas por minuto). La pre-notificación activa al equipo intrahospitalario para que el tomógrafo esté libre al arribo. La presión arterial es un mecanismo compensatorio de autorregulación para perfundir el área de penumbra isquémica y NO debe bajarse en prehospitalario a menos que supere 220/120 mmHg o haya daño de órgano blanco."
+        },
+        {
+          "optionKey": "B",
+          "text": "Administración inmediata de Captopril 25 mg sublingual o Enalaprilat intravenoso para normalizar la presión arterial por debajo de 120/80 mmHg antes del traslado.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Reducir drásticamente la presión arterial en el ACV isquémico agudo destruye la presión de perfusión cerebral en la penumbra isquémica y transforma tejido potencialmente salvable en infarto irreversible. La hipotensión inducida iatrogénica en prehospitalario aumenta la morbilidad y mortalidad."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administrar una dosis de carga oral de Ácido Acetilsalicílico 300 mg y Clopidogrel 300 mg en la ambulancia para iniciar antiagregación rápida.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Está estrictamente contraindicado administrar antiagregantes plaquetarios o anticoagulantes en el medio prehospitalario antes de haber obtenido una Tomografía Axial Computarizada (TAC) de cráneo que descarte un ACV de origen hemorrágico."
+        },
+        {
+          "optionKey": "D",
+          "text": "Administrar un bolo de 1000 mL de solución salina normal al 0.9% y 2 ampollas de complejo B para neuroprotección metabólica.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La sobrecarga de fluidos puede empeorar el edema cerebral y la hemodilución; además, el complejo B carece de cualquier respaldo científico o evidencia en el tratamiento agudo del ataque cerebrovascular."
+        }
+      ]
+    }
+  ]
+}

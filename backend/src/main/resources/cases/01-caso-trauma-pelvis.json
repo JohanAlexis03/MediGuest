@@ -1,0 +1,78 @@
+{
+  "id": "caso-trauma-pelvis",
+  "title": "Shock hipovolémico por fractura inestable de pelvis",
+  "specialty": "TRAUMA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Colisión vehicular frontal de alta energía. Conductor atrapado tras impacto a 80 km/h.",
+  "scene": "Deformidad severa del habitáculo. Parabrisas estrellado en ojo de buey. Volante doblado.",
+  "kinematicsOrOnset": "Desaceleración brusca con impacto de rodillas contra el tablero y compresión lateral del anillo pélvico.",
+  "protocolReference": "PHTLS 9na Edición, Cap. 12 (Trauma Musculoesquelético y Pélvico)",
+  "patient": {
+    "age": 38,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 78,
+    "occupation": "Conductor de transporte"
+  },
+  "vitals": {
+    "heartRate": 132,
+    "respiratoryRate": 28,
+    "bloodPressure": "84/52",
+    "oxygenSaturation": 91,
+    "bodyTemperature": 35.8,
+    "glasgow": {
+      "ocularResponse": 3,
+      "verbalResponse": 4,
+      "motorResponse": 5,
+      "totalScore": 12
+    }
+  },
+  "primarySurvey": {
+    "airway": "Permeable, con control bimanual estricto de columna cervical en línea media.",
+    "breathing": "Taquipneico, murmullo vesicular simétrico sin ruidos agregados ni ingurgitación yugular.",
+    "circulation": "Pulsos periféricos filiformes, taquicardia marcada, llenado capilar de 4 segundos. Piel pálida, fría y diaforética. Inestabilidad y dolor a la compresión suave de crestas ilíacas.",
+    "disability": "Glasgow 12/15 por hipoperfusión cerebral aguda. Pupilas isocóricas reactivas a la luz (3mm).",
+    "exposure": "Equimosis perineal incipiente. Extremidad inferior izquierda acortada y en rotación externa."
+  },
+  "sampleHistory": {
+    "symptoms": "Dolor pélvico lancinante intolerable, sensación de desvanecimiento y sed intensa.",
+    "allergies": "Niega alergias a medicamentos.",
+    "medications": "Ninguno habitual.",
+    "pastHistory": "Apendicectomía a los 18 años.",
+    "lastMeal": "Almuerzo hace 4 horas.",
+    "events": "Conducía con cinturón de dos puntos. Vehículo impactó contra un pilar de concreto."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Ante la inestabilidad hemodinámica y sospecha de fractura de pelvis en libro abierto en la fase prehospitalaria, ¿cuál es la intervención prioritaria inmediata?",
+      "protocolReference": "PHTLS 9na Edición, Cap. 12",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Colocación inmediata de faja pélvica comercial o sábana a nivel de trocánteres mayores y reanimación hipotensiva permisiva.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! La faja pélvica a nivel de trocánteres mayores reduce el volumen pélvico, estabiliza el hematoma retroperitoneal y mitiga el sangrado de plexos venosos pélvicos. Se acompaña de reanimación hipotensiva (PAS 80-90 mmHg) para no remover coágulos."
+        },
+        {
+          "optionKey": "B",
+          "text": "Administración agresiva de 3 litros de solución salina 0.9% en bolo rápido para normalizar la PA por encima de 120/80.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La sobrecarga masiva de cristaloides genera hemodilución de factores de coagulación, hipotermia y disrupción mecánica de coágulos formados ('pop the clot')."
+        },
+        {
+          "optionKey": "C",
+          "text": "Compresión manual repetida de crestas ilíacas cada 5 minutos para evaluar si persiste la inestabilidad ósea.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La pelvis solo se evalúa UNA vez con presión suave. Palparla repetidamente desaloja coágulos y desata hemorragias catastróficas."
+        },
+        {
+          "optionKey": "D",
+          "text": "Tracción cutánea de la extremidad inferior acortada antes de la inmovilización en tabla espinal.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Traccionar la extremidad sin antes cerrar el anillo pélvico expande el espacio retroperitoneal e incrementa el volumen de sangrado oculto."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "caso-bradicardia-inestable-bloqueo-av",
+  "title": "Bradicardia Sintomática Inestable secundaria a Bloqueo Auriculoventricular Completo (Tercer Grado)",
+  "specialty": "CARDIOVASCULAR",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Adulto mayor femenina con mareo intenso, palidez extrema y estado de casi desmayo en su habitación.",
+  "scene": "Habitación en planta baja. Paciente en decúbito supino en la cama, diaforética y somnolienta.",
+  "kinematicsOrOnset": "Sensación de fatiga y pesadez torácica de 3 horas de evolución con deterioro progresivo de la lucidez mental hace 20 minutos.",
+  "protocolReference": "AHA Algoritmo de Bradicardia en Adultos con Pulso / ACLS 2020-2025",
+  "patient": {
+    "age": 74,
+    "ageUnit": "años",
+    "sex": "Femenino",
+    "weightKg": 62,
+    "occupation": "Pensionada"
+  },
+  "vitals": {
+    "heartRate": 32,
+    "respiratoryRate": 20,
+    "bloodPressure": "74/42",
+    "oxygenSaturation": 92,
+    "bodyTemperature": 35.8,
+    "glasgow": {
+      "ocularResponse": 3,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 13
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea permeable con reflejo nauseoso conservado.",
+    "breathing": "Taquipnea compensatoria a 20 rpm, campos pulmonares con estertores basales bibasales leves. SatO₂ 92% al aire.",
+    "circulation": "Hipotensión severa (74/42 mmHg), bradicardia extrema con pulso radial filiforme a 32 lpm. Llenado capilar > 4 segundos, piel fría y pegajosa. El monitor revela disociación auriculoventricular completa con ondas P independientes y complejos QRS anchos de escape ventricular a 32 lpm.",
+    "disability": "Glasgow 13/15 (somnolencia y confusión por hipoperfusión cerebral aguda). Pupilas reactivas de 3 mm.",
+    "exposure": "Extremidades frías y cianóticas distalmente. Sin estigmas de trauma."
+  },
+  "sampleHistory": {
+    "symptoms": "Presíncope, debilidad profunda, opresión precordial vaga y disnea leve.",
+    "allergies": "No refiere.",
+    "medications": "Carvedilol 12.5 mg/día, Furosemida 40 mg/día.",
+    "pastHistory": "Cardiopatía isquémica con antecedente de infarto inferior hace 5 años.",
+    "lastMeal": "Té y galletas hace 4 horas.",
+    "events": "Al levantarse para ir al baño sintió que todo le daba vueltas y cayó lentamente al suelo sin traumatismo craneal."
+  },
+  "media": {
+    "mediaType": "ecg",
+    "title": "Electrocardiograma / Monitor DII continuo",
+    "subtitle": "Bloqueo Auriculoventricular Completo (Tercer Grado)",
+    "findings": "Disociación AV completa con ondas P regulares a 80 lpm y ritmo de escape ventricular ancho a 32 lpm.",
+    "badgeLabel": "ECG",
+    "imageUrl": "bradycardia_ecg.jpg",
+    "imageCaption": "Tira de ritmo que muestra ausencia de conducción entre aurículas y ventrículos con escape ventricular lento."
+  },
+  "questions": [
+    {
+      "prompt": "Frente a una paciente con bradicardia severa e inestabilidad hemodinámica manifiesta (hipotensión 74/42, confusión mental y signos de shock cardiogénico), ¿cuál es la conducta terapéutica prehospitalaria indicada según las guías AHA ACLS?",
+      "protocolReference": "AHA ACLS Bradicardia del Adulto / Pacing Transcutáneo",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Instalación inmediata de marcapasos transcutáneo (TCP) fijando frecuencia objetivo entre 60-70 lpm y subiendo miliamperios hasta obtener captura eléctrica y mecánica (pulso concordante), con sedación/analgesia leve si la hemodinámica lo permite; preparar infusión de cronotrópicos (Dopamina 5-20 mcg/kg/min o Adrenalina 2-10 mcg/min).",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En bradicardia con signos de compromiso vital inestable (shock, hipotensión, alteración mental, dolor isquémico o falla cardíaca aguda), el marcapasos transcutáneo es la intervención de primera línea más efectiva, especialmente en bloqueos infranodales avanzados (BAV 3er grado con QRS ancho) donde la Atropina suele ser ineficaz o paradójicamente contraproducente. La confirmación del pulso femoral/radial (captura mecánica) es indispensable tras la captura eléctrica."
+        },
+        {
+          "optionKey": "B",
+          "text": "Administración repetida de Atropina 1 mg en bolo cada minuto hasta un máximo de 12 mg y esperar 15 minutos en escena antes de cualquier otra medida.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La dosis máxima acumulada de Atropina es de 3 mg. En bloqueos AV de tercer grado infranodales (a nivel del haz de His o ramas con QRS ancho), la Atropina no actúa porque el escape es ventricular y carece de inervación parasimpática significativa; retrasar el marcapasos transcutáneo lleva al colapso en asistolia."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administración rápida de 2000 mL de solución de Hartman en 15 minutos para elevar la precarga arterial como tratamiento exclusivo.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La causa del shock es el gasto cardíaco extremadamente bajo por bradicardia (GC = FC x VS). Administrar sobrecargas masivas de líquidos a un corazón bradicárdico e isquémico precipitará un edema agudo de pulmón masivo y falla ventricular refractaria."
+        },
+        {
+          "optionKey": "D",
+          "text": "Administrar Adenosina 6 mg en bolo rápido intravenoso para resetear la conducción auriculoventricular.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La Adenosina bloquea la conducción en el nodo AV y se utiliza para taquicardias supraventriculares estrechas por reentrada. Administrarla en una bradicardia con bloqueo AV causará pausas ventriculares prolongadas o paro en asistolia."
+        }
+      ]
+    }
+  ]
+}

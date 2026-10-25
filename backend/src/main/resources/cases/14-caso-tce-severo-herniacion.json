@@ -1,0 +1,78 @@
+{
+  "id": "caso-tce-severo-herniacion",
+  "title": "Traumatismo Craneoencefálico Severo con signos de herniación uncal inminente",
+  "specialty": "TRAUMA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Caída de altura de aproximadamente 4 metros en obra en construcción. Obrero inconsciente.",
+  "scene": "Piso de concreto. Casco partido a un costado. Paciente en decúbito prono que no responde a estímulos.",
+  "kinematicsOrOnset": "Impacto temporoparietal derecho directo contra superficie dura tras precipitación desde andamio.",
+  "protocolReference": "PHTLS 9na Edición, Cap. 8 (Trauma Craneoencefálico) y Guías Brain Trauma Foundation",
+  "patient": {
+    "age": 42,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 80,
+    "occupation": "Albañil"
+  },
+  "vitals": {
+    "heartRate": 52,
+    "respiratoryRate": 10,
+    "bloodPressure": "185/105",
+    "oxygenSaturation": 89,
+    "bodyTemperature": 36.4,
+    "glasgow": {
+      "ocularResponse": 1,
+      "verbalResponse": 1,
+      "motorResponse": 3,
+      "totalScore": 5
+    }
+  },
+  "primarySurvey": {
+    "airway": "Compromiso severo de vía aérea por caída de la lengua y reflejos deglutorios ausentes. Respiración estertorosa.",
+    "breathing": "Patrón respiratorio irregular con pausas apneicas (patrón de Cheyne-Stokes / bradipnea a 10 rpm). SatO₂ 89% con oxígeno.",
+    "circulation": "Bradicardia marcada (52 lpm), hipertensión severa (185/105) con presión de pulso ampliada (Respuesta de Cushing). Pulsos llenos.",
+    "disability": "Glasgow 5/15 (O:1, V:1, M:3 postura de decorticación). Pupila derecha midriática fija no reactiva (6 mm), pupila izquierda 3 mm reactiva (anisocoria por compresión del III par craneal).",
+    "exposure": "Hematoma subgaleal temporoparietal derecho extenso con otorragia derecha. Sin sangrado exanguinante en extremidades."
+  },
+  "sampleHistory": {
+    "symptoms": "Pérdida de conocimiento inmediata tras el impacto, vómito previo y rigidez motora anormal.",
+    "allergies": "No conocidas.",
+    "medications": "Ninguno habitual.",
+    "pastHistory": "Hombre previamente sano.",
+    "lastMeal": "Desayuno hace 3 horas.",
+    "events": "Pérdida de equilibrio en andamio sin arnés de seguridad."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Ante el Glasgow de 5/15, la anisocoria pupilar derecha fija y la Tríada de Cushing (hipertensión + bradicardia + depresión ventilatoria), ¿cuál es el manejo ventilatorio y osmótico prioritario para evitar la muerte por herniación uncal?",
+      "protocolReference": "Brain Trauma Foundation / PHTLS 9na Edición",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Aseguramiento de la vía aérea mediante Secuencia de Intubación Rápida con neuroprotección, normoventilación estricta guiada por capnografía (EtCO₂ 35-40 mmHg), elevación de cabecera a 30° alineada y Solución Salina Hipertónica al 3% o Manitol si hay protocolo médico.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En TCE grave con signos de herniación uncal inminente (anisocoria unilateral + Cushing), un solo episodio de hipoxia o hipotensión duplica la mortalidad. La normoventilación estricta (EtCO₂ 35-40 mmHg) evita la isquemia por vasoconstricción cerebral. La terapia hiperosmolar (solución salina hipertónica al 3%) extrae agua del parénquima reduciendo la PIC rápidamente, junto con la elevación de la cabecera a 30° para optimizar el retorno venoso yugular."
+        },
+        {
+          "optionKey": "B",
+          "text": "Hiperventilación agresiva profiláctica a más de 35 respiraciones por minuto con ambú para barrer el CO₂ lo más bajo posible (< 25 mmHg).",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La hiperventilación profunda descontrolada (EtCO₂ < 30 mmHg) causa vasoconstricción arteriolar cerebral severa, desatando isquemia encefálica secundaria catastrófica."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administrar nitroprusiato de sodio intravenoso para bajar rápidamente la presión arterial a menos de 120/80.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La hipertensión en la tríada de Cushing es una respuesta fisiológica refleja para mantener la Presión de Perfusión Cerebral (PPC = PAM - PIC). Bajar la PA abruptamente colapsa la perfusión cerebral y acelera el paro cardiorrespiratorio."
+        },
+        {
+          "optionKey": "D",
+          "text": "Posición de Trendelenburg (cabeza hacia abajo) para aumentar el flujo sanguíneo cerebral.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Trendelenburg incrementa masivamente la presión venosa yugular y la PIC, precipitando la herniación cerebral fatal en minutos."
+        }
+      ]
+    }
+  ]
+}

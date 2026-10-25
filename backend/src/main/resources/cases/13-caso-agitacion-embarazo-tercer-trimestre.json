@@ -1,0 +1,78 @@
+{
+  "id": "caso-agitacion-embarazo-tercer-trimestre",
+  "title": "Agitación psicomotora aguda y psicosis puerperal incipiente en embarazo del tercer trimestre",
+  "specialty": "NEUROLOGIA",
+  "difficulty": "INTERMEDIO",
+  "dispatchContext": "Despacho para traslado secundario desde centro de salud rural: gestante de 34 semanas muy agitada y con discurso delirante.",
+  "scene": "Habitación de urgencias. Paciente de pie sobre la camilla, combativa con familiares y personal médico.",
+  "kinematicsOrOnset": "Cuadro de 4 días de insomnio progresivo, desconexión de la realidad e ideación delirante de daño hacia el feto.",
+  "protocolReference": "Urgencias Obstétricas y Psiquiátricas APH / Soporte Vital Obstétrico Prehospitalario",
+  "patient": {
+    "age": 24,
+    "ageUnit": "años",
+    "sex": "Femenino",
+    "weightKg": 68,
+    "occupation": "Ama de casa"
+  },
+  "vitals": {
+    "heartRate": 104,
+    "respiratoryRate": 20,
+    "bloodPressure": "118/76",
+    "oxygenSaturation": 98,
+    "bodyTemperature": 36.7,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 3,
+      "motorResponse": 6,
+      "totalScore": 13
+    }
+  },
+  "primarySurvey": {
+    "airway": "Permeable, grita con contenido delirante místico y persecutorio. Vía oral no disponible por nula cooperación.",
+    "breathing": "Frecuencia respiratoria 20 rpm, murmullo vesicular simétrico sin sibilancias ni estertores.",
+    "circulation": "Taquicardia leve (104 lpm), normotensa (118/76), perfusión distal adecuada, abdomen grávido con feto activo.",
+    "disability": "Glasgow 13/15. Psicosis reactiva aguda con riesgo inminente de autoagresión o traumatismo abdominal materno-fetal.",
+    "exposure": "Sin sangrado genital, sin pérdida de líquido amniótico, abdomen no doloroso a la palpación suave."
+  },
+  "sampleHistory": {
+    "symptoms": "Agitación severa, insomnio de 96 horas, desconexión de la realidad y rechazo alimentario.",
+    "allergies": "Niega alergias.",
+    "medications": "Vitaminas prenatales y sulfato ferroso.",
+    "pastHistory": "Primigesta de 34 semanas. Sin antecedentes psiquiátricos previos.",
+    "lastMeal": "Líquidos hace 8 horas.",
+    "events": "Inestabilidad emocional postraumática que evolucionó rápidamente a psicosis aguda."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Para lograr una contención farmacológica segura durante el traslado en ambulancia que minimice la depresión respiratoria fetal y la hipotensión materna, ¿cuál es el abordaje de primera elección?",
+      "protocolReference": "Guías de Farmacología en el Embarazo y Transporte Crítico APH",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Haloperidol en dosis bajas (2.5 a 5 mg IM) o antipsicóticos de primera generación, debido a su extenso perfil de seguridad documentado en el tercer trimestre sin causar depresión respiratoria fetal inmediata.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En el tercer trimestre de gestación, el haloperidol intramuscular tiene un perfil de seguridad materno-fetal bien establecido: no genera hipotonía neonatal ni depresión respiratoria grave comparado con dosis altas de benzodiacepinas. Siempre se administra con monitoreo materno de FC, PA y posición de decúbito lateral izquierdo para evitar compresión aorto-cava."
+        },
+        {
+          "optionKey": "B",
+          "text": "Diazepam 20 mg intravenoso en bolo rápido.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Dosis altas de diazepam cruzan la placenta con rapidez acumulándose en el feto, provocando el 'síndrome del lactante flácido' (hipotonía, hipotermia y depresión respiratoria neonatal prolongada)."
+        },
+        {
+          "optionKey": "C",
+          "text": "Inmovilización mecánica boca abajo (en decúbito prono) para impedir que se lesione el vientre.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La posición prona en una gestante de 34 semanas causa compresión de la vena cava inferior, asfixia materna y desprendimiento prematuro de placenta."
+        },
+        {
+          "optionKey": "D",
+          "text": "Administrar Sulfato de Magnesio como sedante principal.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El sulfato de magnesio es el anticonvulsivante de elección para eclampsia y neuroprotección fetal, pero no es un agente tranquilizante para la psicosis aguda."
+        }
+      ]
+    }
+  ]
+}

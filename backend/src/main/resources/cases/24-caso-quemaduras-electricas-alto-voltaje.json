@@ -1,0 +1,78 @@
+{
+  "id": "caso-quemaduras-electricas-alto-voltaje",
+  "title": "Quemadura Eléctrica Industrial por Alto Voltaje con Daño Muscular Oculto y Riesgo de Arritmias",
+  "specialty": "TRAUMA",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Descarga eléctrica industrial de alta tensión (> 1000 V) en subestación eléctrica. Operario despedido por la onda expansiva.",
+  "scene": "Subestación eléctrica. Brigada interna de rescate ya cortó el suministro eléctrico y aisló la zona con candados de seguridad (LOTO). Paciente tendido sobre el piso de rejilla metálica.",
+  "kinematicsOrOnset": "Contacto accidental de la mano derecha con cable de media tensión de 13.200 Voltios con descarga a tierra a través del talón izquierdo hace 12 minutos. Proyección violenta de 3 metros de distancia.",
+  "protocolReference": "PHTLS 9na Edición, Cap. 14 (Quemaduras y Trauma Eléctrico) / Guías American Burn Association (ABA)",
+  "patient": {
+    "age": 31,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 76,
+    "occupation": "Electricista de línea viva"
+  },
+  "vitals": {
+    "heartRate": 115,
+    "respiratoryRate": 20,
+    "bloodPressure": "104/62",
+    "oxygenSaturation": 95,
+    "bodyTemperature": 36.1,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 4,
+      "motorResponse": 5,
+      "totalScore": 13
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea permeable con control cervical bimanual en línea media por la cinemática de proyección violenta.",
+    "breathing": "Respiración espontánea simétrica a 20 rpm, sin ruidos patológicos ni quemaduras en vía aérea superior. SatO₂ 95% al aire ambiente.",
+    "circulation": "Taquicardia a 115 lpm con extrasístoles frecuentes en el monitor cardíaco. Pulsos periféricos presentes pero difíciles de palpar en extremidad superior derecha por edema tenso incipiente (sospecha de síndrome compartimental). PA 104/62 mmHg.",
+    "disability": "Glasgow 13/15 (confundido, con amnesia del suceso posterior al arco eléctrico). Pupilas isocóricas de 3 mm.",
+    "exposure": "Orificio de entrada carbonizado y circumscrito de 4 cm en palma derecha. Orificio de salida explosivo y desbridado de 8 cm en cara plantar de talón izquierdo con tejido muscular y tendinoso calcinado. Ropa quemada pero retirada. Tensión muscular extrema en antebrazo derecho."
+  },
+  "sampleHistory": {
+    "symptoms": "Dolor urente severo en antebrazo y pierna, parestesias, confusión y palpitaciones.",
+    "allergies": "Ninguna.",
+    "medications": "Ninguno.",
+    "pastHistory": "Sin antecedentes patológicos relevantes.",
+    "lastMeal": "Almuerzo hace 3 horas.",
+    "events": "Estaba midiendo fase en transformador cuando se produjo un arco voltaico que atravesó su cuerpo de mano derecha a pie izquierdo."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "En las quemaduras eléctricas por alto voltaje (> 1000 V), el daño cutáneo visible suele subestimar catastróficamente la destrucción profunda tisular (efecto 'iceberg'). ¿Cuáles son las dos prioridades clínicas inmediatas durante la atención prehospitalaria y el transporte?",
+      "protocolReference": "PHTLS 9na Edición / American Burn Association Electrical Guidelines",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Monitorización electrocardiográfica continua obligatoria por riesgo elevado de arritmias ventriculares tardías malignas, e infusión agresiva de cristaloides isotónicos (Lactato de Ringer) orientada a mantener un gasto urinario elevado (> 1-2 mL/kg/h) para prevenir la necrosis tubular aguda por mioglobinuria y rabdomiólisis masiva.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! La corriente de alto voltaje genera calentamiento óseo y muscular profundo (el músculo y nervio tienen baja resistencia y conducen la corriente), provocando rabdomiólisis masiva con liberación de mioglobina que precipita en los túbulos renales. La fórmula estándar de Parkland basada en área de superficie corporal quemada (% SCQ) subestima gravemente el volumen requerido en trauma eléctrico de alto voltaje. Además, el paso de corriente transtorácico despolariza el miocardio provocando arritmias letales (FV/TV) que exigen monitorización continua."
+        },
+        {
+          "optionKey": "B",
+          "text": "Calcular los líquidos estrictamente con la fórmula de Parkland convencional calculando solo el 2% de superficie quemada visible en la palma y talón (apenas 300 mL en 24 horas) para evitar la sobrecarga hídrica pulmonar.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Limitar la hidratación al porcentaje cutáneo visible en quemaduras eléctricas por alto voltaje conduce invariablemente a falla renal aguda oligoanúrica irreversible por necrosis tubular aguda mioglobinúrica en las primeras horas."
+        },
+        {
+          "optionKey": "C",
+          "text": "Sumergir inmediatamente el brazo y pie calcinados en cubetas con agua helada a 4°C durante 30 minutos para frenar la necrosis térmica antes del traslado.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La aplicación de hielo o agua helada en quemaduras extensas o profundas desencadena vasoconstricción severa que profundiza la isquemia tisular y causa hipotermia sistémica grave con coagulopatía."
+        },
+        {
+          "optionKey": "D",
+          "text": "Realizar escarotomías y fasciotomías descompresivas en el lugar del hecho con bisturí de campo sin anestesia antes de subir a la ambulancia.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Las fasciotomías quirúrgicas para descomprimir compartimentos musculares son procedimientos quirúrgicos intrahospitalarios de urgencia en quirófano estéril; realizarlas en la calle genera hemorragia descontrolada e infección sin beneficio prehospitalario."
+        }
+      ]
+    }
+  ]
+}

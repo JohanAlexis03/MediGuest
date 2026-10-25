@@ -1,0 +1,78 @@
+{
+  "id": "caso-crup-laringotraqueitis-pediatrico",
+  "title": "Laringotraqueítis Aguda (Crup Moderado-Grave) con Estridor en Reposo en Lactante Mayor",
+  "specialty": "PEDIATRIA",
+  "difficulty": "INTERMEDIO",
+  "dispatchContext": "Madre solicita ayuda médica a medianoche porque su hijo de 18 meses tiene una tos extraña 'como de foca o perro', fiebre y se fatiga mucho al respirar.",
+  "scene": "Dormitorio infantil. Niño de 18 meses sentado en el regazo de su madre, visiblemente asustado con tos seca metálica y estridor constante al inhalar.",
+  "kinematicsOrOnset": "Cuadro catarral de 48 horas con rinorrea y febrícula que se agudizó bruscamente en la madrugada con tos perruna y disnea.",
+  "protocolReference": "PALS AHA / Guías de Práctica Clínica para el Manejo de Laringotraqueítis Aguda (Crup)",
+  "patient": {
+    "age": 18,
+    "ageUnit": "meses",
+    "sex": "Masculino",
+    "weightKg": 11,
+    "occupation": "Lactante mayor"
+  },
+  "vitals": {
+    "heartRate": 142,
+    "respiratoryRate": 44,
+    "bloodPressure": "95/60",
+    "oxygenSaturation": 93,
+    "bodyTemperature": 38.5,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 14
+    }
+  },
+  "primarySurvey": {
+    "airway": "Estridor inspiratorio bifásico claramente audible en reposo sin necesidad de fonendoscopio, que empeora intensamente cuando el niño llora.",
+    "breathing": "Trabajo respiratorio moderado-grave con tiraje supraesternal e intercostal visible, aleteo nasal y frecuencia respiratoria de 44 rpm. SatO₂ 93% al aire ambiente.",
+    "circulation": "Taquicardia sinusal a 142 lpm secundaria a estrés e hipertermia. Llenado capilar de 2 segundos, pulsos periféricos palpables y simétricos.",
+    "disability": "Glasgow 14/15, irritable por la sensación de ahogo pero consolable en brazos de la madre. Pupilas isocóricas reactivas.",
+    "exposure": "Fiebre de 38.5°C, piel sonrosada sin exantemas ni hematomas."
+  },
+  "sampleHistory": {
+    "symptoms": "Tos seca metálica 'perruna', estridor inspiratorio, dificultad para respirar y disfonía al llorar.",
+    "allergies": "Ninguna conocida.",
+    "medications": "Paracetamol gotas hace 3 horas.",
+    "pastHistory": "Nacido a término, vacunas al día.",
+    "lastMeal": "Lactancia materna hace 2 horas.",
+    "events": "Despertó súbitamente a las 02:00 am con tos espasmódica intensa y ruido áspero al meter aire."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "En un lactante con crup moderado a grave con estridor inspiratorio en reposo y retracción supraesternal (Escala de Westley > 5), ¿cuál es la estrategia terapéutica prehospitalaria más segura y eficaz?",
+      "protocolReference": "PALS AHA / Guía de Crup Pediátrico",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Mantener al niño tranquilo en brazos de la madre evitando manipulaciones bruscas, administrar Dexametasona (0.6 mg/kg oral o IM) y nebulizar con Adrenalina común 1:1000 (0.5 mL/kg, máximo 5 mL) con flujo de oxígeno de 6 a 8 L/min.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En el crup, el llanto y la agitación aumentan el flujo turbulento a través del área subglótica inflamada estenosándola aún más. Mantener al lactante tranquilo con la madre es prioritario. La adrenalina nebulizada actúa de inmediato induciendo vasoconstricción local alfa-1 arteriolar en la mucosa subglótica edematosa, aliviando el estridor en 10-30 minutos, mientras que la dexametasona provee el efecto antiinflamatorio sostenido para prevenir el rebote."
+        },
+        {
+          "optionKey": "B",
+          "text": "Forzar la apertura de la boca con un bajalenguas metálico para inspeccionar minuciosamente la úvula y las amígdalas mientras el personal sujeta al niño firmemente.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Examinar la orofaringe con bajalenguas en un niño con estridor y compromiso respiratorio está proscrito: la agitación extrema puede precipitar un laringoespasmo fatal u oclusión completa si existiera sospecha de epiglotitis."
+        },
+        {
+          "optionKey": "C",
+          "text": "Realizar de inmediato una intubación orotraqueal con tubo endotraqueal con balón número 5.5 sin preoxigenación para asegurar la vía aérea antes de salir.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Menos del 1% de los casos de crup requieren intubación, la cual debe reservarse exclusivamente para fatiga extrema o apnea. Además, un tubo 5.5 es desproporcionadamente grande para un lactante de 18 meses (requiere 3.5 a 4.0 sin balón) y lesionaría la mucosa subglótica."
+        },
+        {
+          "optionKey": "D",
+          "text": "Administrar antibióticos intravenosos de amplio espectro (Ceftriaxona 50 mg/kg) y dejar en ayuno total sin oxígeno suplementario.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Más del 95% de los casos de crup son causados por virus parainfluenza, por lo que los antibióticos no tienen ningún rol en el tratamiento agudo prehospitalario."
+        }
+      ]
+    }
+  ]
+}

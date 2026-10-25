@@ -1,0 +1,78 @@
+{
+  "id": "caso-anafilaxia-beta",
+  "title": "Anafilaxia refractaria en paciente bajo tratamiento crónico con betabloqueadores",
+  "specialty": "RESPIRATORIO",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Llamada por reacción alérgica grave tras picadura de abeja en paciente hipertenso en tratamiento con propranolol.",
+  "scene": "Paciente sentado con disnea aguda, edema periorbitario y labial marcado.",
+  "kinematicsOrOnset": "Reacción anafiláctica severa con respuesta clínica nula a dos dosis de adrenalina intramuscular.",
+  "protocolReference": "Guías AHA / ERC de Soporte Vital y Manejo de Anafilaxia Refractaria",
+  "patient": {
+    "age": 54,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 82,
+    "occupation": "Comerciante"
+  },
+  "vitals": {
+    "heartRate": 58,
+    "respiratoryRate": 26,
+    "bloodPressure": "78/44",
+    "oxygenSaturation": 89,
+    "bodyTemperature": 36.6,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 14
+    }
+  },
+  "primarySurvey": {
+    "airway": "Estridor laríngeo inspiratorio audible, edema de úvula y labios.",
+    "breathing": "Disnea marcada, sibilancias espiratorias bilaterales y saturación 89% con oxígeno.",
+    "circulation": "Hipotensión refractaria (78/44), bradicardia relativa o inapropiada (58 lpm) por bloqueo beta-adrenérgico.",
+    "disability": "Alerta pero ansioso y agitado por hipoxia.",
+    "exposure": "Urticaria difusa con placas eritematosas pruriginosas en tórax y abdomen."
+  },
+  "sampleHistory": {
+    "symptoms": "Sensación de asfixia, mareo postural y calor corporal intenso.",
+    "allergies": "Picadura de himenópteros diagnosticada hace 5 años.",
+    "medications": "Propranolol 40 mg cada 12 horas por hipertensión y temblor esencial.",
+    "pastHistory": "Hipertensión arterial controlada.",
+    "lastMeal": "Desayuno hace 2 horas.",
+    "events": "Picadura múltiple de insecto mientras realizaba jardinería."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Tras dos dosis de adrenalina IM (0.5 mg) sin respuesta en la presión arterial ni el estridor, ¿cuál es el fármaco de segunda línea indicado y por qué mecanismo actúa?",
+      "protocolReference": "Farmacología Clínica en Urgencias - PHTLS / AHA",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Glucagón IV (1 a 5 mg), ya que estimula la adenilil ciclasa y eleva el AMPc miocárdico de manera independiente a los receptores beta-adrenérgicos.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En pacientes con betabloqueo crónico, los receptores beta están saturados y la adrenalina no puede generar suficiente efecto inotrópico ni cronotrópico. El glucagón activa directamente la adenilato ciclasa a través de receptores específicos, superando el bloqueo beta para revertir el colapso cardiovascular."
+        },
+        {
+          "optionKey": "B",
+          "text": "Aumentar la dosis de adrenalina IM a 2 mg cada 2 minutos en bolo.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Dosis masivas de adrenalina en presencia de betabloqueo no selectivo pueden inducir vasoconstricción alfa-1 masiva sin oposición beta-2, desatando crisis hipertensiva o hemorragia intracraneal."
+        },
+        {
+          "optionKey": "C",
+          "text": "Administrar Difenhidramina oral y esperar 45 minutos a que haga efecto.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los antihistamínicos son coadyuvantes para prurito y edema cutáneo, pero NO revierten el choque distributivo ni el compromiso de la vía aérea."
+        },
+        {
+          "optionKey": "D",
+          "text": "Hidrocortisona IV como único tratamiento para estabilizar la membrana del mastocito de forma inmediata.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Los corticoides tardan entre 4 a 6 horas en actuar genómicamente; no tienen ningún impacto en el shock anafiláctico agudo."
+        }
+      ]
+    }
+  ]
+}
