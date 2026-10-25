@@ -1,0 +1,78 @@
+{
+  "id": "caso-neumonia-grave-sepsis",
+  "title": "Neumonía Grave Adquirida en la Comunidad con Insuficiencia Ventilatoria y Sepsis (qSOFA Positivo)",
+  "specialty": "RESPIRATORIO",
+  "difficulty": "INTERMEDIO",
+  "dispatchContext": "Adulto mayor de 71 años en hogar de ancianos con fiebre alta de 3 días, desorientación aguda, tos con sangre y dificultad para respirar.",
+  "scene": "Habitación geriátrica. Paciente en cama en posición semi-fowler, febril al tacto, taquipneico y con tos húmeda extenuante.",
+  "kinematicsOrOnset": "Cuadro respiratorio de 72 horas de evolución caracterizado por escalofríos, fiebre no cuantificada y deterioro abrupto del estado de alerta en las últimas 6 horas.",
+  "protocolReference": "Surviving Sepsis Campaign 2021 / ATS/IDSA Community-Acquired Pneumonia Guidelines",
+  "patient": {
+    "age": 71,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 68,
+    "occupation": "Jubilado"
+  },
+  "vitals": {
+    "heartRate": 114,
+    "respiratoryRate": 30,
+    "bloodPressure": "88/54",
+    "oxygenSaturation": 86,
+    "bodyTemperature": 39.3,
+    "glasgow": {
+      "ocularResponse": 3,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 13
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea permeable con presencia de esputo purulento herrumbroso (color ladrillo/óxido característico de Streptococcus pneumoniae).",
+    "breathing": "Taquipnea a 30 rpm con utilización de músculos accesorios. A la auscultación se aprecia matidez a la percusión en hemitórax derecho, aumento de las vibraciones vocales, estertores crepitantes húmedos y soplo tubárico en base y campo medio derecho. SatO₂ 86% al aire ambiente.",
+    "circulation": "Hipotensión arterial (88/54 mmHg con PAM 65 mmHg) y taquicardia sinusal a 114 lpm. Llenado capilar prolongado a 3.5 segundos con piel caliente y moteada (livedo reticularis incipiente en rodillas).",
+    "disability": "Glasgow 13/15 por confusión mental aguda y desorientación temporoespacial. Puntuación qSOFA de 3/3 (Glasgow < 15, FR ≥ 22, PAS ≤ 100 mmHg), indicando alto riesgo de mortalidad hospitalaria por sepsis.",
+    "exposure": "Fiebre marcada (39.3°C). Sin lesiones traumáticas."
+  },
+  "sampleHistory": {
+    "symptoms": "Fiebre con chuchos de frío, tos con expectoración herrumbrosa, dolor torácico pleurítico derecho y debilidad profunda.",
+    "allergies": "Alérgico a la Penicilina según ficha médica.",
+    "medications": "Aspirina 100 mg/día, Omeprazol 20 mg/día.",
+    "pastHistory": "Diabetes mellitus tipo 2 bien controlada.",
+    "lastMeal": "Rechazo de alimentos en las últimas 12 horas.",
+    "events": "Comenzó con tos seca hace 3 días que se tornó productiva y hoy presentó confusión y postración en cama."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Ante un paciente con neumonía adquirida en la comunidad que cumple criterios de sepsis clínica (qSOFA = 3/3, hipotensión y desorientación) e hipoxemia severa (SatO₂ 86%), ¿cuál es el paquete de medidas prehospitalarias prioritario según las guías Surviving Sepsis Campaign?",
+      "protocolReference": "Surviving Sepsis Campaign Guidelines / ATS/IDSA Guidelines",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Oxigenoterapia titulada para alcanzar SatO₂ 92-96% (mediante mascarilla con reservorio o cánula de alto flujo), inicio inmediato de reanimación con cristaloides isotónicos balanceados (bolo inicial de 500-1000 mL guiado por perfusión periférica hacia la meta de 30 mL/kg si persiste hipotensión) y activación del 'Código Sepsis' con pre-notificación al hospital para que se tomen hemocultivos e inicien antibióticos dirigidos en la primera hora de arribo ('Golden Hour').",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! La sepsis de foco respiratorio por neumonía grave cursa con vasodilatación inflamatoria sistémica y aumento de la permeabilidad vascular con hipovolemia distributiva relativa. El inicio temprano de fluidoterapia con cristaloides (30 mL/kg en shock séptico) restaura la presión de perfusión tisular y la precarga cardíaca. La oxigenoterapia adecuada previene la disfunción multiorgánica isquémica, y la pre-notificación de Código Sepsis acelera la administración intrahospitalaria de antibióticos empíricos precoces en los primeros 60 minutos, lo cual reduce drásticamente la mortalidad."
+        },
+        {
+          "optionKey": "B",
+          "text": "Administración de antibióticos orales en comprimidos triturados en la ambulancia con un sorbo de agua para ganar tiempo antes del traslado.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Está absolutamente contraindicado administrar pastillas o líquidos orales a un paciente con Glasgow de 13/15 y taquipnea severa por el altísimo riesgo de broncoaspiración masiva y parada respiratoria. Además, la sepsis exige terapia parenteral intravenosa."
+        },
+        {
+          "optionKey": "C",
+          "text": "Restricción absoluta de líquidos intravenosos bajo la suposición de que cualquier suero provocará encharcamiento pulmonar en el hemitórax consolidado.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La consolidación neumónica es exudado inflamatorio celular en los alvéolos, no congestión hidrostática capilar por falla cardíaca; privar de fluidos a un paciente con shock séptico e hipotensión causa colapso circulatorio y fallo renal agudo terminal."
+        },
+        {
+          "optionKey": "D",
+          "text": "Administración de un bolo intravenoso de 20 mg de Furosemida y traslado pasivo sin oxígeno para evaluar la mecánica ventilatoria espontánea.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. La furosemida deshidrata letalmente a un paciente en shock séptico y vasodilatación, empeorando el gasto cardíaco y la hipoperfusión. La hipoxemia severa no tratada genera daño celular anóxico rápido."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "caso-tep-masivo-inestable",
+  "title": "Tromboembolismo Pulmonar (TEP) Masivo con Shock Obstructivo e Hipoxemia Refractaria",
+  "specialty": "RESPIRATORIO",
+  "difficulty": "AVANZADO",
+  "dispatchContext": "Mujer de 52 años recién operada con falta súbita de aire catastrófica, dolor torácico en punta de costado y mareo.",
+  "scene": "Domicilio particular. Paciente sentada en la cama, pálida, diaforética y taquipneica con sensación inminente de muerte.",
+  "kinematicsOrOnset": "Disnea de inicio súbito hace 25 minutos al levantarse de la cama tras reposo prolongado de 10 días por cirugía ortopédica de rodilla.",
+  "protocolReference": "ESC Guidelines on Pulmonary Embolism 2019 / PHTLS 9na Edición",
+  "patient": {
+    "age": 52,
+    "ageUnit": "años",
+    "sex": "Femenino",
+    "weightKg": 78,
+    "occupation": "Administrativa"
+  },
+  "vitals": {
+    "heartRate": 130,
+    "respiratoryRate": 32,
+    "bloodPressure": "84/50",
+    "oxygenSaturation": 84,
+    "bodyTemperature": 36.5,
+    "glasgow": {
+      "ocularResponse": 4,
+      "verbalResponse": 4,
+      "motorResponse": 6,
+      "totalScore": 14
+    }
+  },
+  "primarySurvey": {
+    "airway": "Vía aérea permeable con habla entrecortada monosilábica.",
+    "breathing": "Taquipnea extrema a 32 rpm con disociación clínica llamativa: auscultación pulmonar limpia bilateral sin ruidos patológicos (estertores ni sibilancias), contrastando con una hipoxemia refractaria severa (SatO₂ 84% con cánula nasal a 4 L/min).",
+    "circulation": "Hipotensión arterial marcada (84/50 mmHg) con pulso radial filiforme y taquicardia a 130 lpm. Ingurgitación yugular evidente a 45 grados por aumento brusco de la presión en cavidades derechas. El monitor muestra taquicardia sinusal con patrón S1Q3T3 y ondas T invertidas en derivaciones precordiales derechas (V1-V4).",
+    "disability": "Glasgow 14/15, angustiada, con mareo rotatorio al incorporarse por caída del gasto cardíaco.",
+    "exposure": "Miembro inferior derecho con cicatriz quirúrgica reciente de rodilla y edema asimétrico de pantorrilla con dolor a la palpación (signo de Homans +). Sin lesiones traumáticas."
+  },
+  "sampleHistory": {
+    "symptoms": "Disnea súbita extrema, dolor torácico pleurítico derecho agudo, palpitaciones y síncope inminente.",
+    "allergies": "Ninguna.",
+    "medications": "Analgésicos orales (suspendió la enoxaparina profiláctica hace 3 días por olvido).",
+    "pastHistory": "Reemplazo total de rodilla hace 10 días, inmovilización prolongada en cama.",
+    "lastMeal": "Desayuno hace 3 horas.",
+    "events": "Se puso de pie para caminar con el andador cuando sintió una puñalada en el pecho y sensación de desmayo."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Ante un cuadro de disnea súbita con campos pulmonares paradójicamente limpios, hipoxemia refractaria y shock obstructivo secundario a falla ventricular derecha aguda por TEP masivo, ¿cuál es la pauta de soporte hemodinámico y traslado prehospitalario?",
+      "protocolReference": "ESC Pulmonary Embolism Guidelines / AHA ACLS Shock Obstructivo",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Oxigenoterapia con mascarilla de no reinhalación a alto flujo, restricción hídrica estricta evitando sobrecargas masivas (máximo bolo cauteloso de 250-500 mL para no sobredistender el ventrículo derecho), vasopresores tempranos (Noradrenalina para sostener la perfusión coronaria del VD) y pre-notificación de código de reperfusión pulmonar urgente (trombolisis / embolectomía).",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En el TEP masivo, la oclusión vascular pulmonar masiva dispara la poscarga del ventrículo derecho (VD), causando dilatación aguda e isquemia del VD, lo que desplaza el tabique interventricular hacia la izquierda colapsando el llenado del ventrículo izquierdo (shock obstructivo). Sobrecargar con litros de suero distiende letalmente el VD y agrava el colapso hemodinámico. La noradrenalina restaura la presión aórtica y el flujo coronario al VD mientras se traslada de urgencia para trombolisis."
+        },
+        {
+          "optionKey": "B",
+          "text": "Infusión rápida de 3000 mL de solución salina al 0.9% en bolo abierto presurizado como pilar único de reanimación del shock.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Administrar cargas masivas de cristaloides en el fallo agudo del ventrículo derecho causa dilatación irreversible del anillo tricuspídeo, aumento del abombamiento septal hacia el ventrículo izquierdo y parada cardiorrespiratoria por disociación electromecánica."
+        },
+        {
+          "optionKey": "C",
+          "text": "Nebulización continua con Salbutamol e infusión de Sulfato de Magnesio intravenoso para broncodilatación profunda.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El TEP masivo no es una enfermedad de la vía aérea bronquial sino un defecto vascular de perfusión masivo (espacio muerto alveolar extremo). Los broncodilatadores no tratan la causa y la taquicardia inducida empeora la isquemia miocárdica."
+        },
+        {
+          "optionKey": "D",
+          "text": "Realizar una punción descompresiva con aguja torácica en el segundo espacio intercostal línea medioclavicular derecha.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Aunque el TEP masivo y el neumotórax a tensión causan ingurgitación yugular y shock obstructivo, en el TEP los ruidos respiratorios están presentes y conservados simétricamente; puncionar el tórax provocará un neumotórax iatrogénico grave."
+        }
+      ]
+    }
+  ]
+}

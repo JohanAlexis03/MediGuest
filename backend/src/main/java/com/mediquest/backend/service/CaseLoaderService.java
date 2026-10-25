@@ -42,6 +42,8 @@ public class CaseLoaderService {
 
             Arrays.sort(resources, Comparator.comparing(Resource::getFilename));
 
+            int updatedCount = 0;
+
             for (Resource resource : resources) {
                 try (InputStream is = resource.getInputStream()) {
                     CaseJsonDto dto = objectMapper.readValue(is, CaseJsonDto.class);
@@ -50,22 +52,36 @@ public class CaseLoaderService {
                         continue;
                     }
 
-                    if (clinicalCaseRepository.existsById(dto.id())) {
-                        skippedCount++;
-                        continue;
+                    ClinicalCase existing = clinicalCaseRepository.findById(dto.id()).orElse(null);
+                    if (existing == null) {
+                        ClinicalCase entity = dto.toEntity();
+                        clinicalCaseRepository.save(entity);
+                        loadedCount++;
+                        log.info("Caso clínico '{}' cargado exitosamente desde {}", dto.id(), resource.getFilename());
+                    } else {
+                        ClinicalCase updated = dto.toEntity();
+                        existing.setTitle(updated.getTitle());
+                        existing.setSpecialty(updated.getSpecialty());
+                        existing.setDifficulty(updated.getDifficulty());
+                        existing.setDispatchContext(updated.getDispatchContext());
+                        existing.setScene(updated.getScene());
+                        existing.setKinematicsOrOnset(updated.getKinematicsOrOnset());
+                        existing.setProtocolReference(updated.getProtocolReference());
+                        existing.setPatient(updated.getPatient());
+                        existing.setVitals(updated.getVitals());
+                        existing.setPrimarySurvey(updated.getPrimarySurvey());
+                        existing.setSampleHistory(updated.getSampleHistory());
+                        existing.setMedia(updated.getMedia());
+                        clinicalCaseRepository.save(existing);
+                        updatedCount++;
                     }
-
-                    ClinicalCase entity = dto.toEntity();
-                    clinicalCaseRepository.save(entity);
-                    loadedCount++;
-                    log.info("Caso clínico '{}' cargado exitosamente desde {}", dto.id(), resource.getFilename());
                 } catch (Exception e) {
                     log.error("Error al procesar archivo de caso {}: {}", resource.getFilename(), e.getMessage(), e);
                 }
             }
 
-            log.info("Sincronización de casos completada: {} nuevos cargados, {} existentes omitidos. Total en BD: {}",
-                    loadedCount, skippedCount, clinicalCaseRepository.count());
+            log.info("Sincronización de casos completada: {} nuevos cargados, {} actualizados. Total en BD: {}",
+                    loadedCount, updatedCount, clinicalCaseRepository.count());
 
         } catch (Exception e) {
             log.error("Fallo general en la lectura de casos clínicos JSON: {}", e.getMessage(), e);

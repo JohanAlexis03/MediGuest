@@ -1,0 +1,78 @@
+{
+  "id": "caso-ovace-adulto-asfixia",
+  "title": "Obstrucción de Vía Aérea por Cuerpo Extraño (OVACE Completa) con Transición a Paro Asfíctico",
+  "specialty": "RESPIRATORIO",
+  "difficulty": "BASICO",
+  "dispatchContext": "Alerta de código rojo en restaurante céntrico por cliente atragantado con un trozo de carne que no puede hablar ni respirar.",
+  "scene": "Salón de restaurante. La tripulación de la ambulancia, que estaba a una cuadra en relevo, entra y encuentra al paciente de pie sujetándose el cuello con ambas manos (signo universal de asfixia).",
+  "kinematicsOrOnset": "Atragantamiento súbito durante el almuerzo hace 90 segundos. Pérdida brusca del tono postural justo al aproximarse los paramédicos.",
+  "protocolReference": "AHA Guías de Soporte Vital Básico (BLS) / Consejo Europeo de Resucitación (ERC) Manejo de OVACE",
+  "patient": {
+    "age": 58,
+    "ageUnit": "años",
+    "sex": "Masculino",
+    "weightKg": 86,
+    "occupation": "Empresario"
+  },
+  "vitals": {
+    "heartRate": 44,
+    "respiratoryRate": 0,
+    "bloodPressure": "60/30",
+    "oxygenSaturation": 65,
+    "bodyTemperature": 36.4,
+    "glasgow": {
+      "ocularResponse": 1,
+      "verbalResponse": 1,
+      "motorResponse": 1,
+      "totalScore": 3
+    }
+  },
+  "primarySurvey": {
+    "airway": "Obstrucción total de vía aérea superior mecánica. El paciente se desploma inconsciente y flácido en brazos del personal.",
+    "breathing": "Apnea total. Intentos agónicos inefectivos de expansión torácica que cesan.",
+    "circulation": "Bradicardia asfíctica severa (44 lpm) por hipoxia miocárdica crítica previa al paro cardíaco inminente. Cianosis facial y peribucal lívida intensa. Pulso carotídeo apenas perceptible.",
+    "disability": "Glasgow 3/15. Pupilas con midriasis bilateral hiporreactiva.",
+    "exposure": "Ropa desabrochada. Sin signos traumáticos externos."
+  },
+  "sampleHistory": {
+    "symptoms": "Asfixia mecánica súbita, incapacidad total para emitir sonidos, toser o respirar.",
+    "allergies": "No refiere.",
+    "medications": "Desconocidos.",
+    "pastHistory": "Portador de prótesis dental superior (según indica familiar en la mesa).",
+    "lastMeal": "Almuerzo con carne asada hace instantes.",
+    "events": "Estaba riendo mientras comía un corte de carne grueso cuando comenzó a ahogarse desesperadamente y llevó sus manos al cuello."
+  },
+  "media": null,
+  "questions": [
+    {
+      "prompt": "Cuando una víctima con obstrucción completa de la vía aérea por cuerpo extraño (OVACE) pierde el conocimiento y queda flácida e inconsciente, ¿cuál es la conducta inmediata conforme a los consensos internacionales AHA BLS y ERC?",
+      "protocolReference": "AHA BLS Guidelines / Manejo de la OVACE en Adultos Inconscientes",
+      "options": [
+        {
+          "optionKey": "A",
+          "text": "Descender cuidadosamente al paciente al suelo, iniciar de inmediato ciclos de 30 compresiones torácicas de RCP para generar presión intratorácica que desaloje el cuerpo extraño, abrir la vía aérea y revisar visualmente la cavidad bucal retirándolo ÚNICAMENTE si es visible (prohibido barrido a ciegas); intentar 2 ventilaciones de rescate y, si se dispone de equipo avanzado, visualización laringoscópica directa y extracción con pinzas de Magill.",
+          "isCorrect": true,
+          "clinicalFeedback": "¡Correcto! En el paciente que colapsa inconsciente por atragantamiento, las compresiones torácicas de RCP sustituyen a las compresiones abdominales (Heimlich) porque generan presiones en la vía aérea iguales o superiores para expulsar el cuerpo extraño y mantienen perfusión cerebral y coronaria en un corazón que sufre bradicardia asfíctica. Los barridos digitales a ciegas con el dedo están estrictamente proscritos porque empujan el bolo cárneo hacia la laringe profundizando la obstrucción o lesionan la faringe. La laringoscopia con pinzas de Magill es la técnica avanzada de elección para extracción."
+        },
+        {
+          "optionKey": "B",
+          "text": "Continuar aplicando compresiones abdominales de Heimlich con el paciente tendido boca arriba en el suelo apoyándose sobre su abdomen.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Las compresiones abdominales en el suelo fueron retiradas de los protocolos oficiales por ser menos eficaces que la RCP torácica estándar y por el alto riesgo de desgarro hepático, rotura esplénica y aspiración de contenido gástrico."
+        },
+        {
+          "optionKey": "C",
+          "text": "Introducir de inmediato el dedo índice de forma ciega y profunda hasta la hipofaringe en forma de gancho para intentar enganchar el trozo de carne sin mirar.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. El barrido digital a ciegas es un error histórico peligroso: empuja el objeto aún más hacia la glotis, impactándolo de forma irreversible y provocando laceraciones o sangrado en la vía aérea."
+        },
+        {
+          "optionKey": "D",
+          "text": "Realizar ventilaciones boca a boca forzadas a máxima presión con bolsa-válvula-mascarilla para empujar el trozo de carne hacia el bronquio principal derecho como primera medida.",
+          "isCorrect": false,
+          "clinicalFeedback": "Incorrecto. Ventilar con fuerza contra una obstrucción total supraglótica sin antes intentar compresiones torácicas o extracción solo insuflará masivamente el estómago, provocando regurgitación masiva y broncoaspiración sin oxigenar los pulmones."
+        }
+      ]
+    }
+  ]
+}
