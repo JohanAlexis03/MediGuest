@@ -7,7 +7,7 @@
 
 ## 1. Visión y Rama Activa
 * **Proyecto:** MediQuest — Plataforma de Entrenamiento Clínico para Atención Prehospitalaria (APH).
-* **Rama Git Activa:** `develop`.
+* **Rama Git Activa:** `feature/difficulty-filter-and-respiratory-expansion`.
 * **Stack Tecnológico:**
   * **Frontend:** Expo SDK 57 (React Native 0.86, React 19.2, Expo Router).
   * **Backend:** Java 23 con Spring Boot 4 + Base de Datos Relacional MySQL 9.3 (`mediquest_db`).
@@ -37,6 +37,7 @@
 | **Arquitectura Ingesta JSON & 15 Casos** | RF03, RF05, RF06, RF08, RF09 | ✅ | `CaseLoaderService.java`, `CaseJsonDto.java`, `classpath*:cases/*.json`, reducción de `DataSeeder.java` (590 a 45 líneas) y banco ampliado a 15 casos |
 | **Expansión a 25 Casos Clínicos (Lote 2)** | RF03, RF05, RF06, RF08, RF09 | ✅ | 10 nuevos casos JSON de alta fidelidad (ACV ventana trombolisis, PCR en FV, bloqueo AV 3er grado, anafilaxia pediátrica, estatus epiléptico, X-ABCDE torniquete, crup, EAP hipertensivo, trauma eléctrico alto voltaje, intoxicación CO) |
 | **Métricas y Conteo en Catálogo** | RF03, RF04, Usabilidad | ✅ | `cases/index.tsx` con tarjeta de resumen métrico (total casos, 6 especialidades, casos en pantalla), insignias con conteos por píldora de especialidad y barra de resultados filtrados con restablecimiento rápido |
+| **Expansión Respiratoria (30 Casos) y Filtro Dificultad** | RF03, RF04, Usabilidad | ✅ | Expansión a 7 casos en especialidad Respiratorio (EPOC hipercápnico, TEP masivo, OVACE en inconsciente, neumonía grave qSOFA, volet costal) alcanzando 30 casos en BD, filtro bidimensional cruzado por Dificultad (Básico, Intermedio, Avanzado) con conteos reactivos en UI |
 
 ---
 
@@ -56,14 +57,15 @@
 * **ADR-12 (Auxiliares Diagnósticos Pertinentes y Conectividad LAN Multi-dispositivo):** Descartar fotos genéricas de stock de Unsplash y vincular los casos a imágenes diagnósticas reales de alta fidelidad (ECGs de 12 derivaciones, placas de tórax AP, escalas neurológicas) mapeadas por ID de caso. Resolver la IP anfitriona dinámicamente mediante `expo-constants` para posibilitar pruebas desde dispositivos físicos en la misma red Wi-Fi sin configuración manual.
 * **ADR-13 (Arquitectura de Ingesta Masiva JSON y Desacoplamiento de Semillas):** Para escalar de forma sostenible hacia el objetivo pedagógico de 100 casos clínicos sin inflar clases de configuración Java (`DataSeeder.java`), se implementa una arquitectura desacoplada basada en DTOs JSON (`CaseJsonDto`) y un servicio de carga automática (`CaseLoaderService`) que escanea recursos `classpath*:cases/*.json`. La persistencia mantiene idempotencia verificando `existsById` y preserva la integridad relacional JPA bidireccional.
 * **ADR-14 (Transparencia Métricas de Catálogo y Desglose por Especialidad):** Para evitar la fatiga cognitiva del estudiante en el scroll vertical ciego, se incorpora en la cabecera del catálogo (`cases/index.tsx`) un panel de resumen con el banco total (25 casos) y especialidades, insignias con conteos exactos dentro de cada píldora de filtro, y una barra de estado dinámica con restablecimiento rápido ('Ver todos').
+* **ADR-15 (Filtrado Bidimensional Reactivo y Equilibrio de Emergencias Respiratorias):** Para garantizar un entrenamiento clínico balanceado en las 6 especialidades de APH, se amplía la cobertura respiratoria a 7 casos y se incorpora en el frontend un filtrado bidimensional (Especialidad × Dificultad) con cálculo reactivo mutuo de conteos en insignias y actualización dinámica de la persistencia en MySQL mediante sincronización upsert en `CaseLoaderService`.
 
 ---
 
 ## 4. Estado Actual (En Curso)
-* **Frontend:** 100% productivo con panel métrico en catálogo, auxiliares diagnósticos médicos reales, filtros calibrados y conectividad LAN dinámica (**0 errores TS, 0 warnings lint**).
-* **Backend:** Spring Boot activo en puerto 8080 con MySQL 9.3 (**8/8 tests en verde**, carga masiva JSON de 25 casos operativa).
-* **Base de Datos:** MySQL `mediquest_db` con 25 casos clínicos completos sembrados de forma idempotente.
-* **Gobierno de Proyecto:** Rama `feature/cases-catalog-metrics` con auditoría activa.
+* **Frontend:** 100% productivo con filtrado bidimensional (Especialidad × Dificultad), auxiliares diagnósticos médicos reales y conectividad LAN dinámica (**0 errores TS, 0 warnings lint**).
+* **Backend:** Spring Boot activo en puerto 8080 con MySQL 9.3 (**8/8 tests en verde**, carga masiva JSON de 30 casos operativa).
+* **Base de Datos:** MySQL `mediquest_db` con 30 casos clínicos completos sembrados de forma idempotente.
+* **Gobierno de Proyecto:** Rama `feature/difficulty-filter-and-respiratory-expansion` con auditoría activa.
 
 ---
 
